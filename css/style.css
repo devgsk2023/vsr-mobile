@@ -15,35 +15,179 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
 /* ========== HEADER CON LOGO ========== */
 .site-header {
   background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.logo-line1 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #4a4a4a !important;
-}
-
-.logo-line2 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--vsr-green) !important;
+.logo-img {
+  display: block;
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
 }
 
 .header-line {
-  height: 3px;
+  
   background-color: #5dade2;
   width: 100%;
+}
+
+/* ========== HEADER + HERO DESKTOP (solo PC, no toca mobile) ========== */
+@media (min-width: 992px) {
+  .header-line {
+    background-color: black;
+  }
+
+  .header-nav-link {
+    color: #000000;
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .header-nav-link:hover {
+    color: #000000;
+    text-decoration: underline;
+  }
+
+  .hero-desktop {
+    background-color: #f0f0f0;
+    padding: 3rem 0;
+  }
+
+  .hero-desktop-left {
+    padding-right: 2rem;
+  }
+
+  .hero-desktop-left .intro-title {
+    text-align: left;
+    font-size: 3.1rem;
+  }
+
+  .hero-desktop-right {
+    position: relative;
+    display: flex;
+  }
+
+  .hero-desktop-img-wrap {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-desktop-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("../assets/img/banner-principal.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-desktop-overlay {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(calc(-50% - 40px));
+    background-color: rgba(54, 54, 54, 1);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    max-width: 320px;
+    width: max-content;
+    opacity: 0;
+    animation: hero-overlay-fade-left 0.6s ease 2s forwards;
+  }
+
+  @keyframes hero-overlay-fade-left {
+    to {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+
+  .hero-desktop-overlay-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+  }
+
+  .hero-desktop-overlay .text-vsr {
+    color: #D3FA57;
+  }
+
+  .hero-desktop .intro-buttons .btn {
+    width: auto;
+    min-width: 200px;
+  }
+
+  /* ¿Qué es el VSR? - versión PC */
+  .que-es-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #009145;
+    margin: 0;
+    text-align: center;
+  }
+
+  .section-que-es .tabs-title {
+    text-align: center;
+    font-size: 3rem;
+    color:#000000
+  }
+
+  .section-que-es .tabs-text {
+    text-align: left;
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.2rem;
+  }
+
+  .section-que-es .que-es-cards {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .section-que-es .que-es-card {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 145, 69, 0.35);
+    border-bottom: 1px solid rgba(0, 145, 69, 0.35);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    aspect-ratio: 1.15;
+    min-height: 200px;
+    padding: 40px 24px;
+    height: 200px;
+  }
+
+  .section-que-es .que-es-card-title {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  .section-que-es .que-es-card-desc {
+    font-size: 1.3rem;
+  }
+
+  /* Orden en grid: fila1 = Mayor riesgo, Se transmite | fila2 = Más frecuente, Afecta */
+  .section-que-es .que-es-card:nth-child(1) { grid-column: 2; grid-row: 2; }
+  .section-que-es .que-es-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .section-que-es .que-es-card:nth-child(3) { grid-column: 1; grid-row: 1; }
+  .section-que-es .que-es-card:nth-child(4) { grid-column: 1; grid-row: 2; }
 }
 
 /* ========== BANNER CON FOTO DE FONDO ========== */
@@ -51,7 +195,7 @@ body {
   position: relative;
   min-height: 420px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   overflow: hidden;
 }
@@ -70,31 +214,42 @@ body {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 0px;
+  padding: 0;
+  width: 100%;
 }
 
 .banner-box {
   background-color: #363636;
   color: #fff;
   text-align: center;
-  padding: 1rem 2.5rem;
+  padding: 1rem 1.5rem;
   width: 100%;
   max-width: 100%;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: banner-box-enter 0.6s ease 2s forwards;
+}
+
+@keyframes banner-box-enter {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .banner-box-line {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
   line-height: 1.3;
 }
 
 .banner-box-vsr {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--vsr-green) !important;
+  color: #D3FA57 !important;
   line-height: 1.2;
 }
 
@@ -147,13 +302,13 @@ body {
 }
 
 .btn-cta-outline {
-  background-color: #e8f5e9;
+  background-color: #E6F4EC;
   color: #009145;
   
 }
 
 .btn-cta-outline:hover {
-  background-color: #c8e6c9;
+  background-color: #E6F4EC;
   color: #009145;
   
 }
@@ -255,7 +410,7 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--vsr-green);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .que-es-card-body {
@@ -280,6 +435,57 @@ body {
 
 .que-es-card-desc sup {
   font-size: 0.75em;
+}
+
+/* ========== Bloque neumonía VSR (debajo de ¿Qué es el VSR?) ========== */
+.section-neumonia-vsr {
+  background-color: #20244C;
+  color: #fff;
+  padding: 6rem 0rem;
+}
+
+.neumonia-vsr-destacado {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.neumonia-vsr-highlight {
+  color: #D3FA57;
+  font-weight: 700;
+}
+
+.neumonia-vsr-highlight sup {
+  color: inherit;
+  font-size: 0.75em;
+}
+
+.neumonia-vsr-texto {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.neumonia-vsr-texto sup {
+  font-size: 0.75em;
+}
+
+@media (min-width: 992px) {
+  .neumonia-vsr-destacado {
+    font-size: 2.5rem;
+    
+  }
+  .neumonia-vsr-highlight{
+    font-weight: 400;
+  }
+
+  .neumonia-vsr-texto {
+    font-size: 1.3rem;
+  }
 }
 
 /* ========== Navegación inferior (como app) ========== */
@@ -328,6 +534,123 @@ body {
   width: 26px;
   height: 26px;
   object-fit: contain;
+}
+
+.bottom-nav-item-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ========== Menú móvil (desplegable de abajo hacia arriba) ========== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.mobile-menu-overlay.open .mobile-menu-panel {
+  transform: translateY(0);
+}
+
+.mobile-menu-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mobile-menu-logo-img {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-menu-logo-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #20244C;
+  display: block;
+}
+
+.mobile-menu-logo-text .text-vsr,
+.mobile-menu-logo .vsr-verde {
+  color: var(--vsr-green);
+}
+
+.mobile-menu-logo-site {
+  font-size: 0.7rem;
+  color: #6c757d;
+  margin-top: 0.15rem;
+}
+
+.mobile-menu-close {
+  font-size: 1.5rem;
+  color: #495057;
+  line-height: 1;
+}
+
+.mobile-menu-close:hover {
+  color: #212529;
+}
+
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+}
+
+.mobile-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0.75rem;
+  color: #212529;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.mobile-menu-link:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: #20244C;
+}
+
+.mobile-menu-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.mobile-menu-icon-bi {
+  font-size: 1.4rem;
+  color: #20244C;
+  width: auto;
+  height: auto;
 }
 
 body {
@@ -427,7 +750,7 @@ body {
 
 .evaluar-riesgo-label {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--vsr-green);
@@ -437,7 +760,7 @@ body {
 .evaluar-riesgo-title {
   font-size: 2.2rem;
   font-weight: 400;
-  color: #2c3e50;
+  color: black;
   line-height: 1.25;
   margin: 0;
 }
@@ -453,6 +776,33 @@ body {
   padding: 0.75rem 1rem;
   display: block;
   width: 100%;
+}
+
+@media (min-width: 992px) {
+  .section-evaluar-riesgo .container {
+    text-align: center;
+  }
+
+  .section-evaluar-riesgo .evaluar-riesgo-label,
+  .section-evaluar-riesgo .evaluar-riesgo-title,
+  .section-evaluar-riesgo .evaluar-riesgo-text {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .section-evaluar-riesgo .btn-evaluar-test {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+  }
+  .evaluar-riesgo-title{
+    font-size: 3rem !important;
+  }
+  .evaluar-riesgo-text{
+    font-size: 1.5rem !important;
+  }
 }
 
 /* ========== Reconocé las señales / Síntomas del VSR ========== */
@@ -516,17 +866,80 @@ body {
 }
 
 .reconocer-aviso-titulo {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #D3FA57;
   margin: 0;
 }
 
 .reconocer-aviso-texto {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
   margin: 0;
+}
+
+/* Reconocé las señales - versión PC */
+@media (min-width: 992px) {
+  .section-reconocer .reconocer-label,
+  .section-reconocer .reconocer-title,
+  .section-reconocer .reconocer-intro {
+    text-align: center;
+  }
+  .reconocer-intro{
+    font-size: 1.3rem;
+  }
+  .section-reconocer .reconocer-card {
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .section-reconocer .reconocer-sintomas-row {
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 30px;
+  }
+
+  .section-reconocer .reconocer-sintomas-row .col-lg-2.reconocer-sintoma-item {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    background-color: #d4edda;
+    border-radius: 8px;
+    padding: 1.25rem 1.25rem;
+  }
+
+  .section-reconocer .reconocer-aviso {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .section-reconocer .reconocer-aviso-titulo {
+    color: #D3FA57;
+    margin: 0;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+  }
+
+  .section-reconocer .reconocer-aviso-texto {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    white-space: nowrap;
+    font-size: 1.3rem;
+  }
 }
 
 /* ========== Mira el video ========== */
@@ -550,6 +963,38 @@ body {
   color: #20244C;
   line-height: 1.3;
   margin: 0;
+}
+
+.video-section-wrap {
+  display: block;
+}
+
+.video-section-text {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .video-section-wrap {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+   
+  }
+
+  .video-section-text {
+    margin-bottom: 0;
+  }
+
+  .section-video-contagio .section-video-label {
+    color: var(--vsr-green);
+    font-size: 1rem;
+  }
+
+  .section-video-contagio .section-video-title {
+    color: black;
+    font-weight: 400;
+    font-size: 2.8rem;
+  }
 }
 
 .btn-link-video {
@@ -638,10 +1083,65 @@ body {
   margin: 0;
 }
 
+.contagio-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.contagio-flow-item .contagio-flow-card {
+  width: 100%;
+}
+
 .contagio-flow-card {
   background-color: #fff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
+}
+
+/* Flip card: frente y dorso */
+.contagio-card-front {
+  text-align: center;
+  padding: 1rem;
+}
+
+.contagio-card-back {
+  display: none;
+  background-color: #d4edda;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Móvil: flip al tocar "Ver más" (clase .flipped en la card) */
+.contagio-flow-card.flipped .contagio-card-front {
+  display: none;
+}
+.contagio-flow-card.flipped .contagio-card-back {
+  display: block;
+}
+
+.contagio-card-back-text {
+  font-size: 0.95rem;
+  color: #212529;
+  line-height: 1.5;
+}
+
+/* Esfera numerada (badge circular con gradiente) */
+.contagio-flow-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #009145 0%, #002B14 100%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  flex-shrink: 0;
 }
 
 .contagio-flow-link {
@@ -649,8 +1149,12 @@ body {
   top: 1rem;
   right: 1rem;
   font-size: 0.85rem;
-  color: #6c757d;
+  color: #5CB030;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .contagio-flow-link:hover {
@@ -683,6 +1187,137 @@ body {
   background-color: #fff;
 }
 
+/* Contagio y reinfecciones - versión PC (3 tarjetas en fila, más cuadradas) */
+@media (min-width: 992px) {
+  .section-contagio .section-contagio-label,
+  .section-contagio .section-contagio-title,
+  .section-contagio .section-contagio-intro {
+    text-align: center;
+  }
+
+  .section-contagio .section-contagio-title {
+    font-size: 2.5rem;
+  }
+
+  .section-contagio .section-contagio-intro {
+    font-size: 1.3rem;
+  }
+
+  .contagio-flow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .contagio-flow .contagio-arrow {
+    display: none;
+  }
+
+  .contagio-flow .contagio-flow-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .contagio-flow .contagio-flow-item:nth-child(3) { grid-column: 2; grid-row: 1; }
+  .contagio-flow .contagio-flow-item:nth-child(5) { grid-column: 3; grid-row: 1; }
+
+  .contagio-flow-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contagio-flow-item .contagio-flow-card {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .contagio-flow-badge-outside {
+    flex-shrink: 0;
+    width: 82px;
+    height: 82px;
+    font-size: 1.75rem;
+  }
+
+  .contagio-flow-card.contagio-card-flip {
+    perspective: 1000px;
+    
+    cursor: pointer;
+  }
+
+  .contagio-flow-card.contagio-card-flip:hover {
+    transform: rotateY(180deg);
+  }
+
+  .contagio-flow-card .contagio-card-front,
+  .contagio-flow-card .contagio-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 8px;
+    border-bottom: 1px solid #009145;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .contagio-flow-card .contagio-card-front {
+    background-color: #fff;
+  }
+
+  .contagio-flow-card .contagio-card-back {
+    display: flex;
+    background-color: #d4edda;
+    transform: rotateY(180deg);
+    justify-content: center;
+  }
+
+  .contagio-flow-card .contagio-card-back-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+  }
+
+  .contagio-flow-card {
+    position: relative;
+    height: 320px;
+    min-height: 320px;
+    padding: 0;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .contagio-flow-card .contagio-flow-badge {
+    width: 82px;
+    height: 82px;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .contagio-flow-card .contagio-flow-icon {
+    margin-bottom: 1rem;
+  }
+
+  .contagio-flow-card .contagio-flow-icon img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .contagio-flow-card .contagio-flow-title {
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 400;
+  }
+  .contagio-flow-link{
+    display: none;
+  }
+}
+
 /* ========== Entender cómo circula ========== */
 .section-entender-circula {
   background-color: #20244C;
@@ -710,7 +1345,7 @@ body {
 }
 
 .section-entender-frase {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.4;
   color: #fff;
@@ -718,6 +1353,39 @@ body {
 
 .entender-highlight {
   color: #D3FA57;
+}
+
+/* Bloque overlay sobre la imagen - solo PC */
+@media (min-width: 992px) {
+  .section-entender-foto {
+    position: relative;
+  }
+
+  .section-entender-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(50, 52, 72, 1);
+    color: #fff;
+    padding: 2.25rem 2rem;
+    border-radius: 0px;
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 1.4;
+    max-width: 90%;
+  }
+
+  .section-entender-overlay .entender-overlay-vsr {
+    color: #D3FA57;
+    font-weight: 700;
+  }
+  .section-entender-frase{
+    font-size: 2.3rem;
+  }
+  .section-entender-texto{
+    padding: 5rem 0rem;
+  }
 }
 
 /* ========== Prevención del VSR ========== */
@@ -885,15 +1553,14 @@ body {
   padding-bottom: 0.75rem;
 }
 
-/* Preguntas consulta: 3 bloques con chevron (estilo imagen) */
+/* Preguntas consulta: 3 bloques con chevron (estilo captura) */
 .accordion-preguntas-consulta .accordion-item {
-  border: none;
-  border-bottom: 1px solid #009145;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .accordion-preguntas-consulta .accordion-item:last-child {
@@ -902,7 +1569,7 @@ body {
 
 .prevencion-pregunta-btn {
   font-size: 1rem !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   color: #212529 !important;
   background-color: #fff !important;
   padding: 16px 8px 16px 8px !important;
@@ -951,10 +1618,134 @@ body {
   text-decoration: underline;
 }
 
+/* Contenedor: botones Compartir y Descargar uno al lado del otro */
+.prevencion-consulta-btns {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+}
+
+/* Botones Compartir / Descargar preguntas (estilo captura: fondo verde claro, texto verde) */
+.btn-prevencion-consulta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background-color: #E0FFEE;
+  color: #009145;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 145, 69, 0.2);
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 13px;
+}
+
+.btn-prevencion-consulta:hover {
+  background-color: #c8f5dc;
+  color: #007a38;
+  text-decoration: none;
+}
+
+/* Prevención del VSR - versión PC */
+@media (min-width: 992px) {
+  .section-prevencion {
+    padding-top: 100px;
+    padding-bottom: 200px;
+  }
+  .prevencion-habitos-intro{
+    text-align: left;
+  }
+  .section-prevencion .prevencion-label,
+  .section-prevencion .prevencion-title,
+  .section-prevencion .prevencion-intro,
+  .section-prevencion .prevencion-habitos-intro,
+  .section-prevencion .prevencion-preguntas-title {
+    text-align: center;
+    
+  }
+  .prevencion-habitos-intro{
+    text-align: left !important;
+    font-size:1.3rem;
+  }
+  .prevencion-preguntas-title{
+    text-align: left !important;
+  }
+
+  .prevencion-title{
+    font-size: 3rem;
+  }
+  .prevencion-intro{
+    font-size: 1.3rem;
+  }
+
+  .section-prevencion .prevencion-btn-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .section-prevencion .prevencion-btn-wrap .btn {
+    width: auto;
+    min-width: 200px;
+    max-width: 280px;
+  }
+
+  .section-prevencion .prevencion-habitos-block {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .section-prevencion .prevencion-habitos-block .row {
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 30px;
+  }
+
+  /* Cada hábito como card individual (estilo tipo Primer contacto / Contagio) */
+  .section-prevencion .prevencion-habitos-block .col-lg-4 {
+    display: flex;
+  }
+
+  .section-prevencion .prevencion-habitos-block .prevencion-habito {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .section-prevencion .prevencion-habitos-block .prevencion-habito-icon {
+    margin-bottom: 1rem;
+  }
+
+  .section-prevencion .prevencion-habitos-block .prevencion-habito-icon img {
+    width: 56px;
+    height: 56px;
+  }
+  .prevencion-pregunta-btn{
+    font-size: 1.8rem !important;
+    padding: 40px 20px !important;
+  }
+
+  .section-prevencion .prevencion-habito-text {
+    font-size: 1rem;
+  }
+  
+}
+
 /* ========== ¿Dónde me vacuno? ========== */
 .section-donde-vacuno {
   background-color: #20244C;
   color: #fff;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .donde-vacuno-label {
@@ -1001,6 +1792,27 @@ body {
   margin: 0;
 }
 
+/* ¿Dónde me vacuno? - tamaños de texto y padding en PC */
+@media (min-width: 992px) {
+  .section-donde-vacuno {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .section-donde-vacuno .donde-vacuno-label {
+    font-size: 1rem;
+  }
+  .section-donde-vacuno .donde-vacuno-title {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+  .section-donde-vacuno .donde-vacuno-intro {
+    font-size: 1.3rem;
+  }
+  .section-donde-vacuno .donde-vacuno-paso {
+    font-size: 1.2rem;
+  }
+}
+
 .donde-vacuno-select-wrapper {
   width: 100%;
 }
@@ -1027,10 +1839,19 @@ body {
 .section-ponete-prueba {
   background-color: #fff;
   color: #212529;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin: 0;
+}
+
+.section-ponete-prueba .ponete-prueba-label,
+.section-ponete-prueba .ponete-prueba-title,
+.section-ponete-prueba .ponete-prueba-intro {
+  text-align: center;
 }
 
 .ponete-prueba-label {
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1039,29 +1860,36 @@ body {
 }
 
 .ponete-prueba-title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 500;
-  color: #20244C;
+  color: black;
   margin: 0;
 }
 
 .ponete-prueba-intro {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #212529;
   line-height: 1.5;
   margin: 0;
+  font-weight: 600;
+}
+
+.ponete-prueba-card-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .ponete-prueba-card {
   width: 100%;
-  max-width: 396px;
-  background-color: #F0F0F0;
+  max-width: 500px;
+  background-color: #fff;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  padding: 50px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 0;
 }
 
 .ponete-prueba-card > * {
@@ -1070,7 +1898,7 @@ body {
 
 .ponete-prueba-progress {
   height: 6px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e0;
   border-radius: 3px;
   overflow: hidden;
 }
@@ -1083,13 +1911,13 @@ body {
 }
 
 .ponete-prueba-contador {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #495057;
   margin: 0;
 }
 
 .ponete-prueba-pregunta {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: #20244C;
   line-height: 1.35;
@@ -1099,7 +1927,7 @@ body {
 .btn-ponete-respuesta {
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--vsr-green);
   background-color: transparent;
   border: none;
@@ -1107,10 +1935,14 @@ body {
   transition: background-color 0.2s, color 0.2s;
 }
 
-.btn-ponete-respuesta:hover {
-  background-color: var(--vsr-green);
-  color: #fff;
-  border-color: var(--vsr-green);
+.btn-ponete-respuesta:hover,
+.btn-ponete-respuesta.selected {
+  color: #007a38;
+  background-color: rgba(0, 145, 69, 0.08);
+}
+
+.btn-ponete-respuesta.selected {
+  font-weight: 600;
 }
 
 /* Pasos del quiz: solo uno visible */
@@ -1277,7 +2109,7 @@ body {
 }
 
 .faq-label {
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1286,14 +2118,14 @@ body {
 }
 
 .faq-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #20244C;
+  font-size: 2rem;
+  font-weight: 400;
+  color: black;
   margin: 0;
 }
 
 .faq-intro {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #495057;
   line-height: 1.5;
   margin: 0;
@@ -1304,7 +2136,7 @@ body {
   border: none;
   border-bottom: 1px solid #009145;
   border-radius: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 34px;
   overflow: hidden;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 }
@@ -1317,9 +2149,15 @@ body {
   background-color: #fff !important;
   color: #20244C !important;
   border: none;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 3rem;
   padding: 16px 1.25rem;
   box-shadow: none !important;
+}
+
+/* Títulos de categoría FAQ (VSR, VSR y enfermedades..., Prevención...) */
+.accordion-faq .faq-category-btn {
+  font-size: 1.2rem;
 }
 
 .accordion-faq .accordion-button::after {
@@ -1341,6 +2179,101 @@ body {
   color: #495057;
   padding: 16px 1.25rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* FAQ interno: preguntas dentro de cada categoría (cada una en su propia caja con sombra) */
+.accordion-faq-inner {
+  padding: 12px 0;
+}
+
+.accordion-faq-inner .accordion-item {
+  background-color: #FAFAFA;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.accordion-faq-inner .accordion-item:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-faq-inner .accordion-button {
+  background-color: #FAFAFA !important;
+  color: #20244C !important;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 16px;
+}
+
+.accordion-faq-inner .accordion-button::after {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(98%) contrast(92%);
+}
+
+.accordion-faq-inner .accordion-button:not(.collapsed) {
+  background-color: #FAFAFA !important;
+}
+
+/* Texto de respuestas en todos los tabs de FAQ */
+.accordion-faq .accordion-body,
+.accordion-faq-inner .accordion-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.accordion-faq-inner .accordion-body {
+  padding: 0 16px 16px;
+  border-top: none;
+  background-color: #FAFAFA;
+}
+
+/* ========== Referencias ========== */
+.section-referencias {
+  background-color: #f5f5f5;
+  color: #212529;
+}
+
+.referencias-card {
+  background-color: #fff;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-bottom: 2px solid #009145;
+}
+
+.referencias-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #20244C;
+  margin: 0;
+}
+
+.referencias-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+
+.referencias-item {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #212529;
+  margin-bottom: 1rem;
+}
+
+.referencias-item:last-child {
+  margin-bottom: 0;
+}
+
+.referencias-item a {
+  color: #009145;
+  text-decoration: underline;
+}
+
+.referencias-item a:hover {
+  color: #007a38;
 }
 
 /* ========== Secciones alternas ========== */
@@ -1514,6 +2447,77 @@ footer a:hover {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+    max-width: 70%;
+  }
+
+  /* Tipografía PC: textos 1.3rem, títulos 2.5rem */
+  body,
+  p,
+  .tabs-text,
+  .reconocer-intro,
+  .evaluar-riesgo-text,
+  .section-reconocer .reconocer-aviso-texto,
+  .que-es-card-desc,
+  .section-que-es .que-es-card-desc,
+  .faq-intro,
+  .referencias-item,
+  .prevencion-list,
+  .prevencion-qa-pregunta,
+  .prevencion-qa-respuesta,
+  .ponete-prueba-contador,
+  .ponete-prueba-resultado-text,
+  .reconocer-sintoma {
+    font-size: 1.3rem;
+  }
+
+  h1, h2, h3, h4,
+  .tabs-title,
+  .intro-title,
+  .que-es-card-title,
+  .section-que-es .que-es-card-title,
+  .evaluar-riesgo-title,
+  .reconocer-title,
+  .section-video-title,
+  .prevencion-preguntas-title,
+  .donde-vacuno-title,
+  .ponete-prueba-title,
+  .ponete-prueba-pregunta,
+  .faq-title,
+  .referencias-title,
+  .prevencion-card-title {
+    font-size: 2.2rem;
+  }
+
+  .section-ponete-prueba {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .section-ponete-prueba .ponete-prueba-title {
+    font-size: 3rem;
+  }
+  .section-ponete-prueba .ponete-prueba-intro {
+    font-size: 1.1rem;
+  }
+  .section-ponete-prueba .ponete-prueba-pregunta {
+    font-size: 1.3rem;
+  }
+  .section-ponete-prueba .ponete-prueba-contador {
+    font-size: 1rem;
+  }
+  .section-faq .faq-title {
+    font-size: 3rem;
+  }
+  .section-faq .faq-label {
+    font-size: 1rem;
+  }
+  .section-faq .faq-intro {
+    font-size: 1.3rem;
+  }
+  .accordion-faq .accordion-item {
+    margin-bottom: 64px;
+  }
+  .section-referencias .referencias-title {
+    font-size: 3rem;
+    font-weight: 400;
   }
 }

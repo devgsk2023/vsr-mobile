@@ -11,60 +11,80 @@
 <body>
   <!-- ========== HEADER CON LOGO ========== -->
   <header class="site-header">
-    <div class="container d-flex align-items-center py-3">
+    <div class="container d-flex align-items-center justify-content-between py-3">
       <a href="#" class="logo d-flex align-items-center text-decoration-none">
-        <div class="logo-icon me-2" aria-hidden="true">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="14" cy="26" r="6" fill="var(--vsr-green)"/>
-            <circle cx="26" cy="14" r="6" fill="#3498db"/>
-            <circle cx="20" cy="20" r="4" fill="var(--vsr-green)"/>
-            <circle cx="28" cy="24" r="3" fill="#3498db"/>
-            <circle cx="12" cy="14" r="3" fill="var(--vsr-green)"/>
-          </svg>
-        </div>
-        <div class="logo-text">
-          <span class="logo-line1 text-dark">Virus Sincicial</span>
-          <span class="logo-line2 text-success">Respiratorio</span>
-        </div>
+        <img src="assets/img/Logo-principal.png" alt="VSR - Virus Sincicial Respiratorio" class="logo-img">
       </a>
+      <nav class="header-nav d-none d-lg-flex align-items-center gap-4" aria-label="Navegación principal">
+        <a href="#que-es" class="header-nav-link">¿Qué es el VSR?</a>
+        <a href="#sintomas" class="header-nav-link">Síntomas</a>
+        <a href="#contagio" class="header-nav-link">Contagio</a>
+        <a href="#vacunacion" class="header-nav-link">Prevención</a>
+        <a href="#donde-vacuno" class="header-nav-link">Vacunación</a>
+        <a href="#faq" class="header-nav-link">Preguntas frecuentes</a>
+      </nav>
     </div>
     <div class="header-line"></div>
   </header>
 
-  <!-- ========== BANNER CON FOTO DE FONDO ========== -->
-  <section class="banner-main">
+  <!-- ========== BANNER / HERO MOBILE ========== -->
+  <section class="banner-main d-lg-none">
     <div class="banner-bg" role="img" aria-label="Imagen de fondo del banner"></div>
     <div class="container banner-content">
       <div class="banner-box">
         <p class="banner-box-line mb-1">Este encuentro podría</p>
-        <p class="banner-box-line mb-1">ser interrumpido por el</p>
-        <p class="banner-box-vsr mb-0">VSR</p>
+        <p class="banner-box-line mb-0">ser interrumpido por el <span class="banner-box-vsr">VSR</span></p>
       </div>
     </div>
   </section>
 
-  <!-- ========== SECCIÓN DEBAJO DEL BANNER ========== -->
-  <section class="section-below-banner">
+  <section class="section-below-banner d-lg-none">
     <div class="container py-4 py-md-5">
       <p class="intro-title mb-2">
         Conocé el <strong>Virus Sincicial Respiratorio</strong> y cuidá tu salud y a quienes más querés.
       </p>
       
       <div class="intro-buttons d-flex flex-column gap-3 mt-5">
-        <a href="#faq" class="btn btn-cta btn-cta-primary">¿Qué es el VSR?</a>
-        <a href="#faq" class="btn btn-cta-outline ">Cómo prevenirlo</a>
+        <a href="#que-es" class="btn btn-cta btn-cta-primary">¿Qué es el VSR?</a>
+        <a href="#vacunacion" class="btn btn-cta-outline">Cómo prevenirlo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HERO DESKTOP (solo PC) ========== -->
+  <section class="hero-desktop d-none d-lg-block">
+    <div class="container">
+      <div class="row align-items-stretch g-0">
+        <div class="col-lg-6 hero-desktop-left">
+          <p class="intro-title mb-5">
+            Conocé el <strong>Virus Sincicial Respiratorio</strong> y cuidá tu salud y a quienes más querés.
+          </p>
+          <div class="intro-buttons d-flex flex-column gap-3">
+            <a href="#que-es" class="btn btn-cta btn-cta-primary">¿Qué es el VSR?</a>
+            <a href="#vacunacion" class="btn btn-cta-outline">Cómo prevenirlo</a>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-desktop-right">
+          <div class="hero-desktop-img-wrap">
+            <div class="hero-desktop-bg" role="img" aria-label="Familia"></div>
+            <div class="hero-desktop-overlay">
+              <p class="hero-desktop-overlay-text mb-0">Este encuentro podría ser interrumpido por el <strong class="text-vsr">VSR</strong></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========== BLOQUE: ¿Qué es el VSR? ========== -->
-  <section id="que-es" class="section-que-es pb-4">
+  <section id="que-es" class="section-que-es py-5">
     <div class="container">
+      <p class="que-es-label d-none d-lg-block mb-2">ENTENDIENDO EL VIRUS</p>
       <h2 class="tabs-title mb-3">¿Qué es el VSR?</h2>
-      <p class="tabs-text mb-4">
+      <p class="tabs-text my-5">
         El Virus Sincicial Respiratorio es un <STRONG>virus común y contagioso</STRONG> que generalmente causa síntomas leves.
         <br>
-        En <strong>adultos mayores</strong> y adultos con <strong>enfermedades crónicas, el VSR puede causar infecciones graves spam.<sup>(1)</sup>
+        En <strong>adultos mayores</strong> y adultos con <strong>enfermedades crónicas, el VSR puede causar infecciones graves spam.<sup>1</sup>
         </strong>
       </p>
       <div class="que-es-cards">
@@ -79,24 +99,36 @@
           <div class="que-es-card-icon"><i class="bi bi-people"></i></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Se transmite fácilmente</h3>
-            <p class="que-es-card-desc mb-0">A través de la tos o los estornudos.<sup>(2)</sup></p>
+            <p class="que-es-card-desc mb-0">A través de la tos o los estornudos.<sup>2</sup></p>
           </div>
         </div>
         <div class="que-es-card rounded-3 p-3">
           <div class="que-es-card-icon"><i class="bi bi-person-walking"></i></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Mayor riesgo en algunos grupos</h3>
-            <p class="que-es-card-desc mb-0">Especialmente por la edad y las enfermedades crónicas.<sup>(1)</sup></p>
+            <p class="que-es-card-desc mb-0">Especialmente por la edad y las enfermedades crónicas.<sup>1</sup></p>
           </div>
         </div>
         <div class="que-es-card rounded-3 p-3">
           <div class="que-es-card-icon"><i class="bi bi-calendar3"></i></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Más frecuente en meses fríos</h3>
-            <p class="que-es-card-desc mb-0">El mayor pico en la época invernal.<sup>(3)</sup></p>
+            <p class="que-es-card-desc mb-0">El mayor pico en la época invernal.<sup>3</sup></p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOQUE NEUMONÍA VSR ========== -->
+  <section class="section-neumonia-vsr ">
+    <div class="container">
+      <p class="neumonia-vsr-destacado mb-3">
+        El VSR es una de las principales causas de <span class="neumonia-vsr-highlight">neumonía en adultos<sup>⁵</sup></span>.
+      </p>
+      <p class="neumonia-vsr-texto mb-0">
+        1 de cada 4 adultos mayores de 60 años puede desarrollar neumonía como resultado de una infección por VSR<sup>⁶</sup>.
+      </p>
     </div>
   </section>
 
@@ -104,14 +136,14 @@
   <section class="section-evaluar-riesgo py-5">
     <div class="container">
       <p class="evaluar-riesgo-label">EVALUÁ TU RIESGO</p>
-      <h2 class="evaluar-riesgo-title mb-3">¿Tengo mayor riesgo de complicaciones?</h2>
+      <h2 class="evaluar-riesgo-title mb-4">¿Tengo mayor riesgo de complicaciones?</h2>
       <p class="evaluar-riesgo-text mb-3">
         El VSR puede causar cuadros graves en personas mayores o con ciertas enfermedades crónicas como diabetes, asma, EPOC, enfermedades cardiovasculares, entre otras.
       </p>
       <p class="evaluar-riesgo-text fw-bold mb-4">
         Completá un breve test para conocer tu nivel de riesgo de complicaciones y qué podés hacer para protegerte.
       </p>
-      <a href="#" class="btn btn-cta btn-evaluar-test w-100 text-center">Comenzar el test</a>
+      <a href="#" class="btn btn-cta btn-evaluar-test w-100 text-center mt-5">Comenzar el test</a>
     </div>
   </section>
 
@@ -121,32 +153,32 @@
       <p class="reconocer-label">RECONOCÉ LAS SEÑALES</p>
       <h2 class="reconocer-title mb-2">Síntomas del VSR</h2>
       <p class="reconocer-intro mb-4">
-        Los síntomas de VSR pueden variar de leves a graves y pueden durar hasta 2 semanas<sup>(4)</sup>.
+        Los síntomas de VSR pueden variar de leves a graves y pueden durar hasta 2 semanas<sup>4</sup>.
       </p>
 
       <div class="reconocer-card rounded-3 p-4 mb-4">
-        <div class="row g-3">
-          <div class="col-6 text-center">
+        <div class="row g-3 reconocer-sintomas-row">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/fiebre.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Fiebre</p>
           </div>
-          <div class="col-6 text-center">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/congestion.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Congestión</p>
           </div>
-          <div class="col-6 text-center">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/dolor-cabeza.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Dolor de cabeza</p>
           </div>
-          <div class="col-6 text-center">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/goteo.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Goteo nasal</p>
           </div>
-          <div class="col-6 text-center">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/dolor-garganta.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Dolor de garganta</p>
           </div>
-          <div class="col-6 text-center">
+          <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/Ojo.svg" alt=""></div>
             <p class="reconocer-sintoma mb-0">Cansancio</p>
           </div>
@@ -164,48 +196,80 @@
 
   <!-- ========== MIRA EL VIDEO ========== -->
   <section class="section-video-contagio py-5">
-    <div class="container">
-      <p class="section-video-label">MIRA EL VIDEO</p>
-      <h2 class="section-video-title mb-4">Entendé cómo actúa el VSR y por qué es importante informarse.</h2>
-      <div class="ratio ratio-16x9 mb-3 rounded overflow-hidden">
-        <iframe src="https://www.youtube.com/embed/qp6WqCGRyjQ" title="Video: Virus Sincicial Respiratorio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="container my-5">
+      <div class="video-section-wrap">
+        <div class="video-section-text">
+          <p class="section-video-label">MIRÁ EL VIDEO</p>
+          <h2 class="section-video-title mb-0">Entendé cómo actúa el VSR y por qué es importante informarse.</h2>
+        </div>
+        <div class="video-section-player">
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/qp6WqCGRyjQ" title="Video: Virus Sincicial Respiratorio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
-      
     </div>
   </section>
 
   <!-- ========== CONTAGIO Y REINFECCIONES ========== -->
-  <section id="contagio" class="section-contagio pb-5">
+  <section id="contagio" class="section-contagio py-5">
     <div class="container">
       <p class="section-contagio-label">CÓMO CIRCULA EL VIRUS</p>
       <h2 class="section-contagio-title mb-2">Contagio y reinfecciones</h2>
       <p class="section-contagio-intro mb-4">El VSR puede afectar a todas las edades y circular dentro del hogar.</p>
 
-      <div class="contagio-flow">
-        <div class="contagio-flow-card rounded-3 p-4 position-relative">
-          <a href="#" class="contagio-flow-link">Ver más</a>
-          <div class="contagio-flow-icon mb-3">
-            <img src="assets/img/contagios-reinfecciones/bebe.svg" alt="">
+      <div class="contagio-flow my-5">
+        <div class="contagio-flow-item">
+          <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">1</span>
+          <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
+            <div class="contagio-card-front rounded-3 p-4 position-relative">
+              <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
+              <div class="contagio-flow-icon mb-3">
+                <img src="assets/img/contagios-reinfecciones/bebe.svg" alt="">
+              </div>
+              <h3 class="contagio-flow-title text-center mb-0">Primer contacto: la infancia</h3>
+            </div>
+            <div class="contagio-card-back rounded-3 py-5">
+              <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
+              <p class="contagio-card-back-text mb-0">La mayoría de las personas contrae VSR en la infancia. En <strong>guarderías</strong> y <strong>escuelas</strong>, el virus se <strong>transmite</strong> con facilidad.</p>
+            </div>
           </div>
-          <h3 class="contagio-flow-title text-center mb-0">1. Primer contacto: la infancia</h3>
         </div>
         <div class="contagio-arrow text-center py-2"><img src="assets/img/contagios-reinfecciones/flecha-abajo.svg" alt="" class="contagio-arrow-img"></div>
 
-        <div class="contagio-flow-card rounded-3 p-4 position-relative">
-          <a href="#" class="contagio-flow-link">Ver más</a>
-          <div class="contagio-flow-icon mb-3">
-            <img src="assets/img/contagios-reinfecciones/en-el-hogar.svg" alt="">
+        <div class="contagio-flow-item">
+          <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">2</span>
+          <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
+            <div class="contagio-card-front rounded-3 p-4 position-relative">
+              <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
+              <div class="contagio-flow-icon mb-3">
+                <img src="assets/img/contagios-reinfecciones/en-el-hogar.svg" alt="">
+              </div>
+              <h3 class="contagio-flow-title text-center mb-0">Transmisión en el hogar</h3>
+            </div>
+            <div class="contagio-card-back rounded-3 p-4">
+              <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
+              <p class="contagio-card-back-text mb-0">Los niños pueden llevar el virus a casa. En el hogar, <strong>adultos mayores</strong> y personas con <strong>enfermedades crónicas</strong> pueden tener mayor riesgo de <strong>complicaciones</strong>.</p>
+            </div>
           </div>
-          <h3 class="contagio-flow-title text-center mb-0">2. Transmisión en el hogar</h3>
         </div>
         <div class="contagio-arrow text-center py-2"><img src="assets/img/contagios-reinfecciones/flecha-abajo.svg" alt="" class="contagio-arrow-img"></div>
 
-        <div class="contagio-flow-card rounded-3 p-4 position-relative">
-          <a href="#" class="contagio-flow-link">Ver más</a>
-          <div class="contagio-flow-icon mb-3">
-            <img src="assets/img/contagios-reinfecciones/reinfecciones.svg" alt="">
+        <div class="contagio-flow-item">
+          <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">3</span>
+          <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
+            <div class="contagio-card-front rounded-3 p-4 position-relative">
+              <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
+              <div class="contagio-flow-icon mb-3">
+                <img src="assets/img/contagios-reinfecciones/reinfecciones.svg" alt="">
+              </div>
+              <h3 class="contagio-flow-title text-center mb-0">Complicaciones y reinfecciones</h3>
+            </div>
+            <div class="contagio-card-back rounded-3 p-4">
+              <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
+              <p class="contagio-card-back-text mb-0">En algunos casos el <strong>VSR</strong> puede provocar <strong>bronquiolitis</strong> o <strong>neumonía</strong>. Además, puede presentarse más de una vez a lo largo de la vida.</p>
+            </div>
           </div>
-          <h3 class="contagio-flow-title text-center mb-0">3. Complicaciones y reinfecciones</h3>
         </div>
       </div>
     </div>
@@ -213,67 +277,73 @@
 
   <!-- ========== ENTENDER CÓMO CIRCULA ========== -->
   <section class="section-entender-circula">
-    <div class="section-entender-foto">
-      <img src="assets/img/entender-como-circula.png" alt="" class="section-entender-img">
+    <div class="section-entender-foto position-relative">
+      <img src="assets/img/entender-como-circula.png" alt="" class="section-entender-img d-lg-none">
+      <img src="assets/img/imagen-pc.png" alt="" class="section-entender-img section-entender-img-pc d-none d-lg-block">
+      <div class="section-entender-overlay d-none d-lg-flex">
+        <span>Este encuentro podría<br>ser interrumpido por el <span class="entender-overlay-vsr">VSR</span></span>
+      </div>
     </div>
     <div class="section-entender-texto">
-      <p class="section-entender-frase mb-0">
-        <span class="entender-highlight">Entender</span> cómo circula el virus es el<br>
-        primer paso para <span class="entender-highlight">proteger</span> a quienes<br>
-        más querés.
-      </p>
+      <div class="container">
+        <p class="section-entender-frase mb-0">
+          <span class="entender-highlight">Entender</span> cómo circula el virus es el
+          primer paso para <span class="entender-highlight">proteger</span> a quienes
+          más querés.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- ========== PREVENCIÓN DEL VSR ========== -->
-  <section id="vacunacion" class="section-prevencion py-5">
+  <section id="vacunacion" class="section-prevencion">
     <div class="container">
       <p class="prevencion-label">MEDIDAS SIMPLES, GRAN IMPACTO</p>
       <h2 class="prevencion-title mb-3">Prevención del VSR</h2>
       <p class="prevencion-intro mb-4">
         La <strong>vacunación</strong> es una de las formas más importantes de <strong>reducir el riesgo de complicaciones</strong>. 
-      </p>
-      <p class="prevencion-intro mb-4">
+       <br>
         Si tenés <strong>60 años o pertenecés a un grupo de riesgo</strong>, conversá con tu profesional de salud sobre si una vacuna contra el VSR es adecuada para vos.
       </p>
-      <div class="text-center mb-5">
+      
+      <div class="text-center my-5 prevencion-btn-wrap">
         <a href="#" class="btn btn-cta btn-evaluar-test w-100 text-center">¿Dónde me vacuno?</a>
       </div>
 
       <p class="prevencion-habitos-intro mb-4">Recordá que además de la vacunación, estos <strong>hábitos</strong> ayudan a <strong>reducir el riesgo de contagio:</strong></p>
       <div class="prevencion-habitos-block rounded-3 p-3 mb-4">
         <div class="row g-4 mb-0">
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/lavate-manos.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Lavate las manos.</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/ventila.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Ventilá los ambientes.</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/cambiar-contacto.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Evitá el contacto cercano con personas con síntomas.</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/quedate-casa.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Quedate en casa si estás enfermo/a.</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/cubrite-toser.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Cubrite al toser.</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/limpia-superficie.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Limpiá superficies.</p>
@@ -282,9 +352,9 @@
         </div>
       </div>
 
-      <hr class="prevencion-separator my-4">
+      
 
-      <h3 class="prevencion-preguntas-title mb-4">Preguntas que podés hacer en tu próxima consulta</h3>
+      <h3 class="prevencion-preguntas-title my-5">Preguntas que podés hacer en tu próxima consulta</h3>
 
       <div class="accordion accordion-preguntas-consulta" id="accordionPreguntasConsulta">
         <div class="accordion-item prevencion-pregunta-item">
@@ -354,21 +424,21 @@
         </div>
       </div>
 
-      <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
-        <a href="#" class="prevencion-link"><i class="bi bi-share me-2"></i>Compartir</a>
-        <a href="#" class="prevencion-link">Descargar preguntas</a>
+      <div class="prevencion-consulta-btns d-flex flex-wrap gap-3 justify-content-center mt-4">
+        <a href="#" class="btn-prevencion-consulta"><i class="bi bi-share me-2"></i>Compartir</a>
+        <a href="#" class="btn-prevencion-consulta"><i class="bi bi-download me-2"></i>Descargar preguntas</a>
       </div>
     </div>
   </section>
 
   <!-- ========== ¿DÓNDE ME VACUNO? ========== -->
-  <section class="section-donde-vacuno py-5">
+  <section id="donde-vacuno" class="section-donde-vacuno">
     <div class="container">
       <p class="donde-vacuno-label">¿DÓNDE ME VACUNO?</p>
       <h2 class="donde-vacuno-title mb-2">Encontrá tu centro de vacunación</h2>
       <p class="donde-vacuno-intro mb-4">Encontrá un centro cercano y conversá con un profesional de salud.</p>
 
-      <div class="donde-vacuno-progress mb-2">
+      <div class="donde-vacuno-progress mb-5">
         <div class="donde-vacuno-progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div>
       </div>
       <p class="donde-vacuno-paso mb-3">Paso 1: elegí tu provincia</p>
@@ -387,131 +457,69 @@
   </section>
 
   <!-- ========== PONETE A PRUEBA (test riesgo VSR) ========== -->
-  <section class="section-ponete-prueba py-5" id="ponete-prueba">
+  <section class="section-ponete-prueba" id="ponete-prueba">
     <div class="container">
       <p class="ponete-prueba-label">PONETE A PRUEBA</p>
       <h2 class="ponete-prueba-title mb-2">¿Cuánto sabés del VSR?</h2>
-      <p class="ponete-prueba-intro mb-4">Respondé estas preguntas para conocer tu nivel de riesgo y qué podés hacer para protegerte.</p>
+      <p class="ponete-prueba-intro mb-4">Respondé estas preguntas para reforzar lo aprendido.</p>
 
-      <div class="ponete-prueba-card" id="quizCard">
-        <!-- Paso: Comenzar -->
-        <div class="ponete-prueba-step" id="quizStart" data-step="start">
-          <div class="ponete-prueba-step-inner text-center py-3">
-            <p class="ponete-prueba-step-text mb-4">Respondé 3 preguntas breves sobre tu edad, tu salud y tu contacto con niños.</p>
-            <button type="button" class="btn btn-ponete-comenzar" id="btnComenzar">Comenzar</button>
+      <div class="ponete-prueba-card-wrap">
+        <div class="ponete-prueba-card" id="quizCard">
+          <!-- Paso: Comenzar (oculto: el quiz arranca con la primera pregunta) -->
+          <div class="ponete-prueba-step hidden" id="quizStart" data-step="start">
+            <div class="ponete-prueba-step-inner text-center py-3">
+              <p class="ponete-prueba-step-text mb-4">Respondé 3 preguntas de verdadero o falso para poner a prueba lo que sabés del VSR.</p>
+              <button type="button" class="btn btn-ponete-comenzar" id="btnComenzar">Comenzar</button>
+            </div>
           </div>
-        </div>
 
-        <!-- Pregunta 1: Edad -->
-        <div class="ponete-prueba-step hidden" id="quizQ1" data-step="q1">
-          <div class="ponete-prueba-progress mb-2">
-            <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ1" style="width: 33%"></div>
+          <!-- Pregunta 1 (visible al cargar) -->
+          <div class="ponete-prueba-step" id="quizQ1" data-step="q1">
+            <div class="ponete-prueba-progress mb-2">
+              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ1" style="width: 33%"></div>
+            </div>
+            <p class="ponete-prueba-contador mb-2">Pregunta 1 de 3</p>
+            <h3 class="ponete-prueba-pregunta mb-4">¿El VSR afecta más a los adultos mayores?</h3>
+            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
+              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
+              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            </div>
           </div>
-          <p class="ponete-prueba-contador mb-2">Pregunta 1 de 3</p>
-          <h3 class="ponete-prueba-pregunta mb-3">¿Cuántos años tenés?</h3>
-          <div class="ponete-prueba-opciones" role="group" aria-label="Edad">
-            <button type="button" class="btn btn-ponete-opcion" data-value="menos-20">Menos de 20</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="20-29">20 a 29</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="30-39">30 a 39</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="40-49">40 a 49</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="50-59">50 a 59</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="60-69">60 a 69</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="70-79">70 a 79</button>
-            <button type="button" class="btn btn-ponete-opcion" data-value="80-mas">80 o más</button>
+
+          <!-- Pregunta 2 -->
+          <div class="ponete-prueba-step hidden" id="quizQ2" data-step="q2">
+            <div class="ponete-prueba-progress mb-2">
+              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ2" style="width: 66%"></div>
+            </div>
+            <p class="ponete-prueba-contador mb-2">Pregunta 2 de 3</p>
+            <h3 class="ponete-prueba-pregunta mb-4">El VSR solo se transmite en invierno.</h3>
+            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
+              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
+              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            </div>
           </div>
-        </div>
 
-        <!-- Pregunta 2: Enfermedades crónicas (múltiple) -->
-        <div class="ponete-prueba-step hidden" id="quizQ2" data-step="q2">
-          <div class="ponete-prueba-progress mb-2">
-            <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ2" style="width: 66%"></div>
+          <!-- Pregunta 3 -->
+          <div class="ponete-prueba-step hidden" id="quizQ3" data-step="q3">
+            <div class="ponete-prueba-progress mb-2">
+              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ3" style="width: 100%"></div>
+            </div>
+            <p class="ponete-prueba-contador mb-2">Pregunta 3 de 3</p>
+            <h3 class="ponete-prueba-pregunta mb-4">Lavarse las manos ayuda a reducir el contagio del VSR.</h3>
+            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
+              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
+              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            </div>
           </div>
-          <p class="ponete-prueba-contador mb-2">Pregunta 2 de 3</p>
-          <h3 class="ponete-prueba-pregunta mb-3">¿Tenés alguna de estas enfermedades crónicas?</h3>
-          <p class="ponete-prueba-subtitulo mb-3 small text-muted">Podés elegir más de una.</p>
-          <div class="ponete-prueba-opciones ponete-prueba-opciones-multi" role="group">
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="diabetes"> Diabetes</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="asma"> Asma</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="epoc"> EPOC</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="cardiovascular"> Enfermedad cardiovascular</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="renal"> Enfermedad renal</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="inmune"> Sistema inmune debilitado</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="otra"> Otra</label>
-            <label class="btn btn-ponete-opcion-check"><input type="checkbox" name="q2" value="ninguna"> No tengo ninguna</label>
-          </div>
-          <button type="button" class="btn btn-ponete-siguiente mt-3" id="btnSiguienteQ2" disabled>Siguiente</button>
-        </div>
 
-        <!-- Pregunta 3: Contacto con niños -->
-        <div class="ponete-prueba-step hidden" id="quizQ3" data-step="q3">
-          <div class="ponete-prueba-progress mb-2">
-            <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ3" style="width: 100%"></div>
-          </div>
-          <p class="ponete-prueba-contador mb-2">Pregunta 3 de 3</p>
-          <h3 class="ponete-prueba-pregunta mb-3">¿Tenés contacto frecuente con niños pequeños (nietos, jardín, etc.)?</h3>
-          <div class="d-flex gap-3 flex-wrap">
-            <button type="button" class="btn btn-ponete-opcion flex-grow-1" data-value="si" id="q3Si">Sí</button>
-            <button type="button" class="btn btn-ponete-opcion flex-grow-1" data-value="no" id="q3No">No</button>
-          </div>
-        </div>
-
-        <!-- Resultados -->
-        <div class="ponete-prueba-step ponete-prueba-resultado hidden" id="quizResultBajo" data-step="result-bajo">
-          <div class="ponete-prueba-resultado-badge riesgo-bajo">🟢 BAJO RIESGO</div>
-          <h3 class="ponete-prueba-pregunta mb-3">¡Buenas noticias!</h3>
-          <p class="ponete-prueba-resultado-text mb-2">Tu riesgo de complicaciones por VSR actualmente es bajo.</p>
-          <p class="ponete-prueba-resultado-text mb-2">Aún así, si estás en contacto frecuente con niños pequeños, personas mayores o personas con enfermedades crónicas, es importante saber que el virus puede transmitirse fácilmente al toser o estornudar, y podés contagiar a esas poblaciones de más riesgo.</p>
-          <p class="ponete-prueba-resultado-text mb-0">Mantené tus vacunas al día, lavate las manos con frecuencia y, ante cualquier síntoma respiratorio, consultá a tu médico.</p>
-          <button type="button" class="btn btn-ponete-compartir mt-4">Ver pantalla final</button>
-        </div>
-
-        <div class="ponete-prueba-step ponete-prueba-resultado hidden" id="quizResultModerado1" data-step="result-m1">
-          <div class="ponete-prueba-resultado-badge riesgo-moderado">🟠 RIESGO MODERADO</div>
-          <h3 class="ponete-prueba-pregunta mb-3">Tu riesgo es moderado</h3>
-          <p class="ponete-prueba-resultado-text mb-2">Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.</p>
-          <p class="ponete-prueba-resultado-text mb-2">Independientemente de tu edad, tener una enfermedad crónica puede hacer que una infección por VSR interrumpa tus planes y tenga un impacto mayor en tu salud y en tu rutina diaria.</p>
-          <p class="ponete-prueba-resultado-text mb-2">👉 Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p>
-          <p class="ponete-prueba-resultado-text mb-0">Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!</p>
-          <button type="button" class="btn btn-ponete-compartir mt-4">Ver pantalla final</button>
-        </div>
-
-        <div class="ponete-prueba-step ponete-prueba-resultado hidden" id="quizResultModerado2" data-step="result-m2">
-          <div class="ponete-prueba-resultado-badge riesgo-moderado">🟠 RIESGO MODERADO</div>
-          <h3 class="ponete-prueba-pregunta mb-3">Tu riesgo es moderado</h3>
-          <p class="ponete-prueba-resultado-text mb-2">Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.</p>
-          <p class="ponete-prueba-resultado-text mb-2">Aún si tenés buena salud, con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR.</p>
-          <p class="ponete-prueba-resultado-text mb-2">👉 Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p>
-          <p class="ponete-prueba-resultado-text mb-0">Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!</p>
-          <button type="button" class="btn btn-ponete-compartir mt-4">Ver pantalla final</button>
-        </div>
-
-        <div class="ponete-prueba-step ponete-prueba-resultado hidden" id="quizResultAumentado1" data-step="result-a1">
-          <div class="ponete-prueba-resultado-badge riesgo-aumentado">🔴 RIESGO AUMENTADO</div>
-          <h3 class="ponete-prueba-pregunta mb-3">Estás en un grupo con riesgo aumentado</h3>
-          <p class="ponete-prueba-resultado-text mb-2">Tu edad, tus condiciones de salud, y/o tu contacto frecuente con niños pequeños hacen que sea especialmente importante cuidarte.</p>
-          <p class="ponete-prueba-resultado-text mb-2">Con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR y si además tenés enfermedades crónicas, una infección por VSR puede afectar tu salud más seriamente, alterando tu vida cotidiana.</p>
-          <p class="ponete-prueba-resultado-text mb-2">👉 Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado, pueden marcar una gran diferencia.</p>
-          <p class="ponete-prueba-resultado-text mb-0">Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>
-          <button type="button" class="btn btn-ponete-compartir mt-4">Ver pantalla final</button>
-        </div>
-
-        <div class="ponete-prueba-step ponete-prueba-resultado hidden" id="quizResultAumentado2" data-step="result-a2">
-          <div class="ponete-prueba-resultado-badge riesgo-aumentado">🔴 RIESGO AUMENTADO</div>
-          <h3 class="ponete-prueba-pregunta mb-3">Estás en un grupo con riesgo aumentado</h3>
-          <p class="ponete-prueba-resultado-text mb-2">Si tu sistema inmune está debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico), el VSR puede aumentar el riesgo de complicaciones y hospitalización.</p>
-          <p class="ponete-prueba-resultado-text mb-2">Tus condiciones de salud y tu posible contacto con niños pequeños hacen que sea especialmente importante cuidarte.</p>
-          <p class="ponete-prueba-resultado-text mb-2">👉 Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado, pueden marcar una gran diferencia.</p>
-          <p class="ponete-prueba-resultado-text mb-0">Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>
-          <button type="button" class="btn btn-ponete-compartir mt-4">Ver pantalla final</button>
-        </div>
-
-        <!-- Pantalla final -->
-        <div class="ponete-prueba-step ponete-prueba-final hidden" id="quizFinal" data-step="final">
-          <div class="ponete-prueba-step-inner text-center">
-            <h3 class="ponete-prueba-pregunta mb-3">Compartí este test con tus seres queridos.</h3>
-            <p class="ponete-prueba-resultado-text mb-2">La prevención empieza con la información.</p>
-            <p class="ponete-prueba-resultado-text mb-4">Saber tu riesgo es el primer paso para cuidarte… y para cuidar a quienes querés. 💙</p>
-            <button type="button" class="btn btn-ponete-compartir"><i class="bi bi-share me-2"></i>Compartir</button>
+          <!-- Completado -->
+          <div class="ponete-prueba-step ponete-prueba-complete hidden" id="quizComplete" data-step="complete">
+            <div class="ponete-prueba-step-inner text-center">
+              <h3 class="ponete-prueba-pregunta mb-3">¡Completaste el cuestionario!</h3>
+              <p class="ponete-prueba-resultado-text mb-2" id="quizScoreText">Respondiste correctamente 3 de 3 preguntas.</p>
+              <p class="ponete-prueba-resultado-text mb-4">¡Muy bien! Seguí informándote sobre el VSR.</p>
+              <button type="button" class="btn btn-ponete-comenzar" id="btnIntentarDeNuevo">Intentar de nuevo</button>
+            </div>
           </div>
         </div>
       </div>
@@ -523,36 +531,140 @@
     <div class="container">
       <p class="faq-label">RESOLVÉ TUS DUDAS</p>
       <h2 class="faq-title mb-2">Preguntas frecuentes</h2>
-      <p class="faq-intro mb-4">Respuestas claras para ayudarte a entender el VSR y su prevención.</p>
+      <p class="faq-intro my-5">Respuestas claras para ayudarte a entender el VSR y su prevención.</p>
 
       <div class="accordion accordion-faq" id="accordionFaq">
-        <div class="accordion-item">
+        <!-- Categoría 1: Virus Sincicial Respiratorio (VSR) -->
+        <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr" aria-expanded="false" aria-controls="faqVsr">Virus Sincicial Respiratorio (VSR)</button>
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr" aria-expanded="false" aria-controls="faqVsr">Virus Sincicial Respiratorio (VSR)</button>
           </h3>
           <div id="faqVsr" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
-            <div class="accordion-body">
-              El Virus Sincicial Respiratorio (VSR) es un virus común que afecta las vías respiratorias. Puede causar desde un resfrío leve hasta cuadros más graves, especialmente en bebés, adultos mayores y personas con condiciones de riesgo.
+            <div class="accordion-body p-0">
+              <div class="accordion accordion-faq-inner" id="accordionFaqVsr">
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr1" aria-expanded="false" aria-controls="faqVsr1">¿Qué es el Virus Sincicial Respiratorio (VSR)?</button>
+                  </h4>
+                  <div id="faqVsr1" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">El VSR es un virus común que afecta las vías respiratorias. Puede causar desde un resfrío leve hasta cuadros más graves, especialmente en bebés, adultos mayores y personas con condiciones de riesgo.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr2" aria-expanded="false" aria-controls="faqVsr2">¿Cuáles son los síntomas del VSR?</button>
+                  </h4>
+                  <div id="faqVsr2" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">Los síntomas suelen incluir congestión nasal, tos, fiebre, dolor de garganta y en algunos casos dificultad para respirar. En adultos mayores puede manifestarse de forma más grave.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr3" aria-expanded="false" aria-controls="faqVsr3">Si contraigo el VSR, ¿durante cuánto tiempo puedo contagiar a otros?</button>
+                  </h4>
+                  <div id="faqVsr3" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">Las personas con VSR suelen poder contagiar desde uno o dos días antes de tener síntomas y pueden seguir contagiando durante varios días. En bebés o personas inmunodeprimidas el virus puede eliminarse por más tiempo.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr4" aria-expanded="false" aria-controls="faqVsr4">Si soy una persona saludable, ¿debo preocuparme por el VSR?</button>
+                  </h4>
+                  <div id="faqVsr4" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">En personas sanas el VSR suele causar síntomas leves. Aun así, podés contagiar a personas con mayor riesgo (adultos mayores, personas con enfermedades crónicas, bebés). Las medidas de higiene ayudan a protegerte y a los demás.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr5" aria-expanded="false" aria-controls="faqVsr5">¿Cómo puedo hacerme la prueba de VSR?</button>
+                  </h4>
+                  <div id="faqVsr5" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">El diagnóstico se realiza mediante pruebas de laboratorio (por ejemplo, hisopado nasal). Consultá con tu médico o con un centro de salud si tenés síntomas respiratorios para que te indiquen si corresponde hacer el test.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr6" aria-expanded="false" aria-controls="faqVsr6">¿Hay alguna época del año en la que el VSR sea más frecuente?</button>
+                  </h4>
+                  <div id="faqVsr6" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
+                    <div class="accordion-body">Sí. El VSR suele circular más en los meses fríos (otoño e invierno), con un pico en invierno. En algunas regiones puede haber variaciones; tu médico puede informarte sobre la situación en tu zona.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+
+        <!-- Categoría 2: VSR y enfermedades de alto riesgo -->
+        <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqAltoRiesgo" aria-expanded="false" aria-controls="faqAltoRiesgo">VSR y enfermedades de alto riesgo</button>
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqAltoRiesgo" aria-expanded="false" aria-controls="faqAltoRiesgo">VSR y enfermedades de alto riesgo</button>
           </h3>
           <div id="faqAltoRiesgo" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
-            <div class="accordion-body">
-              Las personas con enfermedades cardíacas, pulmonares crónicas, inmunodepresión o adultos mayores de 60 años tienen mayor riesgo de complicaciones por VSR. La vacunación y las medidas de prevención son especialmente importantes en estos grupos.
+            <div class="accordion-body p-0">
+              <div class="accordion accordion-faq-inner" id="accordionFaqAltoRiesgo">
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqRiesgo1" aria-expanded="false" aria-controls="faqRiesgo1">¿Por qué debería preocuparme por el VSR?</button>
+                  </h4>
+                  <div id="faqRiesgo1" class="accordion-collapse collapse" data-bs-parent="#accordionFaqAltoRiesgo">
+                    <div class="accordion-body">En adultos mayores y en personas con enfermedades crónicas (cardíacas, pulmonares, diabetes, inmunodepresión), el VSR puede causar complicaciones graves y aumentar el riesgo de hospitalización. La prevención y la vacunación son claves en estos grupos.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqRiesgo2" aria-expanded="false" aria-controls="faqRiesgo2">Si tengo diabetes, ¿tengo un mayor riesgo de hospitalización debido al VSR?</button>
+                  </h4>
+                  <div id="faqRiesgo2" class="accordion-collapse collapse" data-bs-parent="#accordionFaqAltoRiesgo">
+                    <div class="accordion-body">Las personas con diabetes tienen mayor riesgo de complicaciones por infecciones respiratorias como el VSR. Es importante mantener el control de la glucemia y consultar con tu médico sobre medidas de prevención, incluida la vacunación.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqRiesgo3" aria-expanded="false" aria-controls="faqRiesgo3">Si tengo insuficiencia cardíaca congestiva (ICC), ¿tengo un mayor riesgo de presentar complicaciones debido al VSR?</button>
+                  </h4>
+                  <div id="faqRiesgo3" class="accordion-collapse collapse" data-bs-parent="#accordionFaqAltoRiesgo">
+                    <div class="accordion-body">Sí. La insuficiencia cardíaca y otras enfermedades cardiovasculares aumentan el riesgo de complicaciones por VSR. La infección puede empeorar la función cardíaca. Conversá con tu médico sobre prevención y vacunación.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqRiesgo4" aria-expanded="false" aria-controls="faqRiesgo4">Si tengo enfermedad pulmonar obstructiva crónica (EPOC) o asma, ¿tengo un mayor riesgo de presentar complicaciones debido al VSR?</button>
+                  </h4>
+                  <div id="faqRiesgo4" class="accordion-collapse collapse" data-bs-parent="#accordionFaqAltoRiesgo">
+                    <div class="accordion-body">Sí. El VSR puede agravar EPOC y asma y aumentar el riesgo de exacerbaciones y hospitalización. Las medidas de prevención y la vacunación son especialmente importantes; consultá con tu médico.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="accordion-item">
+
+        <!-- Categoría 3: Prevención del VSR -->
+        <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrevencion" aria-expanded="false" aria-controls="faqPrevencion">Prevención del VSR</button>
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrevencion" aria-expanded="false" aria-controls="faqPrevencion">Prevención del VSR</button>
           </h3>
           <div id="faqPrevencion" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
-            <div class="accordion-body">
-              Lavarse las manos, ventilar ambientes, cubrirse al toser o estornudar y evitar el contacto cuando hay síntomas ayudan a reducir la transmisión. Para grupos de riesgo existe la posibilidad de vacunación; consultá con tu médico.
+            <div class="accordion-body p-0">
+              <div class="accordion accordion-faq-inner" id="accordionFaqPrevencion">
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrev1" aria-expanded="false" aria-controls="faqPrev1">¿Existe una vacuna para el VSR?</button>
+                  </h4>
+                  <div id="faqPrev1" class="accordion-collapse collapse" data-bs-parent="#accordionFaqPrevencion">
+                    <div class="accordion-body">Sí. Existen vacunas contra el VSR indicadas para adultos mayores y para grupos de riesgo. Consultá con tu médico si la vacunación es adecuada para vos según tu edad y tu historial de salud.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrev2" aria-expanded="false" aria-controls="faqPrev2">¿Qué otros métodos preventivos existen además de la vacunación?</button>
+                  </h4>
+                  <div id="faqPrev2" class="accordion-collapse collapse" data-bs-parent="#accordionFaqPrevencion">
+                    <div class="accordion-body">Lavarse las manos con frecuencia, ventilar los ambientes, cubrirse al toser o estornudar con el codo o un pañuelo, y evitar el contacto cercano con personas con síntomas respiratorios ayudan a reducir la transmisión del VSR.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -560,11 +672,84 @@
     </div>
   </section>
 
+  <!-- ========== REFERENCIAS ========== -->
+  <section class="section-referencias py-5" id="referencias">
+    <div class="container">
+      <div class="referencias-card">
+      <h2 class="referencias-title mb-4">Referencias</h2>
+      <ol class="referencias-list">
+        <li class="referencias-item">
+          Colosia AD, Yang J, Hillson E, et al. The epidemiology of medically attended respiratory syncytial virus in older adults in the United States: A systematic review. <em>PLoS One.</em> 2017;12(8):1-20. <a href="https://doi.org/10.1371/journal.pone.0182321" target="_blank" rel="noopener noreferrer">doi:10.1371/journal.pone.0182321</a>
+        </li>
+        <li class="referencias-item">
+          Tseng HF, Sy LS, Ackerson B, et al. Severe morbidity and short- And mid- And long-term mortality in older adults hospitalized with respiratory syncytial virus infection. <em>J Infect Dis.</em> 2020;222(8):1298-1310. <a href="https://doi.org/10.1093/infdis/jiaa361" target="_blank" rel="noopener noreferrer">doi: 10.1093/infdis/jiaa361</a>
+        </li>
+        <li class="referencias-item">
+          Centers for Disease Control and Prevention (CDC), 2025. How RSV Spreads. <a href="https://www.cdc.gov/rsv/about/transmission.html" target="_blank" rel="noopener noreferrer">How RSV Spreads | RSV | CDC</a>
+        </li>
+        <li class="referencias-item">
+          Lineamientos Técnicos de Vacunación | Virus sincicial respiratorio en personas gestantes - Febrero de 2024 - MSAL. <a href="https://www.argentina.gob.ar/salud/vacunas/lineamientos_vsr" target="_blank" rel="noopener noreferrer">lineamientos_vsr.pdf (argentina.gob.ar)</a>
+        </li>
+        <li class="referencias-item">
+          Centers for Disease Control and Prevention, 2022. Respiratory syncytial virus (RSV): For healthcare providers. <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a> (accessed November 2, 2023)
+        </li>
+        <li class="referencias-item">
+          Nguyen-Van-Tam JS, O'Leary M, Martin ET, et al. Burden of respiratory syncytial virus infection in older and high-risk adults: a systematic review and meta-analysis of the evidence from developed countries. <em>Eur Respir Rev</em> 2022; 31: 220105 [<a href="https://doi.org/10.1183/16000617.0105-2022" target="_blank" rel="noopener noreferrer">DOI: 10.1183/16000617.0105-2022</a>].
+        </li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== FOOTER ========== -->
   
 
-  <!-- ========== NAVEGACIÓN INFERIOR (como app) ========== -->
-  <nav class="bottom-nav" aria-label="Navegación principal">
+  <!-- ========== MENÚ MÓVIL (desplegable de abajo hacia arriba al tocar "Ver más") ========== -->
+  <div class="mobile-menu-overlay d-lg-none" id="mobileMenuOverlay" aria-hidden="true">
+    <div class="mobile-menu-panel" id="mobileMenuPanel" role="dialog" aria-label="Menú de navegación">
+      <div class="mobile-menu-header d-flex align-items-start justify-content-between p-4">
+        <a href="#" class="mobile-menu-logo d-flex align-items-center text-decoration-none" id="mobileMenuLogoLink">
+          <img src="assets/img/Logo-principal.png" alt="" class="mobile-menu-logo-img me-2">
+          <div>
+            <span class="mobile-menu-logo-text">Virus Sincicial Respiratorio</span>
+            <span class="d-block mobile-menu-logo-site">vsrsalud.com</span>
+          </div>
+        </a>
+        <button type="button" class="mobile-menu-close btn p-0" id="mobileMenuClose" aria-label="Cerrar menú">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav px-4 pb-4">
+        <a href="#que-es" class="mobile-menu-link">
+          <img src="assets/img/icon/que-es.svg" alt="" class="mobile-menu-icon">
+          <span>¿Qué es el VSR?</span>
+        </a>
+        <a href="#sintomas" class="mobile-menu-link">
+          <img src="assets/img/icon/sintomas.svg" alt="" class="mobile-menu-icon">
+          <span>Síntomas</span>
+        </a>
+        <a href="#contagio" class="mobile-menu-link">
+          <img src="assets/img/contagios-reinfecciones/reinfecciones.svg" alt="" class="mobile-menu-icon">
+          <span>Contagio y reinfección</span>
+        </a>
+        <a href="#vacunacion" class="mobile-menu-link">
+          <img src="assets/img/icon/prevencion.svg" alt="" class="mobile-menu-icon">
+          <span>Prevención</span>
+        </a>
+        <a href="#donde-vacuno" class="mobile-menu-link">
+          <img src="assets/img/icon/vacunacion.svg" alt="" class="mobile-menu-icon">
+          <span>Vacunación</span>
+        </a>
+        <a href="#faq" class="mobile-menu-link">
+          <i class="bi bi-question-circle mobile-menu-icon mobile-menu-icon-bi"></i>
+          <span>Preguntas frecuentes</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ========== NAVEGACIÓN INFERIOR (solo móvil; en PC se usa el header con menú) ========== -->
+  <nav class="bottom-nav d-lg-none" aria-label="Navegación principal">
     <a href="#que-es" class="bottom-nav-item active">
       <img src="assets/img/icon/que-es.svg" alt="" class="bottom-nav-icon">
       <span>¿Qué es?</span>
@@ -581,10 +766,10 @@
       <img src="assets/img/icon/vacunacion.svg" alt="" class="bottom-nav-icon">
       <span>Vacunación</span>
     </a>
-    <a href="#faq" class="bottom-nav-item">
+    <button type="button" class="bottom-nav-item bottom-nav-item-btn" id="btnVerMasMenu" aria-label="Ver más opciones">
       <img src="assets/img/icon/ver-mas.png" alt="" class="bottom-nav-icon">
       <span>Ver más</span>
-    </a>
+    </button>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

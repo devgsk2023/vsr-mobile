@@ -49,7 +49,7 @@
 })();
 
 /**
- * Quiz Ponete a prueba: flujo inicio → Q1 (edad) → Q2 (enfermedades) → Q3 (contacto niños) → resultado → final
+ * Quiz Ponete a prueba: 3 preguntas verdadero/falso → pantalla completado con puntaje
  */
 (function () {
   'use strict';
@@ -62,15 +62,11 @@
     q1: document.getElementById('quizQ1'),
     q2: document.getElementById('quizQ2'),
     q3: document.getElementById('quizQ3'),
-    'result-bajo': document.getElementById('quizResultBajo'),
-    'result-m1': document.getElementById('quizResultModerado1'),
-    'result-m2': document.getElementById('quizResultModerado2'),
-    'result-a1': document.getElementById('quizResultAumentado1'),
-    'result-a2': document.getElementById('quizResultAumentado2'),
-    final: document.getElementById('quizFinal')
+    complete: document.getElementById('quizComplete')
   };
 
-  const answers = { q1: null, q2: [], q3: null };
+  const correctAnswers = { q1: 'true', q2: 'false', q3: 'true' };
+  const answers = { q1: null, q2: null, q3: null };
 
   function showStep(stepId) {
     Object.keys(steps).forEach(function (id) {
@@ -78,95 +74,112 @@
     });
   }
 
-  function getResult() {
-    var q1 = answers.q1;
-    var q2 = answers.q2;
-    var q3 = answers.q3;
-    var edad60omas = q1 === '60-69' || q1 === '70-79' || q1 === '80-mas';
-    var hasInmune = q2.indexOf('inmune') !== -1;
-    var hasNinguna = q2.indexOf('ninguna') !== -1;
-    var hasComorbilidades = q2.some(function (v) {
-      return ['diabetes', 'asma', 'epoc', 'cardiovascular', 'renal', 'otra'].indexOf(v) !== -1;
-    });
-    var contactNinos = q3 === 'si';
-
-    if (hasInmune) return 'result-a2';
-    if (edad60omas && (hasComorbilidades || contactNinos)) return 'result-a1';
-    if (edad60omas && !hasComorbilidades) return 'result-m2';
-    if (!edad60omas && hasComorbilidades) return 'result-m1';
-    return 'result-bajo';
+  function getScore() {
+    var n = 0;
+    if (answers.q1 === correctAnswers.q1) n++;
+    if (answers.q2 === correctAnswers.q2) n++;
+    if (answers.q3 === correctAnswers.q3) n++;
+    return n;
   }
 
   document.getElementById('btnComenzar').addEventListener('click', function () {
+    answers.q1 = null;
+    answers.q2 = null;
+    answers.q3 = null;
     showStep('q1');
   });
 
-  card.querySelectorAll('#quizQ1 .btn-ponete-opcion').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      card.querySelectorAll('#quizQ1 .btn-ponete-opcion').forEach(function (b) { b.classList.remove('selected'); });
-      this.classList.add('selected');
-      answers.q1 = this.getAttribute('data-value');
-      var self = this;
-      setTimeout(function () { showStep('q2'); }, 300);
+  function bindQuestion(stepId, answerKey, nextStep) {
+    var stepEl = document.getElementById(stepId);
+    if (!stepEl) return;
+    stepEl.querySelectorAll('.btn-ponete-respuesta').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        stepEl.querySelectorAll('.btn-ponete-respuesta').forEach(function (b) { b.classList.remove('selected'); });
+        this.classList.add('selected');
+        answers[answerKey] = this.getAttribute('data-value');
+        if (nextStep === 'complete') {
+          var score = getScore();
+          var scoreEl = document.getElementById('quizScoreText');
+          if (scoreEl) scoreEl.textContent = 'Respondiste correctamente ' + score + ' de 3 preguntas.';
+          showStep('complete');
+        } else {
+          setTimeout(function () { showStep(nextStep); }, 300);
+        }
+      });
     });
-  });
-
-  var q2Checkboxes = card.querySelectorAll('input[name="q2"]');
-  var btnSiguienteQ2 = document.getElementById('btnSiguienteQ2');
-
-  function updateQ2Button() {
-    var checked = card.querySelectorAll('input[name="q2"]:checked');
-    btnSiguienteQ2.disabled = checked.length === 0;
   }
 
-  q2Checkboxes.forEach(function (input) {
-    input.addEventListener('change', function () {
-      var value = this.value;
-      if (value === 'ninguna') {
-        q2Checkboxes.forEach(function (c) { c.checked = c === input; });
-      } else {
-        card.querySelector('input[name="q2"][value="ninguna"]').checked = false;
-      }
-      updateQ2Button();
+  bindQuestion('quizQ1', 'q1', 'q2');
+  bindQuestion('quizQ2', 'q2', 'q3');
+  bindQuestion('quizQ3', 'q3', 'complete');
+
+  var btnIntentar = document.getElementById('btnIntentarDeNuevo');
+  if (btnIntentar) {
+    btnIntentar.addEventListener('click', function () {
+      answers.q1 = null;
+      answers.q2 = null;
+      answers.q3 = null;
+      showStep('start');
     });
-  });
+  }
+})();
 
-  btnSiguienteQ2.addEventListener('click', function () {
-    answers.q2 = [];
-    card.querySelectorAll('input[name="q2"]:checked').forEach(function (c) {
-      answers.q2.push(c.value);
-    });
-    showStep('q3');
-  });
+/**
+ * Contagio: en móvil, "Ver más" / "Ver menos" voltean la tarjeta (flip por tap)
+ */
+(function () {
+  'use strict';
 
-  document.getElementById('q3Si').addEventListener('click', function () {
-    document.getElementById('q3No').classList.remove('selected');
-    this.classList.add('selected');
-    answers.q3 = 'si';
-    var resultId = getResult();
-    setTimeout(function () { showStep(resultId); }, 300);
-  });
-  document.getElementById('q3No').addEventListener('click', function () {
-    document.getElementById('q3Si').classList.remove('selected');
-    this.classList.add('selected');
-    answers.q3 = 'no';
-    var resultId = getResult();
-    setTimeout(function () { showStep(resultId); }, 300);
-  });
-
-  card.querySelectorAll('.btn-ponete-compartir').forEach(function (btn) {
+  document.querySelectorAll('.contagio-ver-mas').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      if (this.closest('[data-step="final"]')) {
-        if (navigator.share) {
-          navigator.share({
-            title: 'Test VSR - Conocé tu riesgo',
-            text: 'Completá el test de riesgo VSR.',
-            url: window.location.href
-          }).catch(function () {});
-        }
-      } else {
-        showStep('final');
-      }
+      var card = this.closest('.contagio-flow-card');
+      if (card) card.classList.add('flipped');
     });
+  });
+
+  document.querySelectorAll('.contagio-ver-menos').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = this.closest('.contagio-flow-card');
+      if (card) card.classList.remove('flipped');
+    });
+  });
+})();
+
+/**
+ * Menú móvil: "Ver más" despliega panel de abajo hacia arriba; cerrar con X o al elegir enlace
+ */
+(function () {
+  'use strict';
+
+  var overlay = document.getElementById('mobileMenuOverlay');
+  var btnOpen = document.getElementById('btnVerMasMenu');
+  var btnClose = document.getElementById('mobileMenuClose');
+
+  if (!overlay || !btnOpen) return;
+
+  function openMenu() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btnOpen.addEventListener('click', openMenu);
+  if (btnClose) btnClose.addEventListener('click', closeMenu);
+
+  var logoLink = document.getElementById('mobileMenuLogoLink');
+  if (logoLink) logoLink.addEventListener('click', function (e) { e.preventDefault(); closeMenu(); });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
+  });
+
+  overlay.querySelectorAll('.mobile-menu-link').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
   });
 })();
