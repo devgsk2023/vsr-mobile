@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de vacunatorios - Ejemplo</title>
+    <link rel="stylesheet" href="mapa-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+    <!-- Sección del mapa: misma estructura que en vacunas.html -->
+    <section class="vacunatorios-section">
+        <div class="vacunatorios-container">
+            <div class="panel-izquierdo">
+                <div class="header-busqueda">
+                    <h2>Encontrá un centro de vacunación</h2>
+                    <p>Buscá el más cercano según tu ubicación</p>
+                </div>
+                <div class="seccion-filtros">
+                    <div class="filtros-grid">
+                        <div class="grupo-filtro">
+                            <label for="filtroProvincia">Provincia <span style="color: #e74c3c;">*</span></label>
+                            <select id="filtroProvincia" class="select-filtro" required>
+                                <option value="">Selecciona una provincia</option>
+                            </select>
+                        </div>
+                        <div class="grupo-filtro">
+                            <label for="filtroLocalidad">Localidad</label>
+                            <select id="filtroLocalidad" class="select-filtro">
+                                <option value="">Todas las localidades</option>
+                            </select>
+                        </div>
+                        <div class="grupo-filtro">
+                            <label for="filtroBarrio">Barrio</label>
+                            <select id="filtroBarrio" class="select-filtro">
+                                <option value="">Todos los barrios</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grupo-filtro">
+                        <label for="filtroTipo">¿Dónde querés vacunarte?</label>
+                        <select id="filtroTipo" class="select-filtro">
+                            <option value="">Todos los tipos</option>
+                            <option value="hospital">🏥 Hospitales</option>
+                            <option value="vacunatorio">💉 Vacunatorios y Centros de Salud</option>
+                            <option value="farmacia">✚ Farmacias</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="seccion-resultados">
+                    <div class="resultados-header"><h3>Resultados</h3></div>
+                    <div id="listaResultados" class="lista-resultados">
+                        <div class="loading">Cargando vacunatorios...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="mapa"></div>
+        </div>
+        <div class="disclaimer-container">
+            <div class="disclaimer-content">
+                Este buscador tiene como única finalidad proveer información útil sobre puntos de vacunación disponibles cerca de tu ubicación.
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps API: reemplazá la key por la de tu proyecto si es otro -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWMgpuf6kUK7eyheo1pUPx69nEhqMk86w&v=weekly&loading=async" async></script>
+    <script src="js/vacunatorios.js"></script>
+</body>
+</html>

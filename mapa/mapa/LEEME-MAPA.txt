@@ -1,0 +1,233 @@
+================================================================================
+  BACKUP MAPA DE VACUNATORIOS - Qué llevar a la otra carpeta para que funcione
+================================================================================
+
+ESTE PAQUETE INCLUYE TODO LO NECESARIO para reutilizar el mapa con las mismas
+ubicaciones en otro diseño o proyecto.
+
+--------------------------------------------------------------------------------
+1. ARCHIVOS QUE TENÉS QUE COPIAR A TU OTRO PROYECTO
+--------------------------------------------------------------------------------
+
+  • data/vacunatorios_coordinates_con_barrios.json
+    → Todas las ubicaciones (vacunatorios, farmacias, hospitales) con coordenadas,
+      direcciones, teléfonos, provincia, localidad, barrio. Sin este archivo
+      el mapa no tiene datos.
+
+  • js/vacunatorios.js
+    → Lógica del mapa: Google Maps, filtros (provincia, localidad, barrio, tipo),
+      marcadores, lista de resultados, popups. La URL de los datos está en
+      DATA_URL = 'data/vacunatorios_coordinates_con_barrios.json'. Si en tu
+      proyecto la ruta al JSON es distinta, editá esa línea en vacunatorios.js.
+
+  • mapa-styles.css
+    → Estilos del mapa (contenedor, filtros, cards, lista, botones). Podés
+      enlazarlo tal cual o copiar solo las reglas que necesites a tu propio CSS.
+      Los colores se controlan con variables en :root (--primary-color, etc.):
+      cambiándolas adaptás el mapa a tu diseño.
+
+  • mapa-ejemplo.html
+    → Página de ejemplo mínima. Sirve como referencia de la estructura HTML
+      que necesita el script: IDs y clases que no pueden faltar.
+
+  • geocode_google.py
+    → Re-geocodifica todos los registros con la API de Google Maps (lat/lng,
+      dirección formateada, precisión). Necesita API key y Python 3. Hace
+      backup antes de modificar (vacunatorios_coordinates_con_barrios_pre_google_backup.json).
+
+  • normalize_barrios.py
+    → Normaliza el campo "barrio" a Title Case en el JSON y detecta duplicados.
+      Ejecutar desde la carpeta mapa/ (o donde esté el script).
+
+  • normalize_data.py
+    → Normaliza nombre, tipo, provincia, localidad, barrio, domicilio a formato
+      consistente (Title Case inteligente, siglas en mayúsculas, etc.). Crea
+      backup en vacunatorios_coordinates_con_barrios_backup.json.
+
+  • vacunas.csv
+    → Lista maestra de vacunatorios (nombre, tipo, provincia, localidad, barrio,
+      domicilio, código postal, CUIT, teléfono, etc.). Es la fuente que se usó
+      para armar el JSON; update_phones.py la usa para actualizar teléfonos
+      en el JSON (reemplaza CUIT por el teléfono del CSV).
+
+  • update_phones.py
+    → Actualiza el campo "telefono" en el JSON usando vacunas.csv (mapeo
+      CUIT → teléfono). Requiere vacunas.csv en la misma carpeta. Rutas
+      relativas al script.
+
+  • server.py
+    → Servidor Flask (Python) que sirve el panel de administración y la API
+      REST para leer/editar el JSON. Necesario si querés usar el panel para
+      corregir coordenadas o validar registros. Puerto por defecto: 5050.
+
+  • panel.html
+    → Panel de administración: tabla de vacunatorios, filtros, edición de
+      coordenadas, validación, enlaces a Google Maps. Se usa junto con
+      server.py (entrá a http://localhost:5050/panel.html).
+
+--------------------------------------------------------------------------------
+2. ESTRUCTURA HTML OBLIGATORIA (para que el mapa funcione)
+--------------------------------------------------------------------------------
+
+  El script busca estos IDs y clases. Tenés que tener algo equivalente en tu
+  nueva página:
+
+  • Un contenedor con id="mapa" (donde se dibuja Google Maps).
+  • Un contenedor con id="listaResultados" (donde se muestran las cards).
+  • Selects con id: filtroProvincia, filtroLocalidad, filtroBarrio, filtroTipo.
+
+  Ejemplo de estructura mínima:
+
+    <section class="vacunatorios-section">
+      <div class="vacunatorios-container">
+        <div class="panel-izquierdo">
+          <div class="header-busqueda">...</div>
+          <div class="seccion-filtros">
+            <select id="filtroProvincia">...</select>
+            <select id="filtroLocalidad">...</select>
+            <select id="filtroBarrio">...</select>
+            <select id="filtroTipo">...</select>
+          </div>
+          <div id="listaResultados" class="lista-resultados"></div>
+        </div>
+        <div id="mapa"></div>
+      </div>
+    </section>
+
+  Podés cambiar clases y diseño; lo importante es mantener los IDs que usa el JS.
+
+--------------------------------------------------------------------------------
+3. CÓMO CARGAR EL MAPA EN TU PÁGINA
+--------------------------------------------------------------------------------
+
+  1) Incluir la API de Google Maps (con tu API key si es otro proyecto):
+
+     <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&v=weekly&loading=async" async></script>
+
+  2) Incluir el CSS del mapa (o tus propios estilos que respeten los IDs/clases):
+
+     <link rel="stylesheet" href="ruta/a/mapa-styles.css">
+
+  3) Incluir el script después del HTML del mapa:
+
+     <script src="ruta/a/js/vacunatorios.js"></script>
+
+  El script espera a que Google Maps esté cargado y luego inicializa solo.
+
+--------------------------------------------------------------------------------
+4. RUTAS AL JSON
+--------------------------------------------------------------------------------
+
+  En vacunatorios.js la URL de los datos es:
+
+    this.DATA_URL = 'data/vacunatorios_coordinates_con_barrios.json';
+
+  Eso funciona si tu página está al mismo nivel que la carpeta "data" y dentro
+  de "data" está el JSON. Si en tu proyecto el JSON está en otra ruta (por
+  ejemplo /api/vacunatorios o assets/datos/vacunatorios.json), abrí
+  js/vacunatorios.js y cambiá la línea de DATA_URL.
+
+--------------------------------------------------------------------------------
+5. PROBAR ESTE BACKUP EN LOCAL
+--------------------------------------------------------------------------------
+
+  Abrí mapa-ejemplo.html en un navegador. Para que fetch() cargue el JSON sin
+  errores de CORS, conviene servir la carpeta con un servidor local, por ejemplo:
+
+    • Con Python:  python -m http.server 8000
+                   luego entrá a http://localhost:8000/mapa-ejemplo.html
+
+    • Con Node (npx):  npx serve .
+                       luego entrá a la URL que indique para mapa-ejemplo.html
+
+  Si abrís el HTML directamente como file://, algunos navegadores pueden bloquear
+  la carga del JSON.
+
+--------------------------------------------------------------------------------
+6. RESUMEN: QUÉ LLEVAR A LA OTRA CARPETA
+--------------------------------------------------------------------------------
+
+  Mínimo para que el mapa funcione con las mismas ubicaciones:
+
+    • data/vacunatorios_coordinates_con_barrios.json
+    • js/vacunatorios.js
+    • mapa-styles.css (o los estilos integrados en tu CSS)
+    • En tu HTML: la estructura con #mapa, #listaResultados y los filtros por ID
+    • En tu HTML: script de Google Maps API + script de vacunatorios.js
+
+  Para mantener o regenerar los datos:
+
+    • geocode_google.py   (re-geocodificar con Google Maps)
+    • normalize_barrios.py (normalizar barrios)
+    • normalize_data.py   (normalizar todos los campos)
+    • update_phones.py    (actualizar teléfonos desde vacunas.csv)
+    • vacunas.csv         (lista maestra; necesaria para update_phones.py)
+
+  Para tener el panel de administración (editar/validar registros):
+
+    • server.py   (servidor Flask)
+    • panel.html  (interfaz del panel)
+
+  Con eso tenés todo para usar el mapa en otra web y, si querés, el panel
+  para seguir editando los datos.
+
+--------------------------------------------------------------------------------
+7. SCRIPTS PYTHON PARA MANTENER LOS DATOS
+--------------------------------------------------------------------------------
+
+  Si en la otra carpeta vas a actualizar o regenerar los datos del mapa, llevá
+  también los scripts Python. Todos usan rutas relativas al script, así que
+  funcionan aunque los ejecutes desde cualquier lugar (o desde la carpeta mapa/).
+
+  • geocode_google.py
+    Uso:  python3 geocode_google.py
+    Qué hace: Lee data/vacunatorios_coordinates_con_barrios.json, geocodifica
+    cada dirección con Google Maps API y actualiza lat, lng, displayName,
+    locationType, accuracy. Hace backup antes de empezar. Necesitás una
+    API key de Google (en el script está la que usa el proyecto; podés
+    reemplazarla por la tuya).
+
+  • normalize_barrios.py
+    Uso:  python3 normalize_barrios.py
+    Qué hace: Pasa todos los barrios a Title Case en el mismo JSON y muestra
+    si quedaron duplicados (mismo nombre con distintas mayúsculas).
+
+  • normalize_data.py
+    Uso:  python3 normalize_data.py
+    Qué hace: Normaliza nombre, tipo, provincia, localidad, barrio, domicilio
+    (Title Case inteligente, siglas, números romanos, etc.) y limpia teléfono
+    y código postal. Crea backup antes de guardar.
+
+  Orden sugerido si querés “refrescar” todo el dataset:
+    1) normalize_data.py   (formato consistente)
+    2) normalize_barrios.py (barrios en Title Case)
+    3) update_phones.py    (actualizar teléfonos desde vacunas.csv; opcional)
+    4) geocode_google.py   (re-obtener coordenadas; tarda y consume API)
+
+  • update_phones.py
+    Uso:  python3 update_phones.py
+    Qué hace: Lee vacunas.csv (CUIT, Teléfono), busca en el JSON registros cuyo
+    campo "telefono" sea un CUIT y lo reemplaza por el teléfono del CSV.
+    Necesitás vacunas.csv en la misma carpeta (ya incluido en este paquete).
+
+--------------------------------------------------------------------------------
+8. PANEL DE ADMINISTRACIÓN (server.py + panel.html)
+--------------------------------------------------------------------------------
+
+  Si querés editar o validar los registros del mapa desde una interfaz:
+
+  1) Instalá Flask:  pip install flask
+
+  2) Desde la carpeta mapa/, ejecutá:  python3 server.py
+
+  3) Abrí en el navegador:  http://localhost:5050/panel.html
+
+  El panel permite filtrar por provincia/localidad/tipo, ver estadísticas,
+  editar coordenadas (pegando un link de Google Maps), marcar como validado,
+  exportar CSV, etc. Los cambios se guardan en data/vacunatorios_coordinates_con_barrios.json.
+
+  Para que el mapa público (mapa-ejemplo.html o tu otra web) use siempre los
+  datos actuales, serví el JSON desde la misma carpeta o copiá el JSON
+  actualizado a tu sitio.
+
+================================================================================

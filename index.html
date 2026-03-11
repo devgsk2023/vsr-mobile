@@ -133,7 +133,7 @@
   </section>
 
   <!-- ========== EVALUÁ TU RIESGO ========== -->
-  <section class="section-evaluar-riesgo py-5">
+  <section class="section-evaluar-riesgo">
     <div class="container">
       <p class="evaluar-riesgo-label">EVALUÁ TU RIESGO</p>
       <h2 class="evaluar-riesgo-title mb-4">¿Tengo mayor riesgo de complicaciones?</h2>
@@ -143,12 +143,93 @@
       <p class="evaluar-riesgo-text fw-bold mb-4">
         Completá un breve test para conocer tu nivel de riesgo de complicaciones y qué podés hacer para protegerte.
       </p>
-      <a href="#" class="btn btn-cta btn-evaluar-test w-100 text-center mt-5">Comenzar el test</a>
+      <button type="button" class="btn btn-cta btn-evaluar-test w-100 text-center mt-5" id="btnAbrirAutotest">Comenzar el test</button>
     </div>
   </section>
 
+  <!-- ========== AUTOTEST (pop-up) ========== -->
+  <div class="autotest-overlay" id="autotestOverlay" aria-hidden="true">
+    <div class="autotest-modal" id="autotestModal" role="dialog" aria-labelledby="autotestTitle" aria-modal="true">
+      <button type="button" class="autotest-close" id="autotestClose" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+
+      <!-- Pantalla intro -->
+      <div class="autotest-step autotest-intro" id="autotestIntro" data-step="intro">
+        <h2 class="autotest-step-title" id="autotestTitle">¿Podría afectarte más el VSR?</h2>
+        <p class="autotest-step-text">Respondé unas preguntas breves para orientarte sobre tu nivel de riesgo.</p>
+        <p class="autotest-disclaimer">Este autotest no reemplaza una consulta médica.</p>
+        <button type="button" class="btn btn-cta autotest-btn" id="autotestBtnComenzar">Comenzar</button>
+      </div>
+
+      <!-- Pregunta 1: Edad -->
+      <div class="autotest-step autotest-question hidden" id="autotestQ1" data-step="q1">
+        <button type="button" class="autotest-back" id="autotestBack1" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+        <p class="autotest-progress">Pregunta 1 de 3</p>
+        <h3 class="autotest-q-title">¿Cuántos años tenés?</h3>
+        <div class="autotest-options">
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="menos20"> Menos de 20</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="20-29"> 20 a 29</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="30-39"> 30 a 39</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="40-49"> 40 a 49</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="50-59"> 50 a 59</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="60-69"> 60 a 69</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="70-79"> 70 a 79</label>
+          <label class="autotest-option"><input type="radio" name="autotest_edad" value="80mas"> 80 o más</label>
+        </div>
+        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext1" disabled>Siguiente</button>
+      </div>
+
+      <!-- Pregunta 2: Enfermedades crónicas (múltiple) -->
+      <div class="autotest-step autotest-question hidden" id="autotestQ2" data-step="q2">
+        <button type="button" class="autotest-back" id="autotestBack2" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+        <p class="autotest-progress">Pregunta 2 de 3</p>
+        <h3 class="autotest-q-title">¿Tenés alguna de estas enfermedades crónicas?</h3>
+        <p class="autotest-q-hint">Podés elegir más de una opción.</p>
+        <div class="autotest-options autotest-options-check">
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="diabetes"> Diabetes</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="asma"> Asma</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="epoc"> EPOC</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="cardiovascular"> Enfermedad cardiovascular</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="renal"> Enfermedad renal</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="inmuno"> Sistema inmune debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico)</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="otra"> Otra</label>
+          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="ninguna"> No tengo ninguna</label>
+        </div>
+        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext2" disabled>Siguiente</button>
+      </div>
+
+      <!-- Pregunta 3: Contacto con niños -->
+      <div class="autotest-step autotest-question hidden" id="autotestQ3" data-step="q3">
+        <button type="button" class="autotest-back" id="autotestBack3" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+        <p class="autotest-progress">Pregunta 3 de 3</p>
+        <h3 class="autotest-q-title">¿Tenés contacto frecuente con niños pequeños (nietos, jardín de infantes, etc.)?</h3>
+        <div class="autotest-options">
+          <label class="autotest-option"><input type="radio" name="autotest_contacto" value="si"> Sí</label>
+          <label class="autotest-option"><input type="radio" name="autotest_contacto" value="no"> No</label>
+        </div>
+        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext3" disabled>Ver resultado</button>
+      </div>
+
+      <!-- Pantalla resultado (se muestra una de las 5 según lógica) -->
+      <div class="autotest-step autotest-result hidden" id="autotestResult" data-step="result">
+        <button type="button" class="autotest-back" id="autotestBackResult" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+        <p class="autotest-result-badge" id="autotestResultBadge"></p>
+        <h2 class="autotest-result-title" id="autotestResultTitle"></h2>
+        <div class="autotest-result-text" id="autotestResultText"></div>
+        <a href="#donde-vacuno" class="btn btn-cta autotest-btn" id="autotestBtnCentros">Buscar centros de salud</a>
+        <button type="button" class="btn btn-outline-secondary autotest-btn autotest-btn-secondary mt-2" id="autotestBtnSiguienteFinal">Continuar</button>
+      </div>
+
+      <!-- Pantalla final -->
+      <div class="autotest-step autotest-final hidden" id="autotestFinal" data-step="final">
+        <h2 class="autotest-step-title">Compartí este test con tus seres queridos</h2>
+        <p class="autotest-step-text">La prevención empieza con la información. Saber tu riesgo es el primer paso para cuidarte… y para cuidar a quienes querés.</p>
+        <button type="button" class="btn btn-cta autotest-btn" id="autotestBtnCerrar">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== RECONOCÉ LAS SEÑALES / SÍNTOMAS DEL VSR ========== -->
-  <section id="sintomas" class="section-reconocer py-5">
+  <section id="sintomas" class="section-reconocer">
     <div class="container">
       <p class="reconocer-label">RECONOCÉ LAS SEÑALES</p>
       <h2 class="reconocer-title mb-2">Síntomas del VSR</h2>
@@ -431,27 +512,70 @@
     </div>
   </section>
 
-  <!-- ========== ¿DÓNDE ME VACUNO? ========== -->
-  <section id="donde-vacuno" class="section-donde-vacuno">
-    <div class="container">
+  <!-- ========== ¿DÓNDE ME VACUNO? (mapa de centros) ========== -->
+  <section id="donde-vacuno" class="section-donde-vacuno section-donde-vacuno-mapa">
+    <div class="container container-donde-vacuno-header">
       <p class="donde-vacuno-label">¿DÓNDE ME VACUNO?</p>
       <h2 class="donde-vacuno-title mb-2">Encontrá tu centro de vacunación</h2>
       <p class="donde-vacuno-intro mb-4">Encontrá un centro cercano y conversá con un profesional de salud.</p>
 
-      <div class="donde-vacuno-progress mb-5">
-        <div class="donde-vacuno-progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div>
+      <div class="donde-vacuno-progress mb-4" id="dondeVacunoProgress">
+        <div class="donde-vacuno-progress-bar" id="dondeVacunoProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
       </div>
-      <p class="donde-vacuno-paso mb-3">Paso 1: elegí tu provincia</p>
 
-      <div class="donde-vacuno-select-wrapper">
-        <select class="form-select donde-vacuno-select" id="selectProvincia" aria-label="Seleccionar provincia">
-          <option value="" selected disabled>Seleccioná una provincia</option>
-          <option value="caba">Ciudad Autónoma de Buenos Aires</option>
-          <option value="buenos-aires">Buenos Aires</option>
-          <option value="cordoba">Córdoba</option>
-          <option value="santa-fe">Santa Fe</option>
-          <option value="otras">Otras provincias...</option>
-        </select>
+      <div class="donde-vacuno-filtros">
+        <div class="donde-vacuno-grupo-filtro" id="dondeVacunoPaso1" data-paso="1">
+          <label for="filtroProvincia" class="donde-vacuno-paso">Paso 1: elegí tu provincia</label>
+          <select id="filtroProvincia" class="form-select donde-vacuno-select" aria-label="Seleccionar provincia" required>
+            <option value="">Seleccioná una provincia</option>
+          </select>
+        </div>
+        <div class="donde-vacuno-grupo-filtro donde-vacuno-paso-oculto" id="dondeVacunoPaso2" data-paso="2">
+          <label for="filtroLocalidad" class="donde-vacuno-paso">Paso 2: elegí tu localidad</label>
+          <select id="filtroLocalidad" class="form-select donde-vacuno-select" aria-label="Seleccionar localidad">
+            <option value="">Seleccioná una localidad</option>
+          </select>
+        </div>
+        <div class="donde-vacuno-grupo-filtro donde-vacuno-paso-oculto" id="dondeVacunoPaso3" data-paso="3">
+          <label for="filtroBarrio" class="donde-vacuno-paso">Paso 3: elegí tu barrio</label>
+          <select id="filtroBarrio" class="form-select donde-vacuno-select" aria-label="Seleccionar barrio">
+            <option value="">Seleccioná un barrio</option>
+          </select>
+        </div>
+        <div class="donde-vacuno-grupo-filtro donde-vacuno-paso-oculto" id="dondeVacunoPaso4" data-paso="4">
+          <label for="filtroTipo" class="donde-vacuno-paso">Paso 4: elegí dónde querés vacunarte</label>
+          <select id="filtroTipo" class="form-select donde-vacuno-select" aria-label="Tipo de centro">
+            <option value="">Seleccioná un centro</option>
+            <option value="farmacia">Farmacia</option>
+            <option value="hospital">Hospital</option>
+            <option value="vacunatorio">Vacunatorio</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="donde-vacuno-contenedor">
+        <div class="donde-vacuno-panel-resultados">
+          <div class="donde-vacuno-resultados-header">
+            <h3 class="donde-vacuno-resultados-titulo">Resultados</h3>
+          </div>
+          <div id="listaResultados" class="donde-vacuno-lista-resultados">
+            <div class="donde-vacuno-loading">Cargando vacunatorios...</div>
+          </div>
+          <div class="donde-vacuno-acciones-mapa">
+            <button type="button" class="btn btn-donde-vacuno-mapa" id="btnMostrarMapa" aria-label="Mostrar mapa">
+              <i class="bi bi-map"></i> Mostrar mapa
+            </button>
+          </div>
+        </div>
+        <div class="donde-vacuno-panel-mapa" id="panelMapa">
+          <div id="mapa" class="donde-vacuno-mapa"></div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="donde-vacuno-disclaimer small text-white-50 mb-0">Este buscador tiene como única finalidad proveer información útil sobre puntos de vacunación disponibles cerca de tu ubicación.</p>
       </div>
     </div>
   </section>
@@ -773,6 +897,8 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWMgpuf6kUK7eyheo1pUPx69nEhqMk86w&v=weekly&loading=async" async></script>
+  <script src="js/vacunatorios-map.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
