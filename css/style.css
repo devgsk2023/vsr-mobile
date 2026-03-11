@@ -20,8 +20,11 @@ body {
 
 /* ========== HEADER CON LOGO ========== */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
   background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-img {
@@ -153,7 +156,8 @@ body {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    font-size: 1.2rem;
+    font-size: 1.38rem;
+    
   }
 
   .section-que-es .que-es-cards {
@@ -2963,7 +2967,7 @@ footer a:hover {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 70%;
+    max-width: min(70%, 1120px);
   }
 
   /* Tipografía PC: textos 1.3rem, títulos 2.5rem */
