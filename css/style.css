@@ -1067,6 +1067,13 @@ body {
   justify-content: center;
 }
 
+@media (min-width: 992px) {
+  .reconocer-icon {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 .reconocer-icon img {
   width: 100%;
   height: 100%;
@@ -1125,7 +1132,7 @@ body {
   .section-reconocer .reconocer-sintomas-row {
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 30px;
+    gap: 20px;
   }
 
   .section-reconocer .reconocer-sintomas-row .col-lg-2.reconocer-sintoma-item {
@@ -1148,6 +1155,7 @@ body {
     flex-wrap: nowrap;
     align-items: baseline;
     gap: 0.25rem;
+    justify-content: center;
   }
 
   .section-reconocer .reconocer-aviso-titulo {
