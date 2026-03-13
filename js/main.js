@@ -446,3 +446,94 @@ function updateDondeVacunoProgress() {
   var tip = document.getElementById('filtroTipo');
   if (tip) tip.addEventListener('change', updateDondeVacunoProgress);
 })();
+
+/**
+ * Preguntas que podés hacer en tu próxima consulta: descargar PDF y compartir link
+ * Usa el PDF en assets/preguntas-consulta-vsr.pdf
+ */
+(function () {
+  'use strict';
+
+  var PDF_PREGUNTAS_URL = 'assets/preguntas-consulta-vsr-folleto.pdf';
+  var PDF_PREGUNTAS_NOMBRE = 'preguntas-consulta-vsr-folleto.pdf';
+  var SITIO_URL = 'https://virusvsr.com';
+
+  var btnDescargar = document.getElementById('btnDescargarPreguntas');
+  var btnCompartir = document.getElementById('btnCompartirPreguntas');
+  var opcionesPanel = document.getElementById('compartirPreguntasOpciones');
+  var btnCopiar = document.getElementById('btnCopiarPreguntas');
+  var shareLinks = document.querySelectorAll('.prevencion-compartir-link');
+
+  function getUrlPdf() {
+    return SITIO_URL + '/' + PDF_PREGUNTAS_URL;
+  }
+
+  function getMensajeCompartir() {
+    var titulo = 'Preguntas para tu próxima consulta - VSR';
+    return titulo + '\n\nDescargá el PDF con todas las preguntas: ' + getUrlPdf() + '\n\nFuente: ' + SITIO_URL;
+  }
+
+  if (btnDescargar) {
+    btnDescargar.addEventListener('click', function () {
+      var a = document.createElement('a');
+      a.href = PDF_PREGUNTAS_URL;
+      a.download = PDF_PREGUNTAS_NOMBRE;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  }
+
+  if (btnCompartir && opcionesPanel) {
+    btnCompartir.addEventListener('click', function () {
+      var bsCollapse = typeof bootstrap !== 'undefined' && bootstrap.Collapse;
+      if (bsCollapse) {
+        var c = new bootstrap.Collapse(opcionesPanel, { toggle: true });
+      } else {
+        opcionesPanel.classList.toggle('show');
+      }
+    });
+  }
+
+  function actualizarEnlacesCompartir() {
+    var mensaje = getMensajeCompartir();
+    var titulo = 'Preguntas para tu próxima consulta - VSR';
+    shareLinks.forEach(function (link) {
+      var canal = link.getAttribute('data-canal');
+      if (canal === 'whatsapp') {
+        link.href = 'https://wa.me/?text=' + encodeURIComponent(mensaje);
+      } else if (canal === 'email') {
+        link.href = 'mailto:?subject=' + encodeURIComponent(titulo) + '&body=' + encodeURIComponent(mensaje);
+      }
+    });
+  }
+
+  actualizarEnlacesCompartir();
+
+  if (btnCopiar) {
+    btnCopiar.addEventListener('click', function () {
+      var mensaje = getMensajeCompartir();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(mensaje).then(function () {
+          var lbl = btnCopiar.textContent;
+          btnCopiar.textContent = 'Copiado';
+          setTimeout(function () { btnCopiar.textContent = lbl; }, 2000);
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = mensaje;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          btnCopiar.textContent = 'Copiado';
+          setTimeout(function () { btnCopiar.textContent = 'Copiar texto'; }, 2000);
+        } catch (err) {}
+        document.body.removeChild(ta);
+      }
+    });
+  }
+})();

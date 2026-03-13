@@ -389,7 +389,7 @@
       </p>
       
       <div class="text-center my-5 prevencion-btn-wrap">
-        <a href="#" class="btn btn-cta btn-evaluar-test w-100 text-center">¿Dónde me vacuno?</a>
+        <a href="#donde-vacuno" class="btn btn-cta btn-evaluar-test w-100 text-center">¿Dónde me vacuno?</a>
       </div>
 
       <p class="prevencion-habitos-intro mb-4">Recordá que además de la vacunación, estos <strong>hábitos</strong> ayudan a <strong>reducir el riesgo de contagio:</strong></p>
@@ -507,8 +507,15 @@
       </div>
 
       <div class="prevencion-consulta-btns d-flex flex-wrap gap-3 justify-content-center mt-4">
-        <a href="#" class="btn-prevencion-consulta"><i class="bi bi-share me-2"></i>Compartir</a>
-        <a href="#" class="btn-prevencion-consulta"><i class="bi bi-download me-2"></i>Descargar preguntas</a>
+        <button type="button" class="btn-prevencion-consulta" id="btnCompartirPreguntas" aria-haspopup="true" aria-expanded="false"><i class="bi bi-share me-2"></i>Compartir</button>
+        <button type="button" class="btn-prevencion-consulta" id="btnDescargarPreguntas"><i class="bi bi-download me-2"></i>Descargar preguntas</button>
+      </div>
+      <div class="prevencion-compartir-opciones collapse mt-2" id="compartirPreguntasOpciones">
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+          <a href="#" class="btn btn-sm btn-outline-secondary prevencion-compartir-link" data-canal="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#" class="btn btn-sm btn-outline-secondary prevencion-compartir-link" data-canal="email">Mail</a>
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="btnCopiarPreguntas">Copiar texto</button>
+        </div>
       </div>
     </div>
   </section>
@@ -837,7 +844,7 @@
           <img src="assets/img/Logo-principal.png" alt="" class="mobile-menu-logo-img me-2">
           <div>
             <span class="mobile-menu-logo-text">Virus Sincicial Respiratorio</span>
-            <span class="d-block mobile-menu-logo-site">vsrsalud.com</span>
+            <span class="d-block mobile-menu-logo-site">virusvsr.com</span>
           </div>
         </a>
         <button type="button" class="mobile-menu-close btn p-0" id="mobileMenuClose" aria-label="Cerrar menú">

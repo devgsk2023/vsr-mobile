@@ -926,7 +926,7 @@ body {
   font-size: 0.9rem;
   color: #6c757d;
   margin: 0 0 0.75rem;
-  padding-top: 0.25rem;
+  padding-top: 1.55rem;
 }
 
 .autotest-question .autotest-step-title {
@@ -1874,11 +1874,23 @@ body {
   border: 1px solid rgba(0, 145, 69, 0.2);
   transition: background-color 0.2s, color 0.2s;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .btn-prevencion-consulta:hover {
   background-color: #c8f5dc;
   color: #007a38;
+  text-decoration: none;
+}
+
+.prevencion-compartir-opciones {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.prevencion-compartir-opciones .btn,
+.prevencion-compartir-link {
   text-decoration: none;
 }
 
