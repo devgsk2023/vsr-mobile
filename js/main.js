@@ -410,9 +410,9 @@ function updateDondeVacunoProgress() {
   if (p && p.value) n++;
   if (l && l.value) n++;
   if (b && b.value) n++;
-  if (t && t.value) n++;
+  if (t && !t.disabled && t.selectedIndex >= 0) n++;
   // Si tienen provincia, localidad y tipo pero no barrio, saltaron directo (localidad sin barrios) -> 100%
-  if (n === 3 && p && p.value && l && l.value && t && t.value) n = 4;
+  if (n === 3 && p && p.value && l && l.value && t && !t.disabled && t.selectedIndex >= 0) n = 4;
   var pct = n * 25;
   bar.style.width = pct + '%';
   bar.setAttribute('aria-valuenow', pct);
