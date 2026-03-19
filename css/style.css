@@ -69,7 +69,7 @@ body {
 
   .hero-desktop-left .intro-title {
     text-align: left;
-    font-size: 3.7rem;
+    font-size: 3.6rem;
   }
 
   .hero-desktop-right {
@@ -2371,6 +2371,27 @@ body {
   color: #fff;
 }
 
+/* Disclaimer debajo del mapa: texto tipo aviso legal, chico en celu y PC */
+.donde-vacuno-disclaimer {
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.7) !important;
+  max-width: 100%;
+  margin: 0;
+}
+
+.donde-vacuno-disclaimer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+  .donde-vacuno-disclaimer {
+    font-size: 0.75rem;
+    
+  }
+}
+
 /* ========== Ponete a prueba (test VSR) ========== */
 .section-ponete-prueba {
   background-color: #fff;
@@ -2667,6 +2688,13 @@ body {
   margin: 0;
 }
 
+.faq-opcion-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #20244C;
+  margin: 0;
+}
+
 .accordion-faq .accordion-item {
   background-color: #fff;
   border: none;
@@ -2686,14 +2714,14 @@ body {
   color: #20244C !important;
   border: none;
   font-weight: 400;
-  font-size: 3rem;
   padding: 16px 1.25rem;
   box-shadow: none !important;
 }
 
-/* Títulos de categoría FAQ (VSR, VSR y enfermedades..., Prevención...) */
+/* Títulos de categoría FAQ (padres: VSR, VSR y enfermedades..., Prevención...) */
 .accordion-faq .faq-category-btn {
-  font-size: 1.2rem;
+  font-size: 2.5rem; /* 40px */
+  color: #20244C !important;
 }
 
 .accordion-faq .accordion-button::after {
@@ -2735,10 +2763,11 @@ body {
   margin-bottom: 0;
 }
 
+/* Preguntas hijas de cada categoría FAQ */
 .accordion-faq-inner .accordion-button {
   background-color: #FAFAFA !important;
-  color: #20244C !important;
-  font-size: 1.3rem;
+  color: #3D3B3C !important;
+  font-size: 1.5rem; /* 24px */
   font-weight: 400;
   padding: 16px;
 }
@@ -2749,6 +2778,7 @@ body {
 
 .accordion-faq-inner .accordion-button:not(.collapsed) {
   background-color: #FAFAFA !important;
+  color: #3D3B3C !important;
 }
 
 /* Texto de respuestas en todos los tabs de FAQ */
@@ -2763,6 +2793,19 @@ body {
   padding: 0 16px 16px;
   border-top: none;
   background-color: #FAFAFA;
+}
+
+.faq-prevencion-lista {
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.faq-prevencion-lista li {
+  margin-bottom: 0.5rem;
+}
+
+.faq-prevencion-lista li:last-child {
+  margin-bottom: 0;
 }
 
 /* ========== Referencias ========== */
@@ -2788,8 +2831,8 @@ body {
 
 .referencias-list {
   margin: 0;
-  padding-left: 1.25rem;
-  list-style: decimal;
+  padding-left: 0;
+  list-style: none;
 }
 
 .referencias-item {
@@ -2797,6 +2840,11 @@ body {
   line-height: 1.6;
   color: #212529;
   margin-bottom: 1rem;
+}
+
+.referencias-item sup {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .referencias-item:last-child {
@@ -3049,6 +3097,7 @@ footer a:hover {
   }
   .section-faq .faq-intro {
     font-size: 1.3rem;
+    color:black;
   }
   .accordion-faq .accordion-item {
     margin-bottom: 32px;
