@@ -435,72 +435,55 @@
       
 
       <h3 class="prevencion-preguntas-title my-5">Preguntas que podés hacer en tu próxima consulta</h3>
+      <p class="prevencion-preguntas-intro mb-3">Seleccioná las preguntas que quieras llevar a tu médico. Luego descargá o compartí el PDF.</p>
 
-      <div class="accordion accordion-preguntas-consulta" id="accordionPreguntasConsulta">
-        <div class="accordion-item prevencion-pregunta-item">
-          <h4 class="accordion-header">
-            <button class="accordion-button collapsed prevencion-pregunta-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaRiesgo" aria-expanded="false" aria-controls="consultaRiesgo">Sobre tu riesgo</button>
-          </h4>
-          <div id="consultaRiesgo" class="accordion-collapse collapse" data-bs-parent="#accordionPreguntasConsulta">
-            <div class="accordion-body prevencion-pregunta-body">
-              <div class="prevencion-qa my-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?</p>
-                <p class="prevencion-qa-respuesta mb-0">Tu profesional de salud puede evaluar tu situación y explicarte el nivel de riesgo según tu edad y condiciones. Consultá siempre con él o ella.</p>
-              </div>
-              <div class="prevencion-qa mb-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Cuál es mi riesgo de complicaciones?</p>
-                <p class="prevencion-qa-respuesta mb-0">Depende de la edad, enfermedades crónicas y otros factores. Tu médico puede hacer una evaluación personalizada.</p>
-              </div>
-              <div class="prevencion-qa mb-0">
-                <p class="prevencion-qa-pregunta mb-1">¿Cómo podría afectar mi enfermedad crónica?</p>
-                <p class="prevencion-qa-respuesta mb-0">El VSR puede agravar algunas condiciones. Tu profesional puede explicarte cómo aplica en tu caso y qué medidas tomar.</p>
-              </div>
-            </div>
-          </div>
+      <div class="prevencion-preguntas-caja">
+        <div class="prevencion-preguntas-lista" id="listaPreguntasConsulta">
+        <div class="prevencion-pregunta-grupo">
+          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre tu riesgo</p>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?">
+            <span class="prevencion-pregunta-texto">¿Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cuál es mi riesgo de complicaciones?">
+            <span class="prevencion-pregunta-texto">¿Cuál es mi riesgo de complicaciones?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cómo podría afectar mi enfermedad crónica?">
+            <span class="prevencion-pregunta-texto">¿Cómo podría afectar mi enfermedad crónica?</span>
+          </label>
         </div>
-
-        <div class="accordion-item prevencion-pregunta-item">
-          <h4 class="accordion-header">
-            <button class="accordion-button collapsed prevencion-pregunta-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaVacuna" aria-expanded="false" aria-controls="consultaVacuna">Sobre la vacuna</button>
-          </h4>
-          <div id="consultaVacuna" class="accordion-collapse collapse" data-bs-parent="#accordionPreguntasConsulta">
-            <div class="accordion-body prevencion-pregunta-body">
-              <div class="prevencion-qa my-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Es adecuada para mí una vacuna contra el VSR?</p>
-                <p class="prevencion-qa-respuesta mb-0">En adultos de 60 años o más y en grupos de riesgo suele estar recomendada. Tu médico puede indicarte si aplica en tu caso.</p>
-              </div>
-              <div class="prevencion-qa mb-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Puedo aplicarla junto con otras vacunas?</p>
-                <p class="prevencion-qa-respuesta mb-0">En muchos casos sí. Tu profesional de salud te dirá el esquema adecuado según tu calendario de vacunación.</p>
-              </div>
-              <div class="prevencion-qa mb-0">
-                <p class="prevencion-qa-pregunta mb-1">¿Qué otras vacunas son importantes en esta etapa de mi vida?</p>
-                <p class="prevencion-qa-respuesta mb-0">Además del VSR, suelen recomendarse la antigripal y otras según edad y condiciones. Consultá con tu médico.</p>
-              </div>
-            </div>
-          </div>
+        <div class="prevencion-pregunta-grupo">
+          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre la vacuna</p>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Es adecuada para mí una vacuna contra el VSR?">
+            <span class="prevencion-pregunta-texto">¿Es adecuada para mí una vacuna contra el VSR?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Puedo aplicarla junto con otras vacunas?">
+            <span class="prevencion-pregunta-texto">¿Puedo aplicarla junto con otras vacunas?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Qué otras vacunas son importantes en esta etapa de mi vida?">
+            <span class="prevencion-pregunta-texto">¿Qué otras vacunas son importantes en esta etapa de mi vida?</span>
+          </label>
         </div>
-
-        <div class="accordion-item prevencion-pregunta-item">
-          <h4 class="accordion-header">
-            <button class="accordion-button collapsed prevencion-pregunta-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaEnfermedad" aria-expanded="false" aria-controls="consultaEnfermedad">Sobre la enfermedad</button>
-          </h4>
-          <div id="consultaEnfermedad" class="accordion-collapse collapse" data-bs-parent="#accordionPreguntasConsulta">
-            <div class="accordion-body prevencion-pregunta-body">
-              <div class="prevencion-qa my-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Qué síntomas puedo tener si contraigo VSR?</p>
-                <p class="prevencion-qa-respuesta mb-0">Suelen incluir congestión, tos, fiebre y en algunos casos dificultad para respirar. En adultos mayores puede ser más grave.</p>
-              </div>
-              <div class="prevencion-qa mb-3">
-                <p class="prevencion-qa-pregunta mb-1">¿Cómo se contagia el VSR?</p>
-                <p class="prevencion-qa-respuesta mb-0">Por contacto con gotitas al toser o estornudar, y al tocar superficies contaminadas. Lavarse las manos y ventilar ayuda a reducir el riesgo.</p>
-              </div>
-              <div class="prevencion-qa mb-0">
-                <p class="prevencion-qa-pregunta mb-1">¿Pude haber tenido una infección por VSR en el pasado?</p>
-                <p class="prevencion-qa-respuesta mb-0">Sí. Es frecuente haber tenido VSR en la infancia. Se puede contraer más de una vez. Tu médico puede aclarar dudas sobre tu historial.</p>
-              </div>
-            </div>
-          </div>
+        <div class="prevencion-pregunta-grupo">
+          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre la enfermedad</p>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Qué síntomas puedo tener si contraigo VSR?">
+            <span class="prevencion-pregunta-texto">¿Qué síntomas puedo tener si contraigo VSR?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cómo se contagia el VSR?">
+            <span class="prevencion-pregunta-texto">¿Cómo se contagia el VSR?</span>
+          </label>
+          <label class="prevencion-pregunta-item">
+            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Pude haber tenido una infección por VSR en el pasado?">
+            <span class="prevencion-pregunta-texto">¿Pude haber tenido una infección por VSR en el pasado?</span>
+          </label>
+        </div>
         </div>
       </div>
 
@@ -508,6 +491,7 @@
         <button type="button" class="btn-prevencion-consulta" id="btnCompartirPreguntas" aria-haspopup="true" aria-expanded="false"><i class="bi bi-share me-2"></i>Compartir</button>
         <button type="button" class="btn-prevencion-consulta" id="btnDescargarPreguntas"><i class="bi bi-download me-2"></i>Descargar preguntas</button>
       </div>
+      <p class="prevencion-preguntas-aviso text-muted small mt-2 mb-0" id="avisoNingunaSeleccionada" aria-live="polite"></p>
       <div class="prevencion-compartir-opciones collapse mt-2" id="compartirPreguntasOpciones">
         <div class="d-flex flex-wrap gap-2 justify-content-center">
           <a href="#" class="btn btn-sm btn-outline-secondary prevencion-compartir-link" data-canal="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
@@ -610,7 +594,7 @@
               <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ1" style="width: 33%"></div>
             </div>
             <p class="ponete-prueba-contador mb-2">Pregunta 1 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">¿El VSR afecta más a los adultos mayores?</h3>
+            <h3 class="ponete-prueba-pregunta mb-4">¿Puede el VSR causar Neumonía?</h3>
             <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
               <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
               <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
@@ -623,7 +607,7 @@
               <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ2" style="width: 66%"></div>
             </div>
             <p class="ponete-prueba-contador mb-2">Pregunta 2 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">El VSR solo se transmite en invierno.</h3>
+            <h3 class="ponete-prueba-pregunta mb-4">¿El VSR afecta más a los adultos mayores?</h3>
             <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
               <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
               <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
@@ -636,7 +620,7 @@
               <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ3" style="width: 100%"></div>
             </div>
             <p class="ponete-prueba-contador mb-2">Pregunta 3 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">Lavarse las manos ayuda a reducir el contagio del VSR.</h3>
+            <h3 class="ponete-prueba-pregunta mb-4">¿Todos los adultos mayores tienen el mismo riesgo de padecer infecciones severas por VSR?</h3>
             <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
               <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
               <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
@@ -664,7 +648,7 @@
       <h2 class="faq-title mb-2">Preguntas frecuentes</h2>
       <p class="faq-intro my-5">Respuestas claras para ayudarte a entender el VSR y su prevención.</p>
 
-      <p class="faq-opcion-label mb-3">Selecciona una opción:</p>
+      
 
       <div class="accordion accordion-faq" id="accordionFaq">
         <!-- Categoría 1: Virus Sincicial Respiratorio (VSR) -->
@@ -833,34 +817,28 @@
           <sup>1</sup>Colosia AD, Yang J, Hillson E, et al. The epidemiology of medically attended respiratory syncytial virus in older adults in the United States: A systematic review. PLoS One. 2017;12(8):1-20. <a href="https://doi.org/10.1371/journal.pone.0182321" target="_blank" rel="noopener noreferrer">doi:10.1371/journal.pone.0182321</a>
         </li>
         <li class="referencias-item">
-          <sup>2</sup>Centers for Disease Control and Prevention, 2022. Respiratory syncytial virus (RSV): For healthcare providers. <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a> (accessed November 2, 2023)
+          <sup>2</sup>Centers for Disease Control and Prevention (CDC), 2025. How RSV Spreads. <a href="https://www.cdc.gov/rsv/about/transmission.html" target="_blank" rel="noopener noreferrer">How RSV Spreads | RSV | CDC</a>
         </li>
         <li class="referencias-item">
-          <sup>3</sup>Centers for Disease Control and Prevention (CDC), 2025. How RSV Spreads. <a href="https://www.cdc.gov/rsv/about/transmission.html" target="_blank" rel="noopener noreferrer">How RSV Spreads | RSV | CDC</a>
+          <sup>3</sup>Lineamientos Técnicos de Vacunación | Virus sincicial respiratorio en personas gestantes - Febrero de 2024 - MSAL. <a href="https://www.argentina.gob.ar/salud/vacunas/lineamientos_vsr" target="_blank" rel="noopener noreferrer">lineamientos_vsr.pdf (argentina.gob.ar)</a>
         </li>
         <li class="referencias-item">
-          <sup>4</sup>Lineamientos Técnicos de Vacunación | Virus sincicial respiratorio en personas gestantes - Febrero de 2024 - MSAL. <a href="https://www.argentina.gob.ar/salud/vacunas/lineamientos_vsr" target="_blank" rel="noopener noreferrer">lineamientos_vsr.pdf (argentina.gob.ar)</a>
+          <sup>4</sup>Tseng HF, Sy LS, Ackerson B, et al. Severe morbidity and short- And mid- And long-term mortality in older adults hospitalized with respiratory syncytial virus infection. J Infect Dis. 2020;222(8):1298-1310. <a href="https://doi.org/10.1093/infdis/jiaa361" target="_blank" rel="noopener noreferrer">doi: 10.1093/infdis/jiaa361</a>
         </li>
         <li class="referencias-item">
-          <sup>5</sup>Tseng HF, Sy LS, Ackerson B, et al. Severe morbidity and short- And mid- And long-term mortality in older adults hospitalized with respiratory syncytial virus infection. J Infect Dis. 2020;222(8):1298-1310. <a href="https://doi.org/10.1093/infdis/jiaa361" target="_blank" rel="noopener noreferrer">doi: 10.1093/infdis/jiaa361</a>
+          <sup>5</sup>Nguyen-Van-Tam JS, O'Leary M, Martin ET, et al. Burden of respiratory syncytial virus infection in older and high-risk adults: a systematic review and meta-analysis of the evidence from developed countries. Eur Respir Rev 2022; 31: 220105[DOI: 10.1183/16000617.0105-2022].
         </li>
         <li class="referencias-item">
           <sup>6</sup>Openshaw PJM, Chiu C, Culley FJ, Johansson C. Protective and harmful immunity to RSV infection. Annu Rev Immunol. 2017;35:501-532. <a href="https://doi.org/10.1146/annurev-immunol-051116-052206" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev-immunol-051116-052206</a>
         </li>
         <li class="referencias-item">
-          <sup>7</sup>Simon AK, Hollander GA, Mcmichael A, Mcmichael A. Evolution of the immune system in humans from infancy to old age. Proc Biol Sci. 2015;282(1821):1-12. <a href="https://doi.org/10.1098/rspb.2015.3085" target="_blank" rel="noopener noreferrer">doi:10.1098/rspb.2015.3085</a>
+          <sup>7</sup>Centers for Disease Control and Prevention, 2022. Respiratory syncytial virus (RSV): For healthcare providers. <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a> (accessed November 2, 2023)
         </li>
         <li class="referencias-item">
-          <sup>8</sup>Center of Disease Control and Prevention (CDC), 2024. Respiratory syncytial Virus infection (RSV). <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a>
+          <sup>8</sup>Simon AK, Hollander GA, Mcmichael A, Mcmichael A. Evolution of the immune system in humans from infancy to old age. Proc Biol Sci. 2015;282(1821):1-12.
         </li>
         <li class="referencias-item">
-          <sup>9</sup>Jorge A. Gómez, Otavio Cintra, Arnas Berzanskis, Abdelkader El Hasnaoui, Desirée A.M. van Oorschot, Adriana Guzman-Holst. ESTIMATION OF THE RESPIRATORY SYNCYTIAL VIRUS BURDEN IN ADULTS OF MIDDLE-INCOME COUNTRIES; ARE WE OVERLOOKING ITS BURDEN IN ARGENTINA, BRAZIL, CHILE, MALAYSIA AND MEXICO? RSV VW 24. February 13-16 2024. Mumbai, India
-        </li>
-        <li class="referencias-item">
-          <sup>10</sup>Branche AR, Saiman L, Walsh EE, et al. Incidence of Respiratory Syncytial Virus Infection Among Hospitalized Adults, 2017-2020. Clin Infect Dis. 2022;74(6):1004-1011. <a href="https://doi.org/10.1093/cid/ciab595" target="_blank" rel="noopener noreferrer">doi:10.1093/cid/ciab595</a>
-        </li>
-        <li class="referencias-item">
-          <sup>11</sup>Centers for Disease Control and Prevention (CDC), 2025. About RSV. <a href="https://www.cdc.gov/rsv/about/index.html" target="_blank" rel="noopener noreferrer">About RSV | RSV | CDC</a>
+          <sup>9</sup>Center of Disease Control and Prevention (CDC), 2024. Respiratory syncytial Virus infection (RSV). <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a>
         </li>
       </ul>
       </div>
@@ -936,6 +914,7 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWMgpuf6kUK7eyheo1pUPx69nEhqMk86w&v=weekly&loading=async" async></script>
   <script src="js/vacunatorios-map.js"></script>
   <script src="js/main.js"></script>

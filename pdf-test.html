@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Test - Preguntas consulta VSR</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Helvetica, Arial, sans-serif;
+      background: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Contenedor tipo A4 (210mm x 297mm) */
+    .pdf-page {
+      width: 210mm;
+      min-height: 297mm;
+      max-width: 100%;
+      background: #fff;
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Header: franja verde oscuro, sin imagen */
+    .pdf-header {
+      background: #234229;
+      color: #fff;
+      padding: 50px;
+    }
+    .pdf-header-title {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1.2;
+      margin: 0;
+      max-width: 70%;
+    }
+    .pdf-header-title .lime {
+      color: #cddc39;
+    }
+
+    /* Cuerpo: solo preguntas */
+    .pdf-body {
+      padding: 20px 50px;
+      background: #f5f5f5;
+      
+    }
+    .pdf-preguntas-lista {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .pdf-pregunta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.35;
+    }
+    .pdf-pregunta-item:last-child {
+      margin-bottom: 0;
+    }
+    .pdf-pregunta-icono {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #cddc39;
+      color: #333;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .pdf-pregunta-texto {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Sección: agregar preguntas propias (líneas para rellenar) */
+    .pdf-agrega {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .pdf-agrega-titulo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 24px 0;
+    }
+    .pdf-agrega-lista {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .pdf-agrega-fila {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .pdf-agrega-fila:last-child {
+      margin-bottom: 0;
+    }
+    .pdf-agrega-linea {
+      flex: 1;
+      min-width: 0;
+      min-height: 2em;
+      border-bottom: 2px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="pdf-page">
+    <header class="pdf-header">
+      <h1 class="pdf-header-title">
+        Preguntas que podés hacer a tu médico o médica acerca del <span class="lime">Virus Sincicial Respiratorio</span>
+      </h1>
+    </header>
+
+    <div class="pdf-body">
+      <ul class="pdf-preguntas-lista">
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">Como adulto mayor o adulto con una enfermedad crónica, ¿debo preocuparme por el VSR?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Cuál es mi riesgo de complicaciones debido al VSR?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Cómo podría el VSR afectar mi enfermedad crónica?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Qué síntomas puedo tener si contraigo VSR?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Pude haber tenido una infección por VSR en el pasado?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Cómo se contagia el VSR?</span>
+        </li>
+        <li class="pdf-pregunta-item">
+          <span class="pdf-pregunta-icono">?</span>
+          <span class="pdf-pregunta-texto">¿Qué puedo hacer para prevenir el VSR?</span>
+        </li>
+      </ul>
+
+      <section class="pdf-agrega">
+        <h2 class="pdf-agrega-titulo">Agregá las preguntas que vos quieras:</h2>
+        <ul class="pdf-agrega-lista">
+          <li class="pdf-agrega-fila">
+            <span class="pdf-pregunta-icono">?</span>
+            <span class="pdf-agrega-linea"></span>
+          </li>
+          <li class="pdf-agrega-fila">
+            <span class="pdf-pregunta-icono">?</span>
+            <span class="pdf-agrega-linea"></span>
+          </li>
+          <li class="pdf-agrega-fila">
+            <span class="pdf-pregunta-icono">?</span>
+            <span class="pdf-agrega-linea"></span>
+          </li>
+          <li class="pdf-agrega-fila">
+            <span class="pdf-pregunta-icono">?</span>
+            <span class="pdf-agrega-linea"></span>
+          </li>
+          <li class="pdf-agrega-fila">
+            <span class="pdf-pregunta-icono">?</span>
+            <span class="pdf-agrega-linea"></span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

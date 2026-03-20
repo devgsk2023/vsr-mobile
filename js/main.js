@@ -65,7 +65,7 @@
     complete: document.getElementById('quizComplete')
   };
 
-  const correctAnswers = { q1: 'true', q2: 'false', q3: 'true' };
+  const correctAnswers = { q1: 'true', q2: 'true', q3: 'false' };
   const answers = { q1: null, q2: null, q3: null };
 
   function showStep(stepId) {
@@ -448,57 +448,187 @@ function updateDondeVacunoProgress() {
 })();
 
 /**
- * Preguntas que podés hacer en tu próxima consulta: descargar PDF y compartir link
- * Usa el PDF en assets/preguntas-consulta-vsr.pdf
+ * Preguntas que podés hacer en tu próxima consulta: seleccionables, generar PDF y compartir
  */
 (function () {
   'use strict';
 
-  var PDF_PREGUNTAS_URL = 'assets/preguntas-consulta-vsr-folleto.pdf';
-  var PDF_PREGUNTAS_NOMBRE = 'preguntas-consulta-vsr-folleto.pdf';
   var SITIO_URL = 'https://virusvsr.com';
+  var TITULO_PDF = 'Preguntas que podés hacer en tu próxima consulta';
+  var TITULO_HEADER_PART1 = 'Preguntas que podés hacer a tu médico o médica acerca del ';
+  var TITULO_HEADER_PART2 = 'Virus Sincicial Respiratorio';
+  var MARGIN = 20;
+  var PAGE_W = 210;
+  var PAGE_H = 297;
+  var TITLE_MAX_WIDTH = PAGE_W * 0.6;
+  var HEADER_PADDING = 14;
+  var BODY_PADDING = HEADER_PADDING;
+  var HEADER_FONT = 17;
+  var HEADER_LINE_H = 6;
+  var HEADER_GREEN = [35, 66, 41];
+  var HEADER_LIME = [205, 220, 57];
+  var BODY_BG = [245, 245, 245];
+  var CIRCLE_R = 5;
+  var GAP = 3;
+  var QUESTION_FONT = 11;
+  var SPACE_ITEMS = 5;
+  var LINE_H = 4.5;
+  var AGREGA_TITULO = 'Agregá las preguntas que vos quieras:';
+  var NUM_LINEAS_AGREGA = 5;
 
   var btnDescargar = document.getElementById('btnDescargarPreguntas');
   var btnCompartir = document.getElementById('btnCompartirPreguntas');
   var opcionesPanel = document.getElementById('compartirPreguntasOpciones');
   var btnCopiar = document.getElementById('btnCopiarPreguntas');
   var shareLinks = document.querySelectorAll('.prevencion-compartir-link');
+  var aviso = document.getElementById('avisoNingunaSeleccionada');
+  var checkboxes = document.querySelectorAll('.prevencion-pregunta-check');
 
-  function getUrlPdf() {
-    return SITIO_URL + '/' + PDF_PREGUNTAS_URL;
-  }
-
-  function getMensajeCompartir() {
-    var titulo = 'Preguntas para tu próxima consulta - VSR';
-    return titulo + '\n\nDescargá el PDF con todas las preguntas: ' + getUrlPdf() + '\n\nFuente: ' + SITIO_URL;
-  }
-
-  if (btnDescargar) {
-    btnDescargar.addEventListener('click', function () {
-      var a = document.createElement('a');
-      a.href = PDF_PREGUNTAS_URL;
-      a.download = PDF_PREGUNTAS_NOMBRE;
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+  function getPreguntasSeleccionadas() {
+    var out = [];
+    checkboxes.forEach(function (cb) {
+      if (cb.checked && cb.value) out.push(cb.value);
     });
+    return out;
   }
 
-  if (btnCompartir && opcionesPanel) {
-    btnCompartir.addEventListener('click', function () {
-      var bsCollapse = typeof bootstrap !== 'undefined' && bootstrap.Collapse;
-      if (bsCollapse) {
-        var c = new bootstrap.Collapse(opcionesPanel, { toggle: true });
+  function mostrarAviso(msg) {
+    if (aviso) aviso.textContent = msg || '';
+  }
+
+  function dibujarHeaderPDF(doc) {
+    var tituloCompleto = TITULO_HEADER_PART1 + TITULO_HEADER_PART2;
+    doc.setFontSize(HEADER_FONT);
+    doc.setFont(undefined, 'bold');
+    var lineasTitulo = doc.splitTextToSize(tituloCompleto, TITLE_MAX_WIDTH);
+    var headerH = HEADER_PADDING * 2 + lineasTitulo.length * HEADER_LINE_H;
+    doc.setFillColor(HEADER_GREEN[0], HEADER_GREEN[1], HEADER_GREEN[2]);
+    doc.rect(0, 0, PAGE_W, headerH, 'F');
+    var y = HEADER_PADDING + 5;
+    doc.setTextColor(255, 255, 255);
+    for (var i = 0; i < lineasTitulo.length; i++) {
+      var linea = lineasTitulo[i];
+      var idx = linea.indexOf('Virus Sincicial');
+      if (idx >= 0) {
+        doc.text(linea.substring(0, idx), HEADER_PADDING, y);
+        doc.setTextColor(HEADER_LIME[0], HEADER_LIME[1], HEADER_LIME[2]);
+        doc.text(linea.substring(idx), HEADER_PADDING + doc.getTextWidth(linea.substring(0, idx)), y);
+        doc.setTextColor(255, 255, 255);
       } else {
-        opcionesPanel.classList.toggle('show');
+        doc.text(linea, HEADER_PADDING, y);
       }
-    });
+      y += HEADER_LINE_H;
+    }
+    doc.setTextColor(0, 0, 0);
+    return headerH;
+  }
+
+  function dibujarCirculoPregunta(doc, x, y) {
+    doc.setFillColor(HEADER_LIME[0], HEADER_LIME[1], HEADER_LIME[2]);
+    if (doc.circle) {
+      doc.circle(x, y, CIRCLE_R, 'F');
+    } else {
+      doc.ellipse(x, y, CIRCLE_R, CIRCLE_R, 'F');
+    }
+    doc.setFontSize(8);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(50, 50, 50);
+    var w = doc.getTextWidth('?');
+    doc.text('?', x - w / 2, y + 1);
+    doc.setTextColor(0, 0, 0);
+  }
+
+  function generarPDF(preguntas) {
+    if (typeof window.jspdf === 'undefined' || !preguntas.length) return null;
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF();
+    var pageH = doc.internal.pageSize.height;
+    var contentRight = PAGE_W - BODY_PADDING;
+    var maxTextWidth = contentRight - BODY_PADDING - CIRCLE_R * 2 - GAP * 2;
+
+    var headerH = dibujarHeaderPDF(doc);
+    var bodyTop = headerH;
+    doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
+    doc.rect(0, bodyTop, PAGE_W, pageH - bodyTop, 'F');
+
+    var y = bodyTop + 14;
+    var contentBottom = pageH - 12;
+    var leftContent = BODY_PADDING;
+    var circleCenterX = leftContent + CIRCLE_R + GAP;
+    var textX = leftContent + CIRCLE_R * 2 + GAP * 2;
+
+    doc.setFontSize(QUESTION_FONT);
+    doc.setFont(undefined, 'bold');
+    for (var i = 0; i < preguntas.length; i++) {
+      if (y > contentBottom) {
+        doc.addPage();
+        doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
+        doc.rect(0, 0, PAGE_W, pageH, 'F');
+        y = 15;
+      }
+      var circleY = y + 2.5;
+      dibujarCirculoPregunta(doc, circleCenterX, circleY);
+      doc.setFontSize(QUESTION_FONT);
+      doc.setFont(undefined, 'bold');
+      var lineas = doc.splitTextToSize(preguntas[i], maxTextWidth);
+      doc.text(lineas, textX, y + 3);
+      y += Math.max(CIRCLE_R * 2, lineas.length * LINE_H) + SPACE_ITEMS;
+    }
+
+    y += 8;
+    if (y > contentBottom) {
+      doc.addPage();
+      doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
+      doc.rect(0, 0, PAGE_W, pageH, 'F');
+      y = 15;
+    }
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.3);
+    doc.line(leftContent, y, contentRight, y);
+    y += 7;
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.text(AGREGA_TITULO, leftContent, y);
+    y += 8;
+    doc.setFont(undefined, 'normal');
+    doc.setFontSize(QUESTION_FONT);
+    for (var j = 0; j < NUM_LINEAS_AGREGA; j++) {
+      if (y > contentBottom) {
+        doc.addPage();
+        doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
+        doc.rect(0, 0, PAGE_W, pageH, 'F');
+        y = 15;
+      }
+      dibujarCirculoPregunta(doc, circleCenterX, y + 2.5);
+      doc.setDrawColor(0, 0, 0);
+      doc.setLineWidth(0.35);
+      doc.line(textX, y + 4, contentRight, y + 4);
+      y += SPACE_ITEMS + 7;
+    }
+
+    return doc;
+  }
+
+  function descargarPDF(preguntas) {
+    var doc = generarPDF(preguntas);
+    if (doc) {
+      doc.save('preguntas-consulta-vsr.pdf');
+      mostrarAviso('');
+    }
+  }
+
+  function getMensajeCompartir(preguntas) {
+    var titulo = TITULO_PDF + ' - VSR';
+    if (preguntas && preguntas.length) {
+      return titulo + '\n\n' + preguntas.join('\n\n') + '\n\nFuente: ' + SITIO_URL;
+    }
+    return titulo + '\n\n' + SITIO_URL;
   }
 
   function actualizarEnlacesCompartir() {
-    var mensaje = getMensajeCompartir();
-    var titulo = 'Preguntas para tu próxima consulta - VSR';
+    var preguntas = getPreguntasSeleccionadas();
+    var mensaje = getMensajeCompartir(preguntas);
+    var titulo = TITULO_PDF + ' - VSR';
     shareLinks.forEach(function (link) {
       var canal = link.getAttribute('data-canal');
       if (canal === 'whatsapp') {
@@ -509,11 +639,50 @@ function updateDondeVacunoProgress() {
     });
   }
 
-  actualizarEnlacesCompartir();
+  checkboxes.forEach(function (cb) {
+    cb.addEventListener('change', actualizarEnlacesCompartir);
+  });
+
+  if (btnDescargar) {
+    btnDescargar.addEventListener('click', function () {
+      var preguntas = getPreguntasSeleccionadas();
+      if (!preguntas.length) {
+        mostrarAviso('Seleccioná al menos una pregunta para descargar.');
+        return;
+      }
+      descargarPDF(preguntas);
+    });
+  }
+
+  if (btnCompartir && opcionesPanel) {
+    btnCompartir.addEventListener('click', function () {
+      var preguntas = getPreguntasSeleccionadas();
+      actualizarEnlacesCompartir();
+      function mostrarPanel() {
+        var c = typeof bootstrap !== 'undefined' && bootstrap.Collapse;
+        if (c) new bootstrap.Collapse(opcionesPanel, { toggle: true });
+        else opcionesPanel.classList.toggle('show');
+      }
+      if (preguntas.length && navigator.share) {
+        var doc = generarPDF(preguntas);
+        if (doc) {
+          var blob = doc.output('blob');
+          var file = new File([blob], 'preguntas-consulta-vsr.pdf', { type: 'application/pdf' });
+          var opts = { title: TITULO_PDF + ' - VSR', text: getMensajeCompartir(preguntas), files: [file] };
+          if (!navigator.canShare || navigator.canShare(opts)) {
+            navigator.share(opts).then(function () { mostrarAviso(''); }).catch(mostrarPanel);
+            return;
+          }
+        }
+      }
+      mostrarPanel();
+    });
+  }
 
   if (btnCopiar) {
     btnCopiar.addEventListener('click', function () {
-      var mensaje = getMensajeCompartir();
+      var preguntas = getPreguntasSeleccionadas();
+      var mensaje = getMensajeCompartir(preguntas.length ? preguntas : null);
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(mensaje).then(function () {
           var lbl = btnCopiar.textContent;
