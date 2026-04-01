@@ -79,8 +79,35 @@ body {
   }
 
   .hero-desktop {
-    background-color: #f0f0f0;
-    padding: 3rem 0;
+    background-color: #fafafa;
+    padding: 3rem 0 0;
+  }
+
+  .hero-desktop-arrow-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:6rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-desktop-arrow-link {
+    display: inline-flex;
+    line-height: 0;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero-desktop-arrow-link:hover,
+  .hero-desktop-arrow-link:focus-visible {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+
+  .hero-desktop-arrow-link:focus-visible {
+    outline: 2px solid #009145;
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   .hero-desktop-left {
@@ -3454,9 +3481,38 @@ body {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(98%) contrast(92%);
 }
 
+/* FAQ principal + Próxima consulta: flechas assets/flecha-faq-*.svg (no chevron Bootstrap) */
+#accordionFaq.accordion-faq .accordion-button::after,
+#accordionConsultaProxima.accordion-faq .accordion-button::after {
+  filter: none;
+  background-image: url("../assets/flecha-faq-abierta.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 8px;
+  width: 1.25rem;
+  height: 0.625rem;
+  transform: none !important;
+  transition: opacity 0.2s ease;
+}
+
+#accordionFaq.accordion-faq .accordion-button.collapsed::after,
+#accordionConsultaProxima.accordion-faq .accordion-button.collapsed::after {
+  background-image: url("../assets/flecha-faq-cerrada.svg");
+}
+
 .accordion-faq-inner .accordion-button:not(.collapsed) {
-  background-color: #FAFAFA !important;
+  background-color: #e6f4ec !important;
   color: #3D3B3C !important;
+}
+
+.accordion-faq-inner .accordion-button:not(.collapsed):hover {
+  background-color: #d8efe3 !important;
+  color: #3D3B3C !important;
+}
+
+/* Ítem interno abierto: toda la caja (pregunta + respuesta) en verde menta, alineado a botones secundarios */
+.accordion-faq-inner .accordion-item:has(.accordion-collapse.show) {
+  background-color: #e6f4ec;
 }
 
 /* Texto de respuestas en todos los tabs de FAQ */
@@ -3473,9 +3529,19 @@ body {
   background-color: #FAFAFA;
 }
 
+.accordion-faq-inner .accordion-collapse.show .accordion-body {
+  background-color: #e6f4ec;
+}
+
 .faq-prevencion-lista {
   padding-left: 1.25rem;
   margin-bottom: 0;
+}
+
+/* Lista con numeración explícita en el texto (FAQ Prevención) */
+.faq-prevencion-lista--enumerada {
+  list-style: none;
+  padding-left: 0;
 }
 
 .faq-prevencion-lista li {
