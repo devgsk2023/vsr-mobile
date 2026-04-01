@@ -22741,7 +22741,7 @@
       "accuracy": "HIGH",
       "geocodingMethod": "google",
       "displayName": "Neuquén 1034, C1405CKL Cdad. Autónoma de Buenos Aires, Argentina",
-      "barrio": "1405",
+      "barrio": "Caballito",
       "validated": true,
       "validatedAt": "2026-02-09T19:13:07.517771+00:00",
       "locationType": "ROOFTOP"
@@ -22824,7 +22824,7 @@
       "accuracy": "HIGH",
       "geocodingMethod": "google",
       "displayName": "Av. Belgrano 3002, C1209 Cdad. Autónoma de Buenos Aires, Argentina",
-      "barrio": "Farmacia Social Belgrano S.R.L.",
+      "barrio": "Balvanera",
       "validated": true,
       "validatedAt": "2026-02-09T19:13:07.517771+00:00",
       "locationType": "ROOFTOP"
@@ -27274,7 +27274,7 @@
     },
     {
       "id": 1428,
-      "nombre": "Farmacity 39 -Olleros",
+      "nombre": "Farmacity 39 - Olleros",
       "tipo": "Farmacia",
       "provincia": "Capital Federal",
       "localidad": "Capital Federal",
@@ -27288,7 +27288,7 @@
       "accuracy": "HIGH",
       "geocodingMethod": "google",
       "displayName": "Olleros 1802, C1426CRH Cdad. Autónoma de Buenos Aires, Argentina",
-      "barrio": "Colegiales",
+      "barrio": "Cañitas",
       "validated": true,
       "validatedAt": "2026-02-09T19:13:07.517771+00:00",
       "locationType": "ROOFTOP"
@@ -28751,7 +28751,7 @@
       "accuracy": "HIGH",
       "geocodingMethod": "google",
       "displayName": "Nueva York 4074, C1419HDR Cdad. Autónoma de Buenos Aires, Argentina",
-      "barrio": "Deboto",
+      "barrio": "Villa Devoto",
       "validated": true,
       "validatedAt": "2026-02-09T19:13:07.517771+00:00",
       "locationType": "ROOFTOP"

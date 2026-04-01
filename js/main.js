@@ -49,15 +49,15 @@
 })();
 
 /**
- * Quiz Ponete a prueba: 3 preguntas verdadero/falso → pantalla completado con puntaje
+ * Quiz Ponete a prueba: 3 preguntas Sí/No → feedback con ícono → siguiente → puntaje
  */
 (function () {
   'use strict';
 
-  const card = document.getElementById('quizCard');
+  var card = document.getElementById('quizCard');
   if (!card) return;
 
-  const steps = {
+  var steps = {
     start: document.getElementById('quizStart'),
     q1: document.getElementById('quizQ1'),
     q2: document.getElementById('quizQ2'),
@@ -65,8 +65,14 @@
     complete: document.getElementById('quizComplete')
   };
 
-  const correctAnswers = { q1: 'true', q2: 'true', q3: 'false' };
-  const answers = { q1: null, q2: null, q3: null };
+  var correctAnswers = { q1: 'true', q2: 'false', q3: 'false' };
+  var answers = { q1: null, q2: null, q3: null };
+
+  var questionConfig = [
+    { stepId: 'quizQ1', key: 'q1', next: 'q2' },
+    { stepId: 'quizQ2', key: 'q2', next: 'q3' },
+    { stepId: 'quizQ3', key: 'q3', next: 'complete' }
+  ];
 
   function showStep(stepId) {
     Object.keys(steps).forEach(function (id) {
@@ -82,36 +88,85 @@
     return n;
   }
 
-  document.getElementById('btnComenzar').addEventListener('click', function () {
-    answers.q1 = null;
-    answers.q2 = null;
-    answers.q3 = null;
-    showStep('q1');
-  });
+  function resetQuestionUI(stepEl) {
+    if (!stepEl) return;
+    var vf = stepEl.querySelector('.ponete-prueba-vf');
+    var fb = stepEl.querySelector('.ponete-prueba-feedback');
+    if (vf) {
+      vf.classList.remove('hidden');
+      vf.querySelectorAll('.btn-ponete-respuesta').forEach(function (b) {
+        b.disabled = false;
+        b.classList.remove('selected');
+      });
+    }
+    if (fb) {
+      fb.classList.add('hidden');
+      var icon = fb.querySelector('.ponete-prueba-feedback-icon');
+      if (icon) {
+        icon.className = 'ponete-prueba-feedback-icon';
+        icon.innerHTML = '';
+      }
+    }
+  }
 
-  function bindQuestion(stepId, answerKey, nextStep) {
-    var stepEl = document.getElementById(stepId);
+  function resetAllQuestions() {
+    resetQuestionUI(document.getElementById('quizQ1'));
+    resetQuestionUI(document.getElementById('quizQ2'));
+    resetQuestionUI(document.getElementById('quizQ3'));
+  }
+
+  function showFeedback(stepEl, answerKey, chosenValue) {
+    var correct = correctAnswers[answerKey] === chosenValue;
+    var fb = stepEl.querySelector('.ponete-prueba-feedback');
+    var vf = stepEl.querySelector('.ponete-prueba-vf');
+    var icon = fb ? fb.querySelector('.ponete-prueba-feedback-icon') : null;
+    if (!fb || !vf || !icon) return;
+    vf.classList.add('hidden');
+    vf.querySelectorAll('.btn-ponete-respuesta').forEach(function (b) {
+      b.disabled = true;
+    });
+    icon.className = 'ponete-prueba-feedback-icon ' + (correct ? 'ponete-prueba-feedback-icon--ok' : 'ponete-prueba-feedback-icon--wrong');
+    icon.innerHTML = correct
+      ? '<i class="bi bi-check-lg"></i>'
+      : '<i class="bi bi-x-lg"></i>';
+    fb.classList.remove('hidden');
+    answers[answerKey] = chosenValue;
+  }
+
+  var btnComenzar = document.getElementById('btnComenzar');
+  if (btnComenzar) {
+    btnComenzar.addEventListener('click', function () {
+      answers.q1 = null;
+      answers.q2 = null;
+      answers.q3 = null;
+      resetAllQuestions();
+      showStep('q1');
+    });
+  }
+
+  questionConfig.forEach(function (cfg) {
+    var stepEl = document.getElementById(cfg.stepId);
     if (!stepEl) return;
     stepEl.querySelectorAll('.btn-ponete-respuesta').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        stepEl.querySelectorAll('.btn-ponete-respuesta').forEach(function (b) { b.classList.remove('selected'); });
-        this.classList.add('selected');
-        answers[answerKey] = this.getAttribute('data-value');
-        if (nextStep === 'complete') {
+        if (btn.disabled) return;
+        showFeedback(stepEl, cfg.key, btn.getAttribute('data-value'));
+      });
+    });
+    var siguiente = stepEl.querySelector('.ponete-prueba-link-siguiente');
+    if (siguiente) {
+      siguiente.addEventListener('click', function () {
+        if (cfg.next === 'complete') {
           var score = getScore();
           var scoreEl = document.getElementById('quizScoreText');
           if (scoreEl) scoreEl.textContent = 'Respondiste correctamente ' + score + ' de 3 preguntas.';
           showStep('complete');
         } else {
-          setTimeout(function () { showStep(nextStep); }, 300);
+          showStep(cfg.next);
         }
       });
-    });
-  }
-
-  bindQuestion('quizQ1', 'q1', 'q2');
-  bindQuestion('quizQ2', 'q2', 'q3');
-  bindQuestion('quizQ3', 'q3', 'complete');
+    }
+  });
 
   var btnIntentar = document.getElementById('btnIntentarDeNuevo');
   if (btnIntentar) {
@@ -119,6 +174,7 @@
       answers.q1 = null;
       answers.q2 = null;
       answers.q3 = null;
+      resetAllQuestions();
       showStep('start');
     });
   }
@@ -193,7 +249,6 @@
   var overlay = document.getElementById('autotestOverlay');
   var modal = document.getElementById('autotestModal');
   var steps = {
-    intro: document.getElementById('autotestIntro'),
     q1: document.getElementById('autotestQ1'),
     q2: document.getElementById('autotestQ2'),
     q3: document.getElementById('autotestQ3'),
@@ -201,38 +256,59 @@
     final: document.getElementById('autotestFinal')
   };
 
+  var ICON_BAJO = 'assets/img/icon-riesgo-bajo.svg';
+  var ICON_MODERADO = 'assets/img/icon-riesgo-moderado.svg';
+  var ICON_AUMENTADO = 'assets/img/icon-riesgo-aumentado.svg';
+
   var resultContents = {
     bajo: {
-      badge: '🟢 BAJO RIESGO',
-      title: '¡Buenas noticias!',
-      text: '<p>Tu riesgo de complicaciones por VSR actualmente es bajo.</p><p>Aún así, si estás en contacto frecuente con niños pequeños, personas mayores o personas con enfermedades crónicas, es importante saber que el virus puede transmitirse fácilmente al toser o estornudar, y podés contagiar a esas poblaciones de más riesgo.</p><p>Mantené tus vacunas al día, lavate las manos con frecuencia y, ante cualquier síntoma respiratorio, consultá a tu médico.</p>'
+      lvl: 'bajo',
+      iconSrc: ICON_BAJO,
+      badge: 'Bajo riesgo',
+      title: '¡Buenas noticias! Tu riesgo de complicaciones por VSR actualmente es bajo.',
+      text: '<p>Aún así, si estás en contacto frecuente con niños pequeños, personas mayores o personas con enfermedades crónicas, es importante saber que el virus puede transmitirse fácilmente al toser o estornudar, y podés contagiar a esas poblaciones de más riesgo<sup>3</sup>.</p><p>Mantené tus vacunas al día, lavate las manos con frecuencia y, ante cualquier síntoma respiratorio, consultá a tu médico<sup>3</sup>.</p>'
     },
     moderado1: {
-      badge: '🟠 RIESGO MODERADO',
-      title: 'Tu riesgo de complicaciones por VSR es moderado',
-      text: '<p>Es importante tomar precauciones. Independientemente de tu edad, tener una enfermedad crónica puede hacer que una infección por VSR interrumpa tus planes y tenga un impacto mayor en tu salud y en tu rutina diaria.</p><p><strong>Conversá con tu médico</strong> sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!</p>'
+      lvl: 'moderado',
+      iconSrc: ICON_MODERADO,
+      badge: 'RIESGO MODERADO 1',
+      title: 'Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.',
+      text: '<p>Independientemente de tu edad, tener una enfermedad crónica puede hacer que una infección por VSR interrumpa tus planes y tenga un impacto mayor en tu salud y en tu rutina diaria<sup>11</sup>.</p><p>Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!<sup>3</sup></p>'
     },
     moderado2: {
-      badge: '🟠 RIESGO MODERADO',
-      title: 'Tu riesgo de complicaciones por VSR es moderado',
-      text: '<p>Es importante tomar precauciones. Aún si tenés buena salud, con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR.</p><p><strong>Conversá con tu médico</strong> sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!</p>'
+      lvl: 'moderado',
+      iconSrc: ICON_MODERADO,
+      badge: 'RIESGO MODERADO 2',
+      title: 'Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.',
+      text: '<p>Aún si tenés buena salud, con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR.<sup>11</sup></p><p>Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!<sup>3</sup></p>'
     },
     aumentado1: {
-      badge: '🔴 RIESGO AUMENTADO',
-      title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR',
-      text: '<p>Tu edad, tus condiciones de salud, y/o tu contacto frecuente con niños pequeños hacen que sea especialmente importante cuidarte.</p><p>Con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR. Si además tenés enfermedades crónicas, una infección por VSR puede afectar tu salud más seriamente, alterando tu vida cotidiana.</p><p><strong>Hablá con tu médico</strong> sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia. Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
+      lvl: 'aumentado',
+      iconSrc: ICON_AUMENTADO,
+      badge: 'RIESGO AUMENTADO 1',
+      title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR.',
+      text: '<p>Tu edad, tus condiciones de salud, y/o tu contacto frecuente con niños pequeños hacen que sea especialmente importante cuidarte.</p><p>Con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones<sup>12</sup> como las del VSR y si además tenés enfermedades crónicas, una infección por VSR puede afectar tu salud más seriamente, alterando tu vida cotidiana<sup>3</sup>.</p><p>Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia.</p><p>Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
     },
     aumentado2: {
-      badge: '🔴 RIESGO AUMENTADO',
-      title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR',
-      text: '<p>Independientemente de tu edad, si tu sistema inmune está debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico), el VSR puede aumentar el riesgo de complicaciones y hospitalización.</p><p>Tus condiciones de salud y tu posible contacto con niños pequeños hacen que sea especialmente importante cuidarte.</p><p><strong>Hablá con tu médico</strong> sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia. Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
+      lvl: 'aumentado',
+      iconSrc: ICON_AUMENTADO,
+      badge: 'RIESGO AUMENTADO 2',
+      title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR.',
+      text: '<p>Independientemente de tu edad, si tu sistema inmune está debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico), el VSR puede aumentar el riesgo de complicaciones y hospitalización<sup>3</sup>.</p><p>Tus condiciones de salud y tu posible contacto con niños pequeños hacen que sea especialmente importante cuidarte.</p><p>Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia.</p><p>Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
     }
   };
+
+  var resultLvlClasses = ['autotest-result--lvl-bajo', 'autotest-result--lvl-moderado', 'autotest-result--lvl-aumentado'];
 
   function showStep(stepId) {
     Object.keys(steps).forEach(function (id) {
       if (steps[id]) steps[id].classList.toggle('hidden', id !== stepId);
     });
+    var re = document.getElementById('autotestResult');
+    if (re && stepId !== 'result') {
+      resultLvlClasses.forEach(function (c) { re.classList.remove(c); });
+    }
+    if (modal) modal.scrollTop = 0;
   }
 
   function openModal() {
@@ -240,7 +316,7 @@
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    showStep('intro');
+    showStep('q1');
   }
 
   function closeModal() {
@@ -288,12 +364,22 @@
 
   function mostrarResultado(clave) {
     var data = resultContents[clave] || resultContents.bajo;
+    var resultEl = document.getElementById('autotestResult');
     var badgeEl = document.getElementById('autotestResultBadge');
     var titleEl = document.getElementById('autotestResultTitle');
     var textEl = document.getElementById('autotestResultText');
+    var iconImg = document.getElementById('autotestResultIconImg');
+    if (resultEl) {
+      resultLvlClasses.forEach(function (c) { resultEl.classList.remove(c); });
+      resultEl.classList.add('autotest-result--lvl-' + (data.lvl || 'bajo'));
+    }
     if (badgeEl) badgeEl.textContent = data.badge;
     if (titleEl) titleEl.textContent = data.title;
     if (textEl) textEl.innerHTML = data.text;
+    if (iconImg && data.iconSrc) {
+      iconImg.src = data.iconSrc;
+      iconImg.alt = '';
+    }
     showStep('result');
   }
 
@@ -306,12 +392,15 @@
     document.getElementById('autotestNext3').disabled = true;
   }
 
-  if (document.getElementById('btnAbrirAutotest')) {
-    document.getElementById('btnAbrirAutotest').addEventListener('click', function () {
-      resetAutotest();
-      openModal();
-    });
+  function openAutotestFromNav() {
+    resetAutotest();
+    openModal();
   }
+
+  if (document.getElementById('btnAbrirAutotest')) {
+    document.getElementById('btnAbrirAutotest').addEventListener('click', openAutotestFromNav);
+  }
+
 
   if (document.getElementById('autotestClose')) {
     document.getElementById('autotestClose').addEventListener('click', closeModal);
@@ -323,10 +412,6 @@
     });
   }
 
-  if (document.getElementById('autotestBtnComenzar')) {
-    document.getElementById('autotestBtnComenzar').addEventListener('click', function () { showStep('q1'); });
-  }
-
   document.querySelectorAll('input[name="autotest_edad"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
       document.getElementById('autotestNext1').disabled = false;
@@ -336,10 +421,6 @@
   if (document.getElementById('autotestNext1')) {
     document.getElementById('autotestNext1').addEventListener('click', function () { showStep('q2'); });
   }
-  if (document.getElementById('autotestBack1')) {
-    document.getElementById('autotestBack1').addEventListener('click', function () { showStep('intro'); });
-  }
-
   document.querySelectorAll('input[name="autotest_enf"]').forEach(function (cb) {
     cb.addEventListener('change', function () {
       var ninguna = document.querySelector('input[name="autotest_enf"][value="ninguna"]');
@@ -379,19 +460,28 @@
     document.getElementById('autotestBackResult').addEventListener('click', function () { showStep('q3'); });
   }
 
-  if (document.getElementById('autotestBtnCentros')) {
-    document.getElementById('autotestBtnCentros').addEventListener('click', function () {
-      closeModal();
-    });
-  }
-
   if (document.getElementById('autotestBtnSiguienteFinal')) {
     document.getElementById('autotestBtnSiguienteFinal').addEventListener('click', function () { showStep('final'); });
   }
 
-  if (document.getElementById('autotestBtnCerrar')) {
-    document.getElementById('autotestBtnCerrar').addEventListener('click', function () {
-      closeModal();
+  if (document.getElementById('autotestBtnCompartir')) {
+    document.getElementById('autotestBtnCompartir').addEventListener('click', function () {
+      var btn = this;
+      var url = window.location.href.split('#')[0];
+      var payload = {
+        title: 'Test de riesgo VSR',
+        text: 'Completá este test sobre el Virus Sincicial Respiratorio.',
+        url: url
+      };
+      if (navigator.share) {
+        navigator.share(payload).catch(function () {});
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () {
+          var prev = btn.textContent;
+          btn.textContent = 'Enlace copiado';
+          setTimeout(function () { btn.textContent = prev; }, 2200);
+        }).catch(function () {});
+      }
     });
   }
 })();
@@ -448,261 +538,82 @@ function updateDondeVacunoProgress() {
 })();
 
 /**
- * Preguntas que podés hacer en tu próxima consulta: seleccionables, generar PDF y compartir
+ * Preguntas próxima consulta: acordeones + descarga/compartir imagen vsr-preguntas.jpg
  */
 (function () {
   'use strict';
 
-  var SITIO_URL = 'https://virusvsr.com';
-  var TITULO_PDF = 'Preguntas que podés hacer en tu próxima consulta';
-  var TITULO_HEADER_PART1 = 'Preguntas que podés hacer a tu médico o médica acerca del ';
-  var TITULO_HEADER_PART2 = 'Virus Sincicial Respiratorio';
-  var MARGIN = 20;
-  var PAGE_W = 210;
-  var PAGE_H = 297;
-  var TITLE_MAX_WIDTH = PAGE_W * 0.6;
-  var HEADER_PADDING = 14;
-  var BODY_PADDING = HEADER_PADDING;
-  var HEADER_FONT = 17;
-  var HEADER_LINE_H = 6;
-  var HEADER_GREEN = [35, 66, 41];
-  var HEADER_LIME = [205, 220, 57];
-  var BODY_BG = [245, 245, 245];
-  var CIRCLE_R = 5;
-  var GAP = 3;
-  var QUESTION_FONT = 11;
-  var SPACE_ITEMS = 5;
-  var LINE_H = 4.5;
-  var AGREGA_TITULO = 'Agregá las preguntas que vos quieras:';
-  var NUM_LINEAS_AGREGA = 5;
+  var IMG_PATH = 'assets/vsr-preguntas.jpg';
+  var IMG_NAME = 'vsr-preguntas.jpg';
+  var SHARE_TITLE = 'Preguntas para tu próxima consulta — VSR';
+  var SHARE_TEXT = 'Guía de preguntas para hablar con tu médico o médica sobre el VSR.';
 
   var btnDescargar = document.getElementById('btnDescargarPreguntas');
   var btnCompartir = document.getElementById('btnCompartirPreguntas');
-  var opcionesPanel = document.getElementById('compartirPreguntasOpciones');
-  var btnCopiar = document.getElementById('btnCopiarPreguntas');
-  var shareLinks = document.querySelectorAll('.prevencion-compartir-link');
-  var aviso = document.getElementById('avisoNingunaSeleccionada');
-  var checkboxes = document.querySelectorAll('.prevencion-pregunta-check');
-
-  function getPreguntasSeleccionadas() {
-    var out = [];
-    checkboxes.forEach(function (cb) {
-      if (cb.checked && cb.value) out.push(cb.value);
-    });
-    return out;
-  }
+  var aviso = document.getElementById('avisoPreguntasConsulta');
 
   function mostrarAviso(msg) {
     if (aviso) aviso.textContent = msg || '';
   }
 
-  function dibujarHeaderPDF(doc) {
-    var tituloCompleto = TITULO_HEADER_PART1 + TITULO_HEADER_PART2;
-    doc.setFontSize(HEADER_FONT);
-    doc.setFont(undefined, 'bold');
-    var lineasTitulo = doc.splitTextToSize(tituloCompleto, TITLE_MAX_WIDTH);
-    var headerH = HEADER_PADDING * 2 + lineasTitulo.length * HEADER_LINE_H;
-    doc.setFillColor(HEADER_GREEN[0], HEADER_GREEN[1], HEADER_GREEN[2]);
-    doc.rect(0, 0, PAGE_W, headerH, 'F');
-    var y = HEADER_PADDING + 5;
-    doc.setTextColor(255, 255, 255);
-    for (var i = 0; i < lineasTitulo.length; i++) {
-      var linea = lineasTitulo[i];
-      var idx = linea.indexOf('Virus Sincicial');
-      if (idx >= 0) {
-        doc.text(linea.substring(0, idx), HEADER_PADDING, y);
-        doc.setTextColor(HEADER_LIME[0], HEADER_LIME[1], HEADER_LIME[2]);
-        doc.text(linea.substring(idx), HEADER_PADDING + doc.getTextWidth(linea.substring(0, idx)), y);
-        doc.setTextColor(255, 255, 255);
-      } else {
-        doc.text(linea, HEADER_PADDING, y);
-      }
-      y += HEADER_LINE_H;
-    }
-    doc.setTextColor(0, 0, 0);
-    return headerH;
+  function urlImagenAbsoluta() {
+    return new URL(IMG_PATH, window.location.href).href;
   }
 
-  function dibujarCirculoPregunta(doc, x, y) {
-    doc.setFillColor(HEADER_LIME[0], HEADER_LIME[1], HEADER_LIME[2]);
-    if (doc.circle) {
-      doc.circle(x, y, CIRCLE_R, 'F');
-    } else {
-      doc.ellipse(x, y, CIRCLE_R, CIRCLE_R, 'F');
-    }
-    doc.setFontSize(8);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(50, 50, 50);
-    var w = doc.getTextWidth('?');
-    doc.text('?', x - w / 2, y + 1);
-    doc.setTextColor(0, 0, 0);
+  function descargarImagen() {
+    var a = document.createElement('a');
+    a.href = IMG_PATH;
+    a.download = IMG_NAME;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
-  function generarPDF(preguntas) {
-    if (typeof window.jspdf === 'undefined' || !preguntas.length) return null;
-    var jsPDF = window.jspdf.jsPDF;
-    var doc = new jsPDF();
-    var pageH = doc.internal.pageSize.height;
-    var contentRight = PAGE_W - BODY_PADDING;
-    var maxTextWidth = contentRight - BODY_PADDING - CIRCLE_R * 2 - GAP * 2;
-
-    var headerH = dibujarHeaderPDF(doc);
-    var bodyTop = headerH;
-    doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
-    doc.rect(0, bodyTop, PAGE_W, pageH - bodyTop, 'F');
-
-    var y = bodyTop + 14;
-    var contentBottom = pageH - 12;
-    var leftContent = BODY_PADDING;
-    var circleCenterX = leftContent + CIRCLE_R + GAP;
-    var textX = leftContent + CIRCLE_R * 2 + GAP * 2;
-
-    doc.setFontSize(QUESTION_FONT);
-    doc.setFont(undefined, 'bold');
-    for (var i = 0; i < preguntas.length; i++) {
-      if (y > contentBottom) {
-        doc.addPage();
-        doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
-        doc.rect(0, 0, PAGE_W, pageH, 'F');
-        y = 15;
-      }
-      var circleY = y + 2.5;
-      dibujarCirculoPregunta(doc, circleCenterX, circleY);
-      doc.setFontSize(QUESTION_FONT);
-      doc.setFont(undefined, 'bold');
-      var lineas = doc.splitTextToSize(preguntas[i], maxTextWidth);
-      doc.text(lineas, textX, y + 3);
-      y += Math.max(CIRCLE_R * 2, lineas.length * LINE_H) + SPACE_ITEMS;
-    }
-
-    y += 8;
-    if (y > contentBottom) {
-      doc.addPage();
-      doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
-      doc.rect(0, 0, PAGE_W, pageH, 'F');
-      y = 15;
-    }
-    doc.setDrawColor(220, 220, 220);
-    doc.setLineWidth(0.3);
-    doc.line(leftContent, y, contentRight, y);
-    y += 7;
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'bold');
-    doc.text(AGREGA_TITULO, leftContent, y);
-    y += 8;
-    doc.setFont(undefined, 'normal');
-    doc.setFontSize(QUESTION_FONT);
-    for (var j = 0; j < NUM_LINEAS_AGREGA; j++) {
-      if (y > contentBottom) {
-        doc.addPage();
-        doc.setFillColor(BODY_BG[0], BODY_BG[1], BODY_BG[2]);
-        doc.rect(0, 0, PAGE_W, pageH, 'F');
-        y = 15;
-      }
-      dibujarCirculoPregunta(doc, circleCenterX, y + 2.5);
-      doc.setDrawColor(0, 0, 0);
-      doc.setLineWidth(0.35);
-      doc.line(textX, y + 4, contentRight, y + 4);
-      y += SPACE_ITEMS + 7;
-    }
-
-    return doc;
-  }
-
-  function descargarPDF(preguntas) {
-    var doc = generarPDF(preguntas);
-    if (doc) {
-      doc.save('preguntas-consulta-vsr.pdf');
-      mostrarAviso('');
-    }
-  }
-
-  function getMensajeCompartir(preguntas) {
-    var titulo = TITULO_PDF + ' - VSR';
-    if (preguntas && preguntas.length) {
-      return titulo + '\n\n' + preguntas.join('\n\n') + '\n\nFuente: ' + SITIO_URL;
-    }
-    return titulo + '\n\n' + SITIO_URL;
-  }
-
-  function actualizarEnlacesCompartir() {
-    var preguntas = getPreguntasSeleccionadas();
-    var mensaje = getMensajeCompartir(preguntas);
-    var titulo = TITULO_PDF + ' - VSR';
-    shareLinks.forEach(function (link) {
-      var canal = link.getAttribute('data-canal');
-      if (canal === 'whatsapp') {
-        link.href = 'https://wa.me/?text=' + encodeURIComponent(mensaje);
-      } else if (canal === 'email') {
-        link.href = 'mailto:?subject=' + encodeURIComponent(titulo) + '&body=' + encodeURIComponent(mensaje);
-      }
+  function fetchArchivoImagen() {
+    return fetch(IMG_PATH).then(function (res) {
+      if (!res.ok) throw new Error('fetch');
+      return res.blob();
+    }).then(function (blob) {
+      var type = blob.type || 'image/jpeg';
+      return new File([blob], IMG_NAME, { type: type });
     });
   }
 
-  checkboxes.forEach(function (cb) {
-    cb.addEventListener('change', actualizarEnlacesCompartir);
-  });
+  function compartirImagen() {
+    return fetchArchivoImagen().then(function (file) {
+      var conArchivo = { title: SHARE_TITLE, text: SHARE_TEXT, files: [file] };
+      if (navigator.share) {
+        if (navigator.canShare && navigator.canShare(conArchivo)) {
+          return navigator.share(conArchivo);
+        }
+        return navigator.share({
+          title: SHARE_TITLE,
+          text: SHARE_TEXT,
+          url: urlImagenAbsoluta()
+        });
+      }
+      descargarImagen();
+      mostrarAviso('Tu navegador no permite compartir archivos. Se descargó la imagen.');
+    }).catch(function () {
+      descargarImagen();
+      mostrarAviso('No se pudo compartir. Se descargó la imagen.');
+    });
+  }
 
   if (btnDescargar) {
     btnDescargar.addEventListener('click', function () {
-      var preguntas = getPreguntasSeleccionadas();
-      if (!preguntas.length) {
-        mostrarAviso('Seleccioná al menos una pregunta para descargar.');
-        return;
-      }
-      descargarPDF(preguntas);
+      mostrarAviso('');
+      descargarImagen();
     });
   }
 
-  if (btnCompartir && opcionesPanel) {
+  if (btnCompartir) {
     btnCompartir.addEventListener('click', function () {
-      var preguntas = getPreguntasSeleccionadas();
-      actualizarEnlacesCompartir();
-      function mostrarPanel() {
-        var c = typeof bootstrap !== 'undefined' && bootstrap.Collapse;
-        if (c) new bootstrap.Collapse(opcionesPanel, { toggle: true });
-        else opcionesPanel.classList.toggle('show');
-      }
-      if (preguntas.length && navigator.share) {
-        var doc = generarPDF(preguntas);
-        if (doc) {
-          var blob = doc.output('blob');
-          var file = new File([blob], 'preguntas-consulta-vsr.pdf', { type: 'application/pdf' });
-          var opts = { title: TITULO_PDF + ' - VSR', text: getMensajeCompartir(preguntas), files: [file] };
-          if (!navigator.canShare || navigator.canShare(opts)) {
-            navigator.share(opts).then(function () { mostrarAviso(''); }).catch(mostrarPanel);
-            return;
-          }
-        }
-      }
-      mostrarPanel();
-    });
-  }
-
-  if (btnCopiar) {
-    btnCopiar.addEventListener('click', function () {
-      var preguntas = getPreguntasSeleccionadas();
-      var mensaje = getMensajeCompartir(preguntas.length ? preguntas : null);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(mensaje).then(function () {
-          var lbl = btnCopiar.textContent;
-          btnCopiar.textContent = 'Copiado';
-          setTimeout(function () { btnCopiar.textContent = lbl; }, 2000);
-        });
-      } else {
-        var ta = document.createElement('textarea');
-        ta.value = mensaje;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try {
-          document.execCommand('copy');
-          btnCopiar.textContent = 'Copiado';
-          setTimeout(function () { btnCopiar.textContent = 'Copiar texto'; }, 2000);
-        } catch (err) {}
-        document.body.removeChild(ta);
-      }
+      mostrarAviso('');
+      compartirImagen().then(function () {
+        mostrarAviso('');
+      }).catch(function () {});
     });
   }
 })();

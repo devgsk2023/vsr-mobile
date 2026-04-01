@@ -11,17 +11,17 @@
 <body>
   <!-- ========== HEADER CON LOGO ========== -->
   <header class="site-header">
-    <div class="container d-flex align-items-center justify-content-between py-3">
-      <a href="#" class="logo d-flex align-items-center text-decoration-none">
+    <div class="container site-header-inner d-flex align-items-center py-3">
+      <a href="#" class="logo d-flex align-items-center text-decoration-none flex-shrink-0">
         <img src="assets/img/logo-principal-pc.png" alt="VSR - Virus Sincicial Respiratorio" class="logo-img d-block d-lg-none">
         <img src="assets/img/logo-principal-pc.png" alt="VSR - Virus Sincicial Respiratorio" class="logo-img logo-img-pc d-none d-lg-block">
       </a>
-      <nav class="header-nav d-none d-lg-flex align-items-center gap-4" aria-label="Navegación principal">
+      <nav class="header-nav d-none d-lg-flex align-items-center" aria-label="Navegación principal">
         <a href="#que-es" class="header-nav-link">¿Qué es el VSR?</a>
         <a href="#sintomas" class="header-nav-link">Síntomas</a>
         <a href="#contagio" class="header-nav-link">Contagio</a>
-        <a href="#vacunacion" class="header-nav-link">Prevención</a>
-        <a href="#donde-vacuno" class="header-nav-link">Vacunación</a>
+        <a href="#vacunacion" class="header-nav-link">Vacunación</a>
+        <a href="#evaluar-riesgo" class="header-nav-link">Test</a>
         <a href="#faq" class="header-nav-link">Preguntas frecuentes</a>
       </nav>
     </div>
@@ -47,7 +47,7 @@
       
       <div class="intro-buttons d-flex flex-column gap-3 mt-5">
         <a href="#que-es" class="btn btn-cta btn-cta-primary">¿Qué es el VSR?</a>
-        <a href="#vacunacion" class="btn btn-cta-outline">Cómo prevenirlo</a>
+        <a href="#vacunacion" class="btn btn-cta-outline">¿Cómo prevenirlo?</a>
       </div>
     </div>
   </section>
@@ -62,7 +62,7 @@
           </p>
           <div class="intro-buttons d-flex flex-column gap-3">
             <a href="#que-es" class="btn btn-cta btn-cta-primary">¿Qué es el VSR?</a>
-            <a href="#vacunacion" class="btn btn-cta-outline">Cómo prevenirlo</a>
+            <a href="#vacunacion" class="btn btn-cta-outline">¿Cómo prevenirlo?</a>
           </div>
         </div>
         <div class="col-lg-6 hero-desktop-right">
@@ -80,41 +80,42 @@
   <!-- ========== BLOQUE: ¿Qué es el VSR? ========== -->
   <section id="que-es" class="section-que-es py-5">
     <div class="container">
-      <p class="que-es-label d-none d-lg-block mb-2">ENTENDIENDO EL VIRUS</p>
+      <p class="que-es-label d-none d-lg-block mb-2">Entendiendo el virus</p>
       <h2 class="tabs-title mb-3">¿Qué es el VSR?</h2>
-      <p class="tabs-text my-5">
-        El Virus Sincicial Respiratorio es un <STRONG>virus común y contagioso</STRONG> que generalmente causa síntomas leves.
-        <br>
-        En <strong>adultos mayores</strong> y adultos con <strong>enfermedades crónicas, el VSR puede causar infecciones graves<sup>1</sup></strong>.
+      <div class="que-es-content-wrap">
+      <p class="tabs-text que-es-intro-text my-4 my-lg-5 mb-lg-4">
+        El Virus Sincicial Respiratorio es un <strong class="que-es-text-green">virus común y contagioso</strong> que generalmente causa síntomas leves, sin embargo, en <strong>adultos mayores</strong> y adultos con <strong>enfermedades crónicas</strong>, el VSR puede causar <strong>infecciones graves</strong><sup>1</sup>.
+      </p>
       <div class="que-es-cards">
         <div class="que-es-card rounded-3 p-3">
-          <div class="que-es-card-icon"><i class="bi bi-lungs"></i></div>
+          <div class="que-es-card-icon"><img src="assets/img/icon-que-es-vsr/afecta.svg" alt=""></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Afecta las vías respiratorias</h3>
             <p class="que-es-card-desc mb-0">Compromete nariz, garganta y pulmones<sup>2</sup>.</p>
           </div>
         </div>
         <div class="que-es-card rounded-3 p-3">
-          <div class="que-es-card-icon"><i class="bi bi-people"></i></div>
+          <div class="que-es-card-icon"><img src="assets/img/icon-que-es-vsr/se-transmite.svg" alt=""></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Se transmite fácilmente</h3>
             <p class="que-es-card-desc mb-0">A través de la tos o los estornudos.<sup>2</sup></p>
           </div>
         </div>
         <div class="que-es-card rounded-3 p-3">
-          <div class="que-es-card-icon"><i class="bi bi-person-walking"></i></div>
+          <div class="que-es-card-icon"><img src="assets/img/icon-que-es-vsr/Vector.svg" alt=""></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Mayor riesgo en algunos grupos</h3>
             <p class="que-es-card-desc mb-0">Especialmente por la edad y las enfermedades crónicas.<sup>1</sup></p>
           </div>
         </div>
         <div class="que-es-card rounded-3 p-3">
-          <div class="que-es-card-icon"><i class="bi bi-calendar3"></i></div>
+          <div class="que-es-card-icon"><img src="assets/img/icon-que-es-vsr/mas-frecuente.svg" alt=""></div>
           <div class="que-es-card-body">
             <h3 class="que-es-card-title mb-1">Más frecuente en meses fríos</h3>
             <p class="que-es-card-desc mb-0">El mayor pico en la época invernal.<sup>3</sup></p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -123,106 +124,159 @@
   <section class="section-neumonia-vsr ">
     <div class="container">
       <p class="neumonia-vsr-destacado mb-3">
-        El VSR es una de las principales causas de <span class="neumonia-vsr-highlight">neumonía en adultos<sup>⁵</sup></span>.
+        El VSR es una de las principales causas de <span class="neumonia-vsr-highlight">neumonía en adultos<sup>⁴</sup></span>.
       </p>
       <p class="neumonia-vsr-texto mb-0">
-        1 de cada 4 adultos mayores de 60 años puede desarrollar neumonía como resultado de una infección por VSR<sup>⁶</sup>.
+        1 de cada 4 adultos mayores de 60 años puede desarrollar neumonía como resultado de una infección por VSR<sup>⁵</sup>.
       </p>
     </div>
   </section>
 
   <!-- ========== EVALUÁ TU RIESGO ========== -->
-  <section class="section-evaluar-riesgo">
+  <section class="section-evaluar-riesgo" id="evaluar-riesgo">
     <div class="container">
-      <p class="evaluar-riesgo-label">EVALUÁ TU RIESGO</p>
-      <h2 class="evaluar-riesgo-title mb-4">¿Tengo mayor riesgo de complicaciones?</h2>
+      <p class="evaluar-riesgo-label">Evaluá tu riesgo</p>
+      <h2 class="evaluar-riesgo-title mb-3">¿Estoy en riesgo de complicaciones por VSR?</h2>
       <p class="evaluar-riesgo-text mb-3">
-        El VSR puede causar cuadros graves en personas mayores o con ciertas enfermedades crónicas como diabetes, asma, EPOC, enfermedades cardiovasculares, entre otras <sup>4</sup> .
+        El Virus Sincicial Respiratorio (VSR) puede causar cuadros graves en personas mayores o con ciertas enfermedades crónicas<sup>1</sup>.
       </p>
       <p class="evaluar-riesgo-text fw-bold mb-4">
-        Completá un breve test para conocer tu nivel de riesgo de complicaciones y qué podés hacer para protegerte.
+        Completá este breve test para conocer tu nivel de riesgo y qué podés hacer para protegerte.
       </p>
-      <button type="button" class="btn btn-cta btn-evaluar-test w-100 text-center mt-5" id="btnAbrirAutotest">Comenzar el test</button>
+      <button type="button" class="btn btn-cta btn-evaluar-test mt-5" id="btnAbrirAutotest">Comenzar el test</button>
     </div>
   </section>
 
   <!-- ========== AUTOTEST (pop-up) ========== -->
   <div class="autotest-overlay" id="autotestOverlay" aria-hidden="true">
-    <div class="autotest-modal" id="autotestModal" role="dialog" aria-labelledby="autotestTitle" aria-modal="true">
+    <div class="autotest-modal" id="autotestModal" role="dialog" aria-labelledby="autotestHeadTitle" aria-modal="true">
       <button type="button" class="autotest-close" id="autotestClose" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
 
-      <!-- Pantalla intro -->
-      <div class="autotest-step autotest-intro" id="autotestIntro" data-step="intro">
-        <h2 class="autotest-step-title" id="autotestTitle">¿Podría afectarte más el VSR?</h2>
-        <p class="autotest-step-text">Respondé unas preguntas breves para orientarte sobre tu nivel de riesgo.</p>
-        <p class="autotest-disclaimer">Este autotest no reemplaza una consulta médica.</p>
-        <button type="button" class="btn btn-cta autotest-btn" id="autotestBtnComenzar">Comenzar</button>
-      </div>
-
-      <!-- Pregunta 1: Edad -->
-      <div class="autotest-step autotest-question hidden" id="autotestQ1" data-step="q1">
-        <button type="button" class="autotest-back" id="autotestBack1" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
-        <p class="autotest-progress">Pregunta 1 de 3</p>
-        <h3 class="autotest-q-title">¿Cuántos años tenés?</h3>
-        <div class="autotest-options">
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="menos20"> Menos de 20</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="20-29"> 20 a 29</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="30-39"> 30 a 39</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="40-49"> 40 a 49</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="50-59"> 50 a 59</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="60-69"> 60 a 69</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="70-79"> 70 a 79</label>
-          <label class="autotest-option"><input type="radio" name="autotest_edad" value="80mas"> 80 o más</label>
+      <!-- Pregunta 1: Edad (el modal abre aquí; la intro está en la sección Evaluá tu riesgo) -->
+      <div class="autotest-step autotest-question" id="autotestQ1" data-step="q1">
+        <div class="autotest-card-head">
+          <div class="autotest-topbar"><span class="autotest-topbar-spacer" aria-hidden="true"></span></div>
+          <p class="autotest-kicker">Test</p>
+          <h2 class="autotest-card-title" id="autotestHeadTitle">¿Tengo mayor riesgo de complicaciones?</h2>
         </div>
-        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext1" disabled>Siguiente</button>
+        <div class="autotest-card-body">
+          <div class="autotest-progressbar-wrap">
+            <div class="autotest-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+              <div class="autotest-progressbar-fill" style="width:33.33%"></div>
+            </div>
+            <p class="autotest-progress-label">Pregunta 1 de 3</p>
+          </div>
+          <h3 class="autotest-q-title">¿Cuántos años tenés?</h3>
+          <div class="autotest-options">
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="menos20"> Menos de 20</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="20-29"> 20 a 29</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="30-39"> 30 a 39</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="40-49"> 40 a 49</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="50-59"> 50 a 59</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="60-69"> 60 a 69</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="70-79"> 70 a 79</label>
+            <label class="autotest-option"><input type="radio" name="autotest_edad" value="80mas"> 80 o más</label>
+          </div>
+        </div>
+        <div class="autotest-card-footer">
+          <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext1" disabled>Siguiente</button>
+        </div>
       </div>
 
       <!-- Pregunta 2: Enfermedades crónicas (múltiple) -->
       <div class="autotest-step autotest-question hidden" id="autotestQ2" data-step="q2">
-        <button type="button" class="autotest-back" id="autotestBack2" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
-        <p class="autotest-progress">Pregunta 2 de 3</p>
-        <h3 class="autotest-q-title">¿Tenés alguna de estas enfermedades crónicas?</h3>
-        <p class="autotest-q-hint">Podés elegir más de una opción.</p>
-        <div class="autotest-options autotest-options-check">
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="diabetes"> Diabetes</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="asma"> Asma</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="epoc"> EPOC</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="cardiovascular"> Enfermedad cardiovascular</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="renal"> Enfermedad renal</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="inmuno"> Sistema inmune debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico)</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="otra"> Otra</label>
-          <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="ninguna"> No tengo ninguna</label>
+        <div class="autotest-card-head">
+          <div class="autotest-topbar">
+            <button type="button" class="autotest-back" id="autotestBack2" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+          </div>
+          <p class="autotest-kicker">Test</p>
+          <h2 class="autotest-card-title">¿Tengo mayor riesgo de complicaciones?</h2>
         </div>
-        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext2" disabled>Siguiente</button>
+        <div class="autotest-card-body">
+          <div class="autotest-progressbar-wrap">
+            <div class="autotest-progressbar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+              <div class="autotest-progressbar-fill" style="width:66.66%"></div>
+            </div>
+            <p class="autotest-progress-label">Pregunta 2 de 3</p>
+          </div>
+          <h3 class="autotest-q-title">¿Tenés alguna de estas enfermedades crónicas?</h3>
+          <p class="autotest-q-hint">Podés elegir más de una opción.</p>
+          <div class="autotest-options autotest-options-check">
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="diabetes"> Diabetes</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="asma"> Asma</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="epoc"> EPOC</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="cardiovascular"> Enfermedad cardiovascular</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="renal"> Enfermedad renal</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="inmuno"> Sistema inmune debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico)</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="otra"> Otra</label>
+            <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="ninguna"> No tengo ninguna</label>
+          </div>
+        </div>
+        <div class="autotest-card-footer">
+          <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext2" disabled>Siguiente</button>
+        </div>
       </div>
 
       <!-- Pregunta 3: Contacto con niños -->
       <div class="autotest-step autotest-question hidden" id="autotestQ3" data-step="q3">
-        <button type="button" class="autotest-back" id="autotestBack3" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
-        <p class="autotest-progress">Pregunta 3 de 3</p>
-        <h3 class="autotest-q-title">¿Tenés contacto frecuente con niños pequeños (nietos, jardín de infantes, etc.)?</h3>
-        <div class="autotest-options">
-          <label class="autotest-option"><input type="radio" name="autotest_contacto" value="si"> Sí</label>
-          <label class="autotest-option"><input type="radio" name="autotest_contacto" value="no"> No</label>
+        <div class="autotest-card-head">
+          <div class="autotest-topbar">
+            <button type="button" class="autotest-back" id="autotestBack3" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+          </div>
+          <p class="autotest-kicker">Test</p>
+          <h2 class="autotest-card-title">¿Tengo mayor riesgo de complicaciones?</h2>
         </div>
-        <button type="button" class="btn btn-cta autotest-btn autotest-btn-next" id="autotestNext3" disabled>Ver resultado</button>
+        <div class="autotest-card-body">
+          <div class="autotest-progressbar-wrap">
+            <div class="autotest-progressbar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+              <div class="autotest-progressbar-fill" style="width:100%"></div>
+            </div>
+            <p class="autotest-progress-label">Pregunta 3 de 3</p>
+          </div>
+          <h3 class="autotest-q-title">¿Tenés contacto frecuente con niños pequeños (nietos, jardín de infantes, etc.)?</h3>
+          <div class="autotest-options">
+            <label class="autotest-option"><input type="radio" name="autotest_contacto" value="si"> Sí</label>
+            <label class="autotest-option"><input type="radio" name="autotest_contacto" value="no"> No</label>
+          </div>
+        </div>
+        <div class="autotest-card-footer">
+          <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext3" disabled>Ver resultados</button>
+        </div>
       </div>
 
-      <!-- Pantalla resultado (se muestra una de las 5 según lógica) -->
+      <!-- Pantalla resultado (sin TEST ni título del cuestionario; solo resultado) -->
       <div class="autotest-step autotest-result hidden" id="autotestResult" data-step="result">
-        <button type="button" class="autotest-back" id="autotestBackResult" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
-        <p class="autotest-result-badge" id="autotestResultBadge"></p>
-        <h2 class="autotest-result-title" id="autotestResultTitle"></h2>
-        <div class="autotest-result-text" id="autotestResultText"></div>
-        <a href="#donde-vacuno" class="btn btn-cta autotest-btn" id="autotestBtnCentros">Buscar centros de salud</a>
-        <button type="button" class="btn btn-outline-secondary autotest-btn autotest-btn-secondary mt-2" id="autotestBtnSiguienteFinal">Continuar</button>
+        <button type="button" class="autotest-back autotest-result-back" id="autotestBackResult" aria-label="Volver a la última pregunta"><i class="bi bi-arrow-left"></i></button>
+        <div class="autotest-card-body autotest-result-body">
+          <div class="autotest-result-hero" id="autotestResultHero">
+            <div class="autotest-result-icon-ring" id="autotestResultIconRing" aria-hidden="true">
+              <img src="" alt="" class="autotest-result-icon-img" id="autotestResultIconImg" width="28" height="28">
+            </div>
+            <p class="autotest-result-badge" id="autotestResultBadge"></p>
+          </div>
+          <div class="autotest-result-copy">
+            <p class="autotest-result-section-label">Resultado de tu test</p>
+            <h3 class="autotest-result-title" id="autotestResultTitle"></h3>
+            <div class="autotest-result-text" id="autotestResultText"></div>
+          </div>
+        </div>
+        <div class="autotest-card-footer autotest-result-footer">
+          <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestBtnSiguienteFinal">Continuar</button>
+        </div>
       </div>
 
-      <!-- Pantalla final -->
+      <!-- Pantalla final (después de Continuar en resultado) -->
       <div class="autotest-step autotest-final hidden" id="autotestFinal" data-step="final">
-        <h2 class="autotest-step-title">Compartí este test con tus seres queridos</h2>
-        <p class="autotest-step-text">La prevención empieza con la información. Saber tu riesgo es el primer paso para cuidarte… y para cuidar a quienes querés.</p>
-        <button type="button" class="btn btn-cta autotest-btn" id="autotestBtnCerrar">Cerrar</button>
+        <div class="autotest-card-body autotest-final-body">
+          <p class="autotest-final-tagline">Prevenir es cuidarse</p>
+          <div class="autotest-final-rule" aria-hidden="true"></div>
+          <h2 class="autotest-final-heading">Compartí este test con tus seres queridos.</h2>
+          <p class="autotest-final-lead">La prevención empieza con la información.</p>
+          <p class="autotest-final-text">Saber tu riesgo es el primer paso para cuidarte... y para cuidar a quienes querés.</p>
+        </div>
+        <div class="autotest-card-footer">
+          <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestBtnCompartir">Compartir test</button>
+        </div>
       </div>
     </div>
   </div>
@@ -230,13 +284,13 @@
   <!-- ========== RECONOCÉ LAS SEÑALES / SÍNTOMAS DEL VSR ========== -->
   <section id="sintomas" class="section-reconocer">
     <div class="container">
-      <p class="reconocer-label">RECONOCÉ LAS SEÑALES</p>
+      <p class="reconocer-label">Reconocé las señales</p>
       <h2 class="reconocer-title mb-2">Síntomas del VSR</h2>
       <p class="reconocer-intro mb-4">
-        Los síntomas de VSR pueden variar de leves a graves y pueden durar hasta 2 semanas<sup>4</sup>.
+        Los <strong>síntomas</strong> del VSR pueden <strong>variar de leves a graves</strong> y pueden <strong>durar hasta 2 semanas</strong>. En grupos de mayor riesgo los síntomas pueden ser más graves<sup>2</sup>.
       </p>
 
-      <div class="reconocer-card rounded-3 p-4 mb-4">
+      <div class="reconocer-card rounded-3 py-4 mb-4">
         <div class="row g-3 reconocer-sintomas-row">
           <div class="col-6 col-lg-2 text-center reconocer-sintoma-item">
             <div class="reconocer-icon mb-2"><img src="assets/img/icon-sintomas-vsr/fiebre.svg" alt=""></div>
@@ -279,7 +333,7 @@
     <div class="container my-5">
       <div class="video-section-wrap">
         <div class="video-section-text">
-          <p class="section-video-label">MIRÁ EL VIDEO</p>
+          <p class="section-video-label">Conocé más</p>
           <h2 class="section-video-title mb-0">Entendé cómo actúa el VSR y por qué es importante informarse.</h2>
         </div>
         <div class="video-section-player">
@@ -294,7 +348,7 @@
   <!-- ========== CONTAGIO Y REINFECCIONES ========== -->
   <section id="contagio" class="section-contagio py-5">
     <div class="container">
-      <p class="section-contagio-label">CÓMO CIRCULA EL VIRUS</p>
+      <p class="section-contagio-label">Cómo circula el virus</p>
       <h2 class="section-contagio-title mb-2">Contagio y reinfecciones</h2>
       <p class="section-contagio-intro mb-4">El VSR puede afectar a todas las edades y circular dentro del hogar.</p>
 
@@ -302,16 +356,16 @@
         <div class="contagio-flow-item">
           <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">1</span>
           <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
-            <div class="contagio-card-front rounded-3 p-4 position-relative">
+            <div class="contagio-card-front rounded-3 position-relative">
               <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
-              <div class="contagio-flow-icon mb-3">
+              <div class="contagio-flow-icon">
                 <img src="assets/img/contagios-reinfecciones/bebe.svg" alt="">
               </div>
-              <h3 class="contagio-flow-title text-center mb-0">Primer contacto: la infancia</h3>
+              <h3 class="contagio-flow-title mb-0">Primer contacto: la infancia</h3>
             </div>
-            <div class="contagio-card-back rounded-3 py-5">
+            <div class="contagio-card-back rounded-3">
               <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
-              <p class="contagio-card-back-text mb-0">La mayoría de las personas contrae VSR en la infancia. En <strong>guarderías</strong> y <strong>escuelas</strong>, el virus se <strong>transmite</strong> con facilidad <sup>2</sup> .</p>
+              <p class="contagio-card-back-text mb-0">La mayoría de las personas contrae VSR en la infancia. En <strong>guarderías</strong> y <strong>escuelas</strong>, el virus se <strong>transmite</strong> con facilidad <sup>2</sup>.</p>
             </div>
           </div>
         </div>
@@ -320,14 +374,14 @@
         <div class="contagio-flow-item">
           <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">2</span>
           <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
-            <div class="contagio-card-front rounded-3 p-4 position-relative">
+            <div class="contagio-card-front rounded-3 position-relative">
               <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
-              <div class="contagio-flow-icon mb-3">
+              <div class="contagio-flow-icon">
                 <img src="assets/img/contagios-reinfecciones/en-el-hogar.svg" alt="">
               </div>
-              <h3 class="contagio-flow-title text-center mb-0">Transmisión en el hogar</h3>
+              <h3 class="contagio-flow-title mb-0">Transmisión en el hogar</h3>
             </div>
-            <div class="contagio-card-back rounded-3 p-5">
+            <div class="contagio-card-back rounded-3">
               <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
               <p class="contagio-card-back-text mb-0">Los niños pueden llevar el virus a casa. En el hogar, <strong>adultos mayores</strong> y personas con <strong>enfermedades crónicas</strong> pueden tener mayor riesgo de <strong>complicaciones</strong><sup>2</sup>.</p>
             </div>
@@ -338,14 +392,14 @@
         <div class="contagio-flow-item">
           <span class="contagio-flow-badge contagio-flow-badge-outside d-none d-lg-inline-flex" aria-hidden="true">3</span>
           <div class="contagio-flow-card contagio-card-flip rounded-3 position-relative">
-            <div class="contagio-card-front rounded-3 p-4 position-relative">
+            <div class="contagio-card-front rounded-3 position-relative">
               <button type="button" class="contagio-flow-link contagio-ver-mas d-lg-none" aria-label="Ver más">Ver más</button>
-              <div class="contagio-flow-icon mb-3">
+              <div class="contagio-flow-icon">
                 <img src="assets/img/contagios-reinfecciones/reinfecciones.svg" alt="">
               </div>
-              <h3 class="contagio-flow-title text-center mb-0">Complicaciones y reinfecciones</h3>
+              <h3 class="contagio-flow-title mb-0">Complicaciones y reinfecciones</h3>
             </div>
-            <div class="contagio-card-back rounded-3 p-5">
+            <div class="contagio-card-back rounded-3">
               <button type="button" class="contagio-flow-link contagio-ver-menos d-lg-none" aria-label="Ver menos">Ver menos</button>
               <p class="contagio-card-back-text mb-0">En algunos casos el <strong>VSR</strong> puede provocar <strong>bronquiolitis</strong> o <strong>neumonía</strong>. Además, puede presentarse más de una vez a lo largo de la vida <sup>7</sup>.</p>
             </div>
@@ -381,9 +435,9 @@
       <p class="prevencion-label">MEDIDAS SIMPLES, GRAN IMPACTO</p>
       <h2 class="prevencion-title mb-3">Prevención del VSR</h2>
       <p class="prevencion-intro mb-4">
-        La <strong>vacunación</strong> es una de las formas más importantes de <strong>reducir el riesgo de complicaciones</strong>. 
-       <br>
-        Si tenés <strong>60 años o pertenecés a un grupo de riesgo</strong>, conversá con tu profesional de salud sobre si una vacuna contra el VSR es adecuada para vos.
+        La <strong>vacunación</strong> es uno de los métodos más importantes para <strong>proteger nuestra salud</strong> y <strong>la de quienes nos rodean<sup>9</sup></strong>.
+        <br>
+        Conversá con tu médico o médica para saber si una vacuna contra el VSR es adecuada para vos.
       </p>
       
       <div class="text-center my-5 prevencion-btn-wrap">
@@ -434,70 +488,60 @@
 
       
 
-      <h3 class="prevencion-preguntas-title my-5">Preguntas que podés hacer en tu próxima consulta</h3>
-      <p class="prevencion-preguntas-intro mb-3">Seleccioná las preguntas que quieras llevar a tu médico. Luego descargá o compartí el PDF.</p>
+      <div class="prevencion-consulta-proxima-bloque">
+      <h2 class="faq-title mb-2">Preguntas que podés hacer en tu próxima consulta</h2>
+      <p class="faq-intro my-5">Desplegá cada tema para ver ideas de preguntas para tu médico o médica. Descargá o compartí la guía completa en imagen.</p>
 
-      <div class="prevencion-preguntas-caja">
-        <div class="prevencion-preguntas-lista" id="listaPreguntasConsulta">
-        <div class="prevencion-pregunta-grupo">
-          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre tu riesgo</p>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?">
-            <span class="prevencion-pregunta-texto">¿Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cuál es mi riesgo de complicaciones?">
-            <span class="prevencion-pregunta-texto">¿Cuál es mi riesgo de complicaciones?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cómo podría afectar mi enfermedad crónica?">
-            <span class="prevencion-pregunta-texto">¿Cómo podría afectar mi enfermedad crónica?</span>
-          </label>
+      <div class="accordion accordion-faq" id="accordionConsultaProxima">
+        <div class="accordion-item faq-category-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaCollapseRiesgo" aria-expanded="false" aria-controls="consultaCollapseRiesgo">Sobre tu riesgo</button>
+          </h3>
+          <div id="consultaCollapseRiesgo" class="accordion-collapse collapse" data-bs-parent="#accordionConsultaProxima">
+            <div class="accordion-body">
+              <ul class="faq-prevencion-lista mb-0">
+                <li>Como adulto mayor o persona con enfermedad crónica, ¿debo preocuparme por el VSR?</li>
+                <li>¿Cuál es mi riesgo de complicaciones?</li>
+                <li>¿Cómo podría afectar mi enfermedad crónica?</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="prevencion-pregunta-grupo">
-          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre la vacuna</p>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Es adecuada para mí una vacuna contra el VSR?">
-            <span class="prevencion-pregunta-texto">¿Es adecuada para mí una vacuna contra el VSR?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Puedo aplicarla junto con otras vacunas?">
-            <span class="prevencion-pregunta-texto">¿Puedo aplicarla junto con otras vacunas?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Qué otras vacunas son importantes en esta etapa de mi vida?">
-            <span class="prevencion-pregunta-texto">¿Qué otras vacunas son importantes en esta etapa de mi vida?</span>
-          </label>
+        <div class="accordion-item faq-category-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaCollapseVacuna" aria-expanded="false" aria-controls="consultaCollapseVacuna">Sobre la vacuna</button>
+          </h3>
+          <div id="consultaCollapseVacuna" class="accordion-collapse collapse" data-bs-parent="#accordionConsultaProxima">
+            <div class="accordion-body">
+              <ul class="faq-prevencion-lista mb-0">
+                <li>¿Es adecuada para mí una vacuna contra el VSR?</li>
+                <li>¿Puedo aplicarla junto con otras vacunas?</li>
+                <li>¿Qué otras vacunas son importantes en esta etapa de mi vida?</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="prevencion-pregunta-grupo">
-          <p class="prevencion-pregunta-grupo-titulo visually-hidden">Sobre la enfermedad</p>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Qué síntomas puedo tener si contraigo VSR?">
-            <span class="prevencion-pregunta-texto">¿Qué síntomas puedo tener si contraigo VSR?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Cómo se contagia el VSR?">
-            <span class="prevencion-pregunta-texto">¿Cómo se contagia el VSR?</span>
-          </label>
-          <label class="prevencion-pregunta-item">
-            <input type="checkbox" class="prevencion-pregunta-check" name="preguntaConsulta" value="¿Pude haber tenido una infección por VSR en el pasado?">
-            <span class="prevencion-pregunta-texto">¿Pude haber tenido una infección por VSR en el pasado?</span>
-          </label>
-        </div>
+        <div class="accordion-item faq-category-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultaCollapseEnfermedad" aria-expanded="false" aria-controls="consultaCollapseEnfermedad">Sobre la enfermedad</button>
+          </h3>
+          <div id="consultaCollapseEnfermedad" class="accordion-collapse collapse" data-bs-parent="#accordionConsultaProxima">
+            <div class="accordion-body">
+              <ul class="faq-prevencion-lista mb-0">
+                <li>¿Qué síntomas puedo tener si contraigo VSR?</li>
+                <li>¿Cómo se contagia el VSR?</li>
+                <li>¿Pude haber tenido una infección por VSR en el pasado?</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="prevencion-consulta-btns d-flex flex-wrap gap-3 justify-content-center mt-4">
-        <button type="button" class="btn-prevencion-consulta" id="btnCompartirPreguntas" aria-haspopup="true" aria-expanded="false"><i class="bi bi-share me-2"></i>Compartir</button>
+        <button type="button" class="btn-prevencion-consulta" id="btnCompartirPreguntas"><i class="bi bi-share me-2"></i>Compartir</button>
         <button type="button" class="btn-prevencion-consulta" id="btnDescargarPreguntas"><i class="bi bi-download me-2"></i>Descargar preguntas</button>
       </div>
-      <p class="prevencion-preguntas-aviso text-muted small mt-2 mb-0" id="avisoNingunaSeleccionada" aria-live="polite"></p>
-      <div class="prevencion-compartir-opciones collapse mt-2" id="compartirPreguntasOpciones">
-        <div class="d-flex flex-wrap gap-2 justify-content-center">
-          <a href="#" class="btn btn-sm btn-outline-secondary prevencion-compartir-link" data-canal="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="#" class="btn btn-sm btn-outline-secondary prevencion-compartir-link" data-canal="email">Mail</a>
-          <button type="button" class="btn btn-sm btn-outline-secondary" id="btnCopiarPreguntas">Copiar texto</button>
-        </div>
+      <p class="prevencion-preguntas-aviso text-muted small mt-2 mb-0" id="avisoPreguntasConsulta" aria-live="polite"></p>
       </div>
     </div>
   </section>
@@ -507,7 +551,7 @@
     <div class="container container-donde-vacuno-header">
       <p class="donde-vacuno-label">¿DÓNDE ME VACUNO?</p>
       <h2 class="donde-vacuno-title mb-2">Encontrá tu centro de vacunación</h2>
-      <p class="donde-vacuno-intro mb-4">Encontrá un centro cercano y conversá con un profesional de salud.</p>
+      <p class="donde-vacuno-intro mb-4">Buscá un centro de vacunación y conversá con un profesional de la salud.</p>
 
       <div class="donde-vacuno-progress mb-4" id="dondeVacunoProgress">
         <div class="donde-vacuno-progress-bar" id="dondeVacunoProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
@@ -574,7 +618,7 @@
   <!-- ========== PONETE A PRUEBA (test riesgo VSR) ========== -->
   <section class="section-ponete-prueba" id="ponete-prueba">
     <div class="container">
-      <p class="ponete-prueba-label">PONETE A PRUEBA</p>
+      <p class="ponete-prueba-label">Ponete a prueba</p>
       <h2 class="ponete-prueba-title mb-2">¿Cuánto sabés del VSR?</h2>
       <p class="ponete-prueba-intro mb-4">Respondé estas preguntas para reforzar lo aprendido.</p>
 
@@ -583,57 +627,84 @@
           <!-- Paso: Comenzar (oculto: el quiz arranca con la primera pregunta) -->
           <div class="ponete-prueba-step hidden" id="quizStart" data-step="start">
             <div class="ponete-prueba-step-inner text-center py-3">
-              <p class="ponete-prueba-step-text mb-4">Respondé 3 preguntas de verdadero o falso para poner a prueba lo que sabés del VSR.</p>
+              <p class="ponete-prueba-step-text mb-4">Respondé 3 preguntas para poner a prueba lo que sabés del VSR.</p>
               <button type="button" class="btn btn-ponete-comenzar" id="btnComenzar">Comenzar</button>
             </div>
           </div>
 
           <!-- Pregunta 1 (visible al cargar) -->
           <div class="ponete-prueba-step" id="quizQ1" data-step="q1">
-            <div class="ponete-prueba-progress mb-2">
-              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ1" style="width: 33%"></div>
-            </div>
-            <p class="ponete-prueba-contador mb-2">Pregunta 1 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">¿Puede el VSR causar Neumonía?</h3>
-            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
-              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
-              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            <div class="ponete-prueba-step-body">
+              <div class="ponete-prueba-progress" role="presentation">
+                <div class="ponete-prueba-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 33.33%"></div>
+              </div>
+              <p class="ponete-prueba-contador">Pregunta 1 de 3</p>
+              <h3 class="ponete-prueba-pregunta">¿Puede el VSR causar neumonía?</h3>
+              <div class="ponete-prueba-vf">
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-no btn-ponete-respuesta" data-value="false">No</button>
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-si btn-ponete-respuesta" data-value="true">Sí</button>
+              </div>
+              <div class="ponete-prueba-feedback hidden" id="quizQ1Feedback" aria-live="polite">
+                <div class="ponete-prueba-feedback-main">
+                  <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
+                  <p class="ponete-prueba-feedback-text mb-0">El VSR es una de las principales causas de neumonía en adultos mayores.</p>
+                </div>
+                <button type="button" class="ponete-prueba-link-siguiente">Siguiente pregunta <span aria-hidden="true">→</span></button>
+              </div>
             </div>
           </div>
 
           <!-- Pregunta 2 -->
           <div class="ponete-prueba-step hidden" id="quizQ2" data-step="q2">
-            <div class="ponete-prueba-progress mb-2">
-              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ2" style="width: 66%"></div>
-            </div>
-            <p class="ponete-prueba-contador mb-2">Pregunta 2 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">¿El VSR afecta más a los adultos mayores?</h3>
-            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
-              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
-              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            <div class="ponete-prueba-step-body">
+              <div class="ponete-prueba-progress" role="presentation">
+                <div class="ponete-prueba-progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" style="width: 66.66%"></div>
+              </div>
+              <p class="ponete-prueba-contador">Pregunta 2 de 3</p>
+              <h3 class="ponete-prueba-pregunta">¿Las infecciones del VSR suelen ser leves en adultos mayores?</h3>
+              <div class="ponete-prueba-vf">
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-no btn-ponete-respuesta" data-value="false">No</button>
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-si btn-ponete-respuesta" data-value="true">Sí</button>
+              </div>
+              <div class="ponete-prueba-feedback hidden" id="quizQ2Feedback" aria-live="polite">
+                <div class="ponete-prueba-feedback-main">
+                  <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
+                  <p class="ponete-prueba-feedback-text mb-0">En Argentina se estiman alrededor de 14.600 hospitalizaciones y 3.500 muertes anuales en adultos mayores de 20 años causadas por el VSR, afectando principalmente a adultos mayores de 50 años.</p>
+                </div>
+                <button type="button" class="ponete-prueba-link-siguiente">Siguiente pregunta <span aria-hidden="true">→</span></button>
+              </div>
             </div>
           </div>
 
           <!-- Pregunta 3 -->
           <div class="ponete-prueba-step hidden" id="quizQ3" data-step="q3">
-            <div class="ponete-prueba-progress mb-2">
-              <div class="ponete-prueba-progress-bar" role="progressbar" id="progressQ3" style="width: 100%"></div>
-            </div>
-            <p class="ponete-prueba-contador mb-2">Pregunta 3 de 3</p>
-            <h3 class="ponete-prueba-pregunta mb-4">¿Todos los adultos mayores tienen el mismo riesgo de padecer infecciones severas por VSR?</h3>
-            <div class="ponete-prueba-vf d-flex gap-3 flex-wrap justify-content-center">
-              <button type="button" class="btn btn-ponete-respuesta" data-value="false">Falso</button>
-              <button type="button" class="btn btn-ponete-respuesta" data-value="true">Verdadero</button>
+            <div class="ponete-prueba-step-body">
+              <div class="ponete-prueba-progress" role="presentation">
+                <div class="ponete-prueba-progress-bar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="3" style="width: 100%"></div>
+              </div>
+              <p class="ponete-prueba-contador">Pregunta 3 de 3</p>
+              <h3 class="ponete-prueba-pregunta">¿El VSR afecta únicamente a adultos?</h3>
+              <div class="ponete-prueba-vf">
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-no btn-ponete-respuesta" data-value="false">No</button>
+                <button type="button" class="btn btn-ponete-si-no btn-ponete-si btn-ponete-respuesta" data-value="true">Sí</button>
+              </div>
+              <div class="ponete-prueba-feedback hidden" id="quizQ3Feedback" aria-live="polite">
+                <div class="ponete-prueba-feedback-main">
+                  <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
+                  <p class="ponete-prueba-feedback-text mb-0">El VSR es el mismo virus que puede causar bronquiolitis en niños y neumonía en adultos mayores.</p>
+                </div>
+                <button type="button" class="ponete-prueba-link-siguiente">Ver resultado <span aria-hidden="true">→</span></button>
+              </div>
             </div>
           </div>
 
           <!-- Completado -->
           <div class="ponete-prueba-step ponete-prueba-complete hidden" id="quizComplete" data-step="complete">
-            <div class="ponete-prueba-step-inner text-center">
-              <h3 class="ponete-prueba-pregunta mb-3">¡Completaste el cuestionario!</h3>
-              <p class="ponete-prueba-resultado-text mb-2" id="quizScoreText">Respondiste correctamente 3 de 3 preguntas.</p>
-              <p class="ponete-prueba-resultado-text mb-4">¡Muy bien! Seguí informándote sobre el VSR.</p>
-              <button type="button" class="btn btn-ponete-comenzar" id="btnIntentarDeNuevo">Intentar de nuevo</button>
+            <div class="ponete-prueba-complete-inner">
+              <h3 class="ponete-prueba-complete-title">¡Completaste el cuestionario!</h3>
+              <p class="ponete-prueba-complete-text" id="quizScoreText">Respondiste correctamente 3 de 3 preguntas.</p>
+              <p class="ponete-prueba-complete-text">¡Muy bien! Seguí informándote sobre el VSR.</p>
+              <button type="button" class="btn btn-ponete-reintentar" id="btnIntentarDeNuevo">Intentar de nuevo</button>
             </div>
           </div>
         </div>
@@ -646,7 +717,7 @@
     <div class="container">
       <p class="faq-label">RESOLVÉ TUS DUDAS</p>
       <h2 class="faq-title mb-2">Preguntas frecuentes</h2>
-      <p class="faq-intro my-5">Respuestas claras para ayudarte a entender el VSR y su prevención.</p>
+      <p class="faq-intro my-5">Aclará tus dudas sobre el VSR y su prevención.</p>
 
       
 
@@ -672,7 +743,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr2" aria-expanded="false" aria-controls="faqVsr2">¿Cuáles son los síntomas del VSR?</button>
                   </h4>
                   <div id="faqVsr2" class="accordion-collapse collapse" data-bs-parent="#accordionFaqVsr">
-                    <div class="accordion-body">El VSR puede causar fiebre, tos, dolor de garganta, goteo nasal, congestión, dolor de cabeza y cansancio. Aunque la mayoría de los síntomas del VSR son leves, en las infecciones más graves puede presentarse falta de aire o dificultad para respirar.<sup>2</sup></div>
+                    <div class="accordion-body">El VSR puede causar fiebre, tos, dolor de garganta, goteo nasal, congestión, dolor de cabeza y cansancio. Aunque la mayoría de los síntomas del VSR son leves, en las infecciones más graves puede presentarse falta de aire o dificultad para respirar.<sup>7</sup></div>
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -814,7 +885,7 @@
       <h2 class="referencias-title mb-4">Referencias</h2>
       <ul class="referencias-list">
         <li class="referencias-item">
-          <sup>1</sup>Colosia AD, Yang J, Hillson E, et al. The epidemiology of medically attended respiratory syncytial virus in older adults in the United States: A systematic review. PLoS One. 2017;12(8):1-20. <a href="https://doi.org/10.1371/journal.pone.0182321" target="_blank" rel="noopener noreferrer">doi:10.1371/journal.pone.0182321</a>
+          <sup>1</sup>Colosia AD, Yang J, Hillson E, et al. The epidemiology of medically attended respiratory syncytial virus in older adults in the United States: A systematic review. <em>PLoS One.</em> 2017;12(8):1-20. <a href="https://doi.org/10.1371/journal.pone.0182321" target="_blank" rel="noopener noreferrer">doi:10.1371/journal.pone.0182321</a>
         </li>
         <li class="referencias-item">
           <sup>2</sup>Centers for Disease Control and Prevention (CDC), 2025. How RSV Spreads. <a href="https://www.cdc.gov/rsv/about/transmission.html" target="_blank" rel="noopener noreferrer">How RSV Spreads | RSV | CDC</a>
@@ -823,22 +894,37 @@
           <sup>3</sup>Lineamientos Técnicos de Vacunación | Virus sincicial respiratorio en personas gestantes - Febrero de 2024 - MSAL. <a href="https://www.argentina.gob.ar/salud/vacunas/lineamientos_vsr" target="_blank" rel="noopener noreferrer">lineamientos_vsr.pdf (argentina.gob.ar)</a>
         </li>
         <li class="referencias-item">
-          <sup>4</sup>Tseng HF, Sy LS, Ackerson B, et al. Severe morbidity and short- And mid- And long-term mortality in older adults hospitalized with respiratory syncytial virus infection. J Infect Dis. 2020;222(8):1298-1310. <a href="https://doi.org/10.1093/infdis/jiaa361" target="_blank" rel="noopener noreferrer">doi: 10.1093/infdis/jiaa361</a>
+          <sup>4</sup>Tseng HF, Sy LS, Ackerson B, et al. Severe morbidity and short- And mid- And long-term mortality in older adults hospitalized with respiratory syncytial virus infection. <em>J Infect Dis.</em> 2020;222(8):1298-1310. <a href="https://doi.org/10.1093/infdis/jiaa361" target="_blank" rel="noopener noreferrer">doi: 10.1093/infdis/jiaa361</a>
         </li>
         <li class="referencias-item">
-          <sup>5</sup>Nguyen-Van-Tam JS, O'Leary M, Martin ET, et al. Burden of respiratory syncytial virus infection in older and high-risk adults: a systematic review and meta-analysis of the evidence from developed countries. Eur Respir Rev 2022; 31: 220105[DOI: 10.1183/16000617.0105-2022].
+          <sup>5</sup>Nguyen-Van-Tam JS, O’Leary M, Martin ET, et al. Burden of respiratory syncytial virus infection in older and high-risk adults: a systematic review and meta-analysis of the evidence from developed countries. <em>Eur Respir Rev</em> 2022; 31: 220105. <a href="https://doi.org/10.1183/16000617.0105-2022" target="_blank" rel="noopener noreferrer">DOI: 10.1183/16000617.0105-2022</a>
         </li>
         <li class="referencias-item">
-          <sup>6</sup>Openshaw PJM, Chiu C, Culley FJ, Johansson C. Protective and harmful immunity to RSV infection. Annu Rev Immunol. 2017;35:501-532. <a href="https://doi.org/10.1146/annurev-immunol-051116-052206" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev-immunol-051116-052206</a>
+          <sup>6</sup>Openshaw PJM, Chiu C, Culley FJ, Johansson C. Protective and harmful immunity to RSV infection. <em>Annu Rev Immunol.</em> 2017;35:501-532. <a href="https://doi.org/10.1146/annurev-immunol-051116-052206" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev-immunol-051116-052206</a>
         </li>
         <li class="referencias-item">
-          <sup>7</sup>Centers for Disease Control and Prevention, 2022. Respiratory syncytial virus (RSV): For healthcare providers. <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a> (accessed November 2, 2023)
+          <sup>7</sup>Centers for Disease Control and Prevention (CDC), 2025. Clinical Overview of RSV. <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">Clinical Overview of RSV | RSV | CDC</a>
         </li>
         <li class="referencias-item">
-          <sup>8</sup>Simon AK, Hollander GA, Mcmichael A, Mcmichael A. Evolution of the immune system in humans from infancy to old age. Proc Biol Sci. 2015;282(1821):1-12.
+          <sup>8</sup>Centers for Disease Control and Prevention (CDC), 2025. About RSV. <a href="https://www.cdc.gov/rsv/about/index.html" target="_blank" rel="noopener noreferrer">About RSV | RSV | CDC</a>
         </li>
         <li class="referencias-item">
-          <sup>9</sup>Center of Disease Control and Prevention (CDC), 2024. Respiratory syncytial Virus infection (RSV). <a href="https://www.cdc.gov/rsv/clinical/index.html" target="_blank" rel="noopener noreferrer">https://www.cdc.gov/rsv/clinical/index.html</a>
+          <sup>9</sup>Ministerio de Salud de la Nación Argentina. Vacunas: preguntas frecuentes, en <a href="https://www.argentina.gob.ar/salud/vacunas/preguntas-frecuentes#enestapagina" target="_blank" rel="noopener noreferrer">https://www.argentina.gob.ar/salud/vacunas/preguntas-frecuentes#enestapagina</a> (último acceso marzo 2026).
+        </li>
+        <li class="referencias-item">
+          <sup>10</sup>Jorge A. Gómez, Otavio Cintra, Arnas Berzanskis, Abdelkader El Hasnaoui, Desirée A.M. van Oorschot, Adriana Guzman-Holst. ESTIMATION OF THE RESPIRATORY SYNCYTIAL VIRUS BURDEN IN ADULTS OF MIDDLE-INCOME COUNTRIES; ARE WE OVERLOOKING ITS BURDEN IN ARGENTINA, BRAZIL, CHILE, MALAYSIA AND MEXICO? RSV VW 24. February 13-16 2024. Mumbai, India
+        </li>
+        <li class="referencias-item">
+          <sup>11</sup>Simon AK, Hollander GA, Mcmichael A, Mcmichael A. Evolution of the immune system in humans from infancy to old age. <em>Proc Biol Sci.</em> 2015;282(1821):1-12. <a href="https://doi.org/10.1098/rspb.2015.0533" target="_blank" rel="noopener noreferrer">doi:10.1098/rspb.2015.0533</a>
+        </li>
+        <li class="referencias-item">
+          <sup>12</sup>Sociedad Argentina de Medicina.
+        </li>
+        <li class="referencias-item">
+          <sup>13</sup>Wildenbeest JG et al. Respiratory syncytial virus infections in adults: a narrative review. <em>Lancet Respir Med.</em> 2024 Oct;12(10):822-836. <a href="https://doi.org/10.1016/S2213-2600(24)00255-8" target="_blank" rel="noopener noreferrer">doi: 10.1016/S2213-2600(24)00255-8</a>. Epub 2024 Sep 9. PMID: 39265602.
+        </li>
+        <li class="referencias-item">
+          <sup>14</sup>Del Giudice G et al. Fighting against a protean enemy: immunosenescence, vaccines, and healthy aging. <em>NPJ Aging Mech Dis.</em> 2017 Dec 21;4:1. <a href="https://doi.org/10.1038/s41514-017-0020-0" target="_blank" rel="noopener noreferrer">doi: 10.1038/s41514-017-0020-0</a>. PMID: 29285399; PMCID: PMC5740164.
         </li>
       </ul>
       </div>
@@ -846,7 +932,25 @@
   </section>
 
   <!-- ========== FOOTER ========== -->
-  
+  <footer class="site-footer" role="contentinfo">
+    <div class="container site-footer-inner">
+      <div class="site-footer-legal">
+        <p class="site-footer-line mb-0">NP-AR-AAP-WCNT-260001 - Abril 2026</p>
+        <p class="site-footer-line mb-0">Para mayor información consulte a su médico.</p>
+        <p class="site-footer-line mb-0">GSK Biopharma Argentina S.A. Av del Libertador 7202, Piso 4, CABA, Buenos Aires, Argentina.</p>
+        <p class="site-footer-line mb-0">Para consultas sobre nuestros productos, consultas de calidad o reporte de eventos adversos puede comunicarse al 0800-220-4752. Para reportar eventos adversos de nuestros productos envíe un mail a: <a href="mailto:bua-farmacovigilancia-rx@gsk.com">bua-farmacovigilancia-rx@gsk.com</a>.</p>
+        <p class="site-footer-line mb-0">© 2026 GSK y sus afiliadas o licenciante</p>
+      </div>
+      <div class="site-footer-bar">
+        <img src="assets/img/logo-gsk-footer.png" alt="GSK" class="site-footer-logo" width="120" height="40" loading="lazy">
+        <nav class="site-footer-nav" aria-label="Enlaces legales">
+          <a href="#" class="site-footer-link">Términos y condiciones</a>
+          <a href="#" class="site-footer-link">Política de privacidad</a>
+          <a href="#" class="site-footer-link">Política de cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
   <!-- ========== MENÚ MÓVIL (desplegable de abajo hacia arriba al tocar "Ver más") ========== -->
   <div class="mobile-menu-overlay d-lg-none" id="mobileMenuOverlay" aria-hidden="true">
@@ -871,15 +975,15 @@
         </a>
         <a href="#contagio" class="mobile-menu-link">
           <img src="assets/img/contagios-reinfecciones/reinfecciones.svg" alt="" class="mobile-menu-icon">
-          <span>Contagio y reinfección</span>
+          <span>Contagio</span>
         </a>
         <a href="#vacunacion" class="mobile-menu-link">
           <img src="assets/img/icon/prevencion.svg" alt="" class="mobile-menu-icon">
-          <span>Prevención</span>
-        </a>
-        <a href="#donde-vacuno" class="mobile-menu-link">
-          <img src="assets/img/icon/vacunacion.svg" alt="" class="mobile-menu-icon">
           <span>Vacunación</span>
+        </a>
+        <a href="#evaluar-riesgo" class="mobile-menu-link">
+          <i class="bi bi-ui-checks mobile-menu-icon mobile-menu-icon-bi" aria-hidden="true"></i>
+          <span>Test</span>
         </a>
         <a href="#faq" class="mobile-menu-link">
           <i class="bi bi-question-circle mobile-menu-icon mobile-menu-icon-bi"></i>
@@ -914,7 +1018,6 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWMgpuf6kUK7eyheo1pUPx69nEhqMk86w&v=weekly&loading=async" async></script>
   <script src="js/vacunatorios-map.js"></script>
   <script src="js/main.js"></script>
