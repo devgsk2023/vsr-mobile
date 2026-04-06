@@ -2217,7 +2217,7 @@ body {
     font-weight: 700;
   }
   .section-entender-frase{
-    font-size: 2.3rem;
+    font-size: 3rem;
   }
   .section-entender-texto{
     padding: 5rem 0rem;
@@ -2467,7 +2467,7 @@ body {
   }
   .prevencion-habitos-intro {
     font-size: 1.25rem;
-    color: #5d5b5c;
+    color:black ;
     text-align: center;
   }
   .prevencion-preguntas-title{
@@ -2541,7 +2541,7 @@ body {
 
 /* ========== ¿Dónde me vacuno? (diseño: fondo púrpura, barra verde/blanco) ========== */
 .section-donde-vacuno {
-  background-color: #281B5E;
+  background-color: #20244C;
   color: #fff;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -2678,7 +2678,7 @@ body {
 }
 
 .donde-vacuno-panel-resultados {
-  background-color: #281B5E;
+  background-color: #20244C;
   padding: 1rem;
 }
 
@@ -3373,7 +3373,7 @@ body {
 .faq-label {
   font-size: 1rem;
   font-weight: 400;
-  text-transform: uppercase;
+  
   letter-spacing: 0.08em;
   color: var(--vsr-green);
   margin: 0 0 0.5rem 0;
