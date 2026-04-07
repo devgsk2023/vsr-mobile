@@ -65,7 +65,7 @@ body {
   }
 
   .header-nav-link {
-    color: #5d5b5c;
+    color: black;
     font-size: 0.95rem;
     font-weight: 400;
     text-decoration: none;
@@ -488,7 +488,7 @@ body {
 
 .que-es-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 8px;
   border-radius: 8px;
@@ -851,7 +851,7 @@ body {
 }
 
 .section-evaluar-riesgo {
-  background-color: #E9E9ED;
+  background-color: #fafafa;
   color: #212529;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -863,7 +863,7 @@ body {
 
 .evaluar-riesgo-label {
   font-size: 1rem; /* 16px @ 16px — mismo criterio que .reconocer-label */
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--vsr-green);
   margin: 0 0 0.5rem 0;
@@ -1562,7 +1562,7 @@ body {
 
 .reconocer-label {
   font-size: 1rem; /* 16px @ 16px */
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02em;
   color: #D3FA57;
   margin: 0 0 0.25rem 0;
@@ -1583,6 +1583,14 @@ body {
   line-height: 1.5;
   margin: 0;
   text-align: left;
+}
+
+.reconocer-sintoma-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
 }
 
 .reconocer-card {
@@ -1614,8 +1622,8 @@ body {
 
 .reconocer-sintoma {
   font-size: 1.1rem;
-  font-weight: 500;
-  color: #20244C;
+  font-weight: 700;
+  color: black;
 }
 
 .reconocer-aviso {
@@ -1656,27 +1664,33 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     gap: 30px;
   }
 
   .section-reconocer .reconocer-sintomas-row {
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: nowrap;
     gap: 20px;
+    width: 100%;
   }
 
   .section-reconocer .reconocer-sintomas-row .col-lg-2.reconocer-sintoma-item {
-    flex: 1 1 0;
+    flex: 0 0 auto;
     min-width: 0;
-    width: auto;
     max-width: none;
     background-color: #d4edda;
     border-radius: 8px;
-    padding: 1.25rem 1.25rem;
+    padding: 1.25rem 1rem;
     width: 188px;
     height: 144px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .section-reconocer .reconocer-aviso {
@@ -1714,7 +1728,7 @@ body {
 
 .section-video-label {
   font-size: 1rem; /* 16px @ 16px */
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02em;
   color: #009145;
   margin: 0 0 0.5rem 0;
@@ -2050,7 +2064,16 @@ body {
     cursor: pointer;
   }
 
-  .contagio-flow-card.contagio-card-flip:hover {
+  /* El hover va en el contenedor fijo; la rotación en el hijo evita perder :hover al moverse en 3D */
+  .contagio-flow-card.contagio-card-flip .contagio-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+  }
+
+  .contagio-flow-card.contagio-card-flip:hover .contagio-flip-inner {
     transform: rotateY(180deg);
   }
 
@@ -2112,8 +2135,6 @@ body {
     padding: 0;
     display: block;
     border-radius: 8px;
-    transition: transform 0.6s ease;
-    transform-style: preserve-3d;
   }
 
   .contagio-flow-card .contagio-flow-icon {
@@ -2232,9 +2253,9 @@ body {
 }
 
 .prevencion-label {
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+ 
   letter-spacing: 0.08em;
   color: #009145;
   margin: 0 0 0.5rem 0;
@@ -2550,7 +2571,7 @@ body {
 .donde-vacuno-label {
   font-size: 0.75rem;
   font-weight: 400;
-  text-transform: uppercase;
+  
   letter-spacing: 0.08em;
   color: #B8E986; /* verde lima como en el diseño */
   margin: 0 0 0.5rem 0;
@@ -3886,7 +3907,7 @@ body {
   .prevencion-qa-respuesta,
   .ponete-prueba-contador,
   .reconocer-sintoma {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   h1, h2, h3, h4,
@@ -3932,6 +3953,7 @@ body {
   }
   .section-faq .faq-title {
     font-size: 3rem;
+    
   }
   .section-faq .faq-label {
     font-size: 1rem;
@@ -3940,9 +3962,18 @@ body {
     font-size: 1.3rem;
     color:black;
   }
+  
+  
+  .prevencion-consulta-proxima-bloque{
+    margin-top: 100px;
+  }
+ .faq-title{
+  
+ }
 
   .section-prevencion .prevencion-consulta-proxima-bloque .faq-title {
     font-size: 3rem;
+    margin-bottom: 40px;
   }
 
   .section-prevencion .prevencion-consulta-proxima-bloque .faq-intro {
