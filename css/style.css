@@ -3605,6 +3605,8 @@ body {
   line-height: 1.6;
   color: #212529;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .referencias-item sup {
@@ -3619,6 +3621,9 @@ body {
 .referencias-item a {
   color: #009145;
   text-decoration: underline;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .referencias-item a:hover {
