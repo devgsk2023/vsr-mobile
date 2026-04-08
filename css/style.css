@@ -227,6 +227,7 @@ body {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    margin-top: 6rem;
   }
 
   .section-que-es .que-es-card {
@@ -529,7 +530,7 @@ body {
 .que-es-card-desc {
   font-size: 0.9rem;
   font-weight: 400;
-  color: #212529;
+  color: #5D5B5C;
   line-height: 1.4;
   margin: 0;
 }
@@ -1717,6 +1718,30 @@ body {
     color: rgba(255, 255, 255, 0.95);
     margin: 0;
     font-size: 1.5rem !important;
+  }
+}
+
+/* Síntomas: 3 arriba + 3 abajo entre 992px y 1250px */
+@media (min-width: 992px) and (max-width: 1250px) {
+  .section-reconocer .reconocer-sintomas-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .section-reconocer .reconocer-sintomas-row > [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-reconocer .reconocer-sintomas-row .col-lg-2.reconocer-sintoma-item {
+    flex: unset;
+    width: 100%;
+    max-width: none;
+    height: 144px;
   }
 }
 
