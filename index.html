@@ -458,12 +458,6 @@
         <div class="row g-4 mb-0">
           <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
-              <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/lavate-manos.svg" alt=""></div>
-              <p class="prevencion-habito-text mb-0">Lavate las manos.</p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-4">
-            <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/ventila.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Ventilá los ambientes.</p>
             </div>
@@ -476,12 +470,6 @@
           </div>
           <div class="col-6 col-lg-4">
             <div class="prevencion-habito text-center">
-              <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/quedate-casa.svg" alt=""></div>
-              <p class="prevencion-habito-text mb-0">Quedate en casa si estás enfermo/a.</p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-4">
-            <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/cubrite-toser.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Cubrite al toser.</p>
             </div>
@@ -490,6 +478,18 @@
             <div class="prevencion-habito text-center">
               <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/limpia-superficie.svg" alt=""></div>
               <p class="prevencion-habito-text mb-0">Limpiá superficies.</p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-4">
+            <div class="prevencion-habito text-center">
+              <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/quedate-casa.svg" alt=""></div>
+              <p class="prevencion-habito-text mb-0">Quedate en casa si estás enfermo/a.</p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-4">
+            <div class="prevencion-habito text-center">
+              <div class="prevencion-habito-icon mb-2"><img src="assets/iconos-prevencion/lavate-manos.svg" alt=""></div>
+              <p class="prevencion-habito-text mb-0">Lavate las manos.</p>
             </div>
           </div>
         </div>
@@ -624,14 +624,14 @@
   </section>
 
   <!-- ========== PONETE A PRUEBA (test riesgo VSR) ========== -->
-  <section class="section-ponete-prueba" id="ponete-prueba">
+  <section class="section-ponete-prueba" id="ponete-prueba" aria-labelledby="ponete-prueba-heading">
     <div class="container">
-      <p class="ponete-prueba-label">Ponete a prueba</p>
-      <h2 class="ponete-prueba-title mb-2">¿Cuánto sabés del VSR?</h2>
+      <p class="ponete-prueba-label visually-hidden">Ponete a prueba</p>
+      <h2 id="ponete-prueba-heading" class="ponete-prueba-title mb-2 visually-hidden">¿Cuánto sabés del VSR?</h2>
       <p class="ponete-prueba-intro mb-4">Respondé estas preguntas para reforzar lo aprendido.</p>
 
       <div class="ponete-prueba-card-wrap">
-        <div class="ponete-prueba-card" id="quizCard">
+        <div class="ponete-prueba-card rounded-3" id="quizCard">
           <!-- Paso: Comenzar (oculto: el quiz arranca con la primera pregunta) -->
           <div class="ponete-prueba-step hidden" id="quizStart" data-step="start">
             <div class="ponete-prueba-step-inner text-center py-3">
@@ -647,7 +647,7 @@
                 <div class="ponete-prueba-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 33.33%"></div>
               </div>
               <p class="ponete-prueba-contador">Pregunta 1 de 3</p>
-              <h3 class="ponete-prueba-pregunta">¿Puede el VSR causar neumonía?</h3>
+              <h3 class="ponete-prueba-pregunta">¿Puede el VSR causar Neumonía?</h3>
               <div class="ponete-prueba-vf">
                 <button type="button" class="btn btn-ponete-si-no btn-ponete-no btn-ponete-respuesta" data-value="false">No</button>
                 <button type="button" class="btn btn-ponete-si-no btn-ponete-si btn-ponete-respuesta" data-value="true">Sí</button>
@@ -655,7 +655,7 @@
               <div class="ponete-prueba-feedback hidden" id="quizQ1Feedback" aria-live="polite">
                 <div class="ponete-prueba-feedback-main">
                   <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
-                  <p class="ponete-prueba-feedback-text mb-0">El VSR es una de las principales causas de neumonía en adultos mayores.</p>
+                  <p class="ponete-prueba-feedback-text mb-0">El VSR es una de las principales causas de neumonía en adultos mayores<sup>4</sup>.</p>
                 </div>
                 <button type="button" class="ponete-prueba-link-siguiente">Siguiente pregunta <span aria-hidden="true">→</span></button>
               </div>
@@ -677,7 +677,7 @@
               <div class="ponete-prueba-feedback hidden" id="quizQ2Feedback" aria-live="polite">
                 <div class="ponete-prueba-feedback-main">
                   <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
-                  <p class="ponete-prueba-feedback-text mb-0">En Argentina se estiman alrededor de 14.600 hospitalizaciones y 3.500 muertes anuales en adultos mayores de 20 años causadas por el VSR, afectando principalmente a adultos mayores de 50 años.</p>
+                  <p class="ponete-prueba-feedback-text mb-0">En Argentina se estiman alrededor de 14.600 hospitalizaciones y 3.500 muertes anuales en adultos mayores de 20 años causadas por el VSR, afectando principalmente a adultos mayores de 50 años<sup>10</sup>.</p>
                 </div>
                 <button type="button" class="ponete-prueba-link-siguiente">Siguiente pregunta <span aria-hidden="true">→</span></button>
               </div>
@@ -699,7 +699,7 @@
               <div class="ponete-prueba-feedback hidden" id="quizQ3Feedback" aria-live="polite">
                 <div class="ponete-prueba-feedback-main">
                   <span class="ponete-prueba-feedback-icon" aria-hidden="true"></span>
-                  <p class="ponete-prueba-feedback-text mb-0">El VSR es el mismo virus que puede causar bronquiolitis en niños y neumonía en adultos mayores.</p>
+                  <p class="ponete-prueba-feedback-text mb-0">El VSR es el mismo virus que puede causar bronquiolitis en niños y neumonía en adultos mayores<sup>8</sup>.</p>
                 </div>
                 <button type="button" class="ponete-prueba-link-siguiente">Ver resultado <span aria-hidden="true">→</span></button>
               </div>

@@ -175,7 +175,7 @@
       answers.q2 = null;
       answers.q3 = null;
       resetAllQuestions();
-      showStep('start');
+      showStep('q1');
     });
   }
 })();
