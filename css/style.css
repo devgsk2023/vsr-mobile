@@ -3516,9 +3516,7 @@ body {
 }
 
 /* FAQ interno: preguntas dentro de cada categoría (cada una en su propia caja con sombra) */
-.accordion-faq-inner {
-  padding: 12px 0;
-}
+
 
 .accordion-faq-inner .accordion-item {
   background-color: #FAFAFA;
@@ -3566,7 +3564,7 @@ body {
 }
 
 .accordion-faq-inner .accordion-button:not(.collapsed) {
-  background-color: #e6f4ec !important;
+  
   color: #3D3B3C !important;
 }
 
@@ -3577,7 +3575,7 @@ body {
 
 /* Ítem interno abierto: toda la caja (pregunta + respuesta) en verde menta, alineado a botones secundarios */
 .accordion-faq-inner .accordion-item:has(.accordion-collapse.show) {
-  background-color: #e6f4ec;
+ 
 }
 
 /* Texto de respuestas en todos los tabs de FAQ */
@@ -3595,7 +3593,7 @@ body {
 }
 
 .accordion-faq-inner .accordion-collapse.show .accordion-body {
-  background-color: #e6f4ec;
+  
 }
 
 .faq-prevencion-lista {
