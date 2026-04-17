@@ -257,8 +257,8 @@
   };
 
   var ICON_BAJO = 'assets/img/icon-riesgo-bajo.svg';
-  var ICON_MODERADO = 'assets/img/icon-riesgo-moderado.svg';
-  var ICON_AUMENTADO = 'assets/img/icon-riesgo-aumentado.svg';
+  var ICON_MODERADO = 'assets/riesgo-moderado.png';
+  var ICON_AUMENTADO = 'assets/riesgo-aumentado.png';
 
   var resultContents = {
     bajo: {
@@ -271,28 +271,28 @@
     moderado1: {
       lvl: 'moderado',
       iconSrc: ICON_MODERADO,
-      badge: 'RIESGO MODERADO 1',
+      badge: 'Riesgo moderado',
       title: 'Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.',
       text: '<p>Independientemente de tu edad, tener una enfermedad crónica puede hacer que una infección por VSR interrumpa tus planes y tenga un impacto mayor en tu salud y en tu rutina diaria<sup>11</sup>.</p><p>Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!<sup>3</sup></p>'
     },
     moderado2: {
       lvl: 'moderado',
       iconSrc: ICON_MODERADO,
-      badge: 'RIESGO MODERADO 2',
+      badge: 'Riesgo moderado',
       title: 'Tu riesgo de complicaciones por VSR es moderado, por lo que es importante tomar precauciones.',
       text: '<p>Aún si tenés buena salud, con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones como las del VSR.<sup>11</sup></p><p>Conversá con tu médico sobre las formas de prevención disponibles, como la vacunación y otras medidas que pueden ayudarte a estar mejor protegido.</p><p>Y si estás en contacto con niños pequeños, tené en cuenta que pueden transmitir el virus sin saberlo. ¡Tu cuidado también protege a otros!<sup>3</sup></p>'
     },
     aumentado1: {
       lvl: 'aumentado',
       iconSrc: ICON_AUMENTADO,
-      badge: 'RIESGO AUMENTADO 1',
+      badge: 'Riesgo aumentado',
       title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR.',
       text: '<p>Tu edad, tus condiciones de salud, y/o tu contacto frecuente con niños pequeños hacen que sea especialmente importante cuidarte.</p><p>Con el paso de los años el sistema inmune comienza a debilitarse y se vuelve menos eficaz para defenderse de infecciones<sup>12</sup> como las del VSR y si además tenés enfermedades crónicas, una infección por VSR puede afectar tu salud más seriamente, alterando tu vida cotidiana<sup>3</sup>.</p><p>Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia.</p><p>Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
     },
     aumentado2: {
       lvl: 'aumentado',
       iconSrc: ICON_AUMENTADO,
-      badge: 'RIESGO AUMENTADO 2',
+      badge: 'Riesgo aumentado',
       title: 'Estás en un grupo con riesgo aumentado de complicaciones por VSR.',
       text: '<p>Independientemente de tu edad, si tu sistema inmune está debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico), el VSR puede aumentar el riesgo de complicaciones y hospitalización<sup>3</sup>.</p><p>Tus condiciones de salud y tu posible contacto con niños pequeños hacen que sea especialmente importante cuidarte.</p><p>Hablá con tu médico sobre cómo protegerte: la vacunación, las medidas de higiene y un seguimiento adecuado pueden marcar una gran diferencia.</p><p>Prevenir es una forma de cuidarte a vos y a los que te rodean.</p>'
     }
@@ -462,6 +462,13 @@
 
   if (document.getElementById('autotestBtnSiguienteFinal')) {
     document.getElementById('autotestBtnSiguienteFinal').addEventListener('click', function () { showStep('final'); });
+  }
+
+  if (document.getElementById('autotestBtnRehacer')) {
+    document.getElementById('autotestBtnRehacer').addEventListener('click', function () {
+      resetAutotest();
+      showStep('q1');
+    });
   }
 
   if (document.getElementById('autotestBtnCompartir')) {

@@ -536,7 +536,7 @@ body {
 }
 
 .que-es-card-desc sup {
-  font-size: 0.75em;
+  font-size: 0.6em;
 }
 
 /* ========== Bloque neumonía VSR (debajo de ¿Qué es el VSR?) ========== */
@@ -561,7 +561,7 @@ body {
 
 .neumonia-vsr-highlight sup {
   color: inherit;
-  font-size: 0.75em;
+  font-size: 0.6em;
 }
 
 .neumonia-vsr-texto {
@@ -573,7 +573,7 @@ body {
 }
 
 .neumonia-vsr-texto sup {
-  font-size: 0.75em;
+  font-size: 0.6em;
 }
 
 @media (min-width: 992px) {
@@ -1068,7 +1068,7 @@ body {
 
 .autotest-card-title {
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 500;
   color: #212529;
   line-height: 1.3;
   margin: 0;
@@ -1132,6 +1132,17 @@ body {
 .autotest-btn-footer--outline:hover {
   background-color: #f8f9fa;
   color: #212529 !important;
+}
+
+.autotest-final-footer {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.autotest-final-footer .autotest-btn-footer {
+  flex: 1 1 0;
+  margin-top: 0;
 }
 
 .autotest-progressbar-wrap {
@@ -1370,7 +1381,7 @@ body {
 }
 
 .autotest-result-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #212529;
   margin: 0 0 0.85rem;
@@ -1378,13 +1389,20 @@ body {
 }
 
 .autotest-result-text {
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.55;
   color: #212529;
 }
 
 .autotest-result-text p {
   margin: 0 0 0.75rem;
+  font-size: inherit;
+}
+
+.autotest-result-text sup {
+  font-size: 0.6em;
+  font-weight: 600;
 }
 
 .autotest-result-text p:last-child {
@@ -1429,6 +1447,22 @@ body {
   background-color: #bf6a02;
 }
 
+.autotest-result--lvl-moderado .autotest-result-badge {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: #e5a000;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.autotest-result--lvl-aumentado .autotest-result-badge {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: #bf6a02;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 @media (min-width: 992px) {
   .autotest-overlay {
     padding: 2rem;
@@ -1436,8 +1470,16 @@ body {
 
   .autotest-modal {
     max-width: 520px;
-    max-height: 85vh;
+    max-height: min(96vh, 920px);
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     border-radius: 20px;
+  }
+
+  .autotest-step:not(.hidden) {
+    flex: 0 0 auto;
+    min-height: 0;
   }
 
   .autotest-card-head {
@@ -1448,6 +1490,9 @@ body {
   .autotest-card-body {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
+    overflow-y: visible;
+    flex: 0 0 auto;
+    min-height: 0;
   }
 
   .autotest-card-footer {
@@ -1461,6 +1506,8 @@ body {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
     border-radius: 12px;
+    height: auto;
+    min-height: 0;
   }
 
   .autotest-card-title {
@@ -1491,8 +1538,7 @@ body {
     padding-bottom: 1.5rem;
     
   }
-  .autotest-result-hero{
-    height: 248px;
+  .autotest-result-hero {
     align-items: center;
     justify-content: center;
   }
@@ -1519,20 +1565,78 @@ body {
   }
 
   .autotest-result--lvl-bajo .autotest-result-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1.35;
     margin-bottom: 1rem;
   }
 
   .autotest-result--lvl-bajo .autotest-result-text {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
-    line-height: 1.45;
+    line-height: 1.55;
   }
 
   .autotest-result--lvl-bajo .autotest-result-text p {
-    font-size: 1.25rem;
+    font-size: inherit;
+    font-weight: 400;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-hero,
+  .autotest-result--lvl-aumentado .autotest-result-hero {
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 0;
+    padding-top: 1.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-icon-ring,
+  .autotest-result--lvl-aumentado .autotest-result-icon-ring {
+    width: 120px;
+    height: 120px;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-icon-img,
+  .autotest-result--lvl-aumentado .autotest-result-icon-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-badge {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: #e5a000;
+  }
+
+  .autotest-result--lvl-aumentado .autotest-result-badge {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: #bf6a02;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-copy,
+  .autotest-result--lvl-aumentado .autotest-result-copy {
+    padding-top: 1.35rem;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-title,
+  .autotest-result--lvl-aumentado .autotest-result-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 1rem;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-text,
+  .autotest-result--lvl-aumentado .autotest-result-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  .autotest-result--lvl-moderado .autotest-result-text p,
+  .autotest-result--lvl-aumentado .autotest-result-text p {
+    font-size: inherit;
     font-weight: 400;
   }
 
@@ -1960,7 +2064,7 @@ body {
 
 .section-contagio .contagio-card-back-text sup {
   color: rgba(27, 73, 39, 0.85);
-  font-size: 0.75em;
+  font-size: 0.6em;
 }
 
 /* Esfera numerada */
