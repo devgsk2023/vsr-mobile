@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VSR | Virus Sincicial Respiratorio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -85,7 +88,7 @@
   <!-- ========== BLOQUE: ¿Qué es el VSR? ========== -->
   <section id="que-es" class="section-que-es py-5">
     <div class="container">
-      <p class="que-es-label d-none d-lg-block mb-2">Entendiendo el virus</p>
+      <p class="que-es-label mb-2">Entendiendo el virus</p>
       <h2 class="tabs-title mb-3">¿Qué es el VSR?</h2>
       <div class="que-es-content-wrap">
       <p class="tabs-text que-es-intro-text my-4 my-lg-5 mb-lg-4">
@@ -142,7 +145,7 @@
     <div class="container">
       <p class="evaluar-riesgo-label">Evaluá tu riesgo</p>
       <h2 class="evaluar-riesgo-title mb-3">¿Tengo mayor riesgo de complicaciones?</h2>
-      <p class="evaluar-riesgo-text mb-3">
+      <p class="evaluar-riesgo-text my-5">
         El VSR puede causar cuadros graves en personas mayores o con ciertas enfermedades crónicas como diabetes, asma, EPOC, enfermedades cardiovasculares, entre otras<sup>4,6</sup>.
       </p>
       <p class="evaluar-riesgo-text fw-bold mb-4">
@@ -292,7 +295,7 @@
     <div class="container">
       <p class="reconocer-label">Reconocé las señales</p>
       <h2 class="reconocer-title mb-2">Síntomas del VSR</h2>
-      <p class="reconocer-intro mb-4">
+      <p class="reconocer-intro my-4">
         Los <strong>síntomas</strong> del VSR pueden <strong>variar de leves a graves</strong> y pueden <strong>durar hasta 2 semanas</strong>. En grupos de mayor riesgo los síntomas pueden ser más graves<sup>7</sup>.
       </p>
 
@@ -325,7 +328,7 @@
         </div>
       </div>
 
-      <div class="reconocer-aviso rounded-3 p-3">
+      <div class="reconocer-aviso rounded-3 ">
         <p class="reconocer-aviso-titulo mb-2">Importante:</p>
         <p class="reconocer-aviso-texto mb-0">
           Ante síntomas persistentes o dificultad para respirar, consultá con un profesional de salud.
@@ -446,7 +449,7 @@
       <h2 class="prevencion-title mb-3">Prevención del VSR</h2>
       <p class="prevencion-intro mb-4">
         La <strong>vacunación</strong> es uno de los métodos más importantes para <strong>proteger nuestra salud</strong> y <strong>la de quienes nos rodean<sup>9</sup></strong>.
-        <br>
+        
         Conversá con tu médico o médica para saber si una vacuna contra el VSR es adecuada para vos.
       </p>
       
@@ -724,21 +727,21 @@
   <!-- ========== PREGUNTAS FRECUENTES ========== -->
   <section class="section-faq py-5" id="faq">
     <div class="container">
-      <p class="faq-label">Resolvé tus dudas</p>
-      <h2 class="faq-title mb-2">Preguntas frecuentes</h2>
-      <p class="faq-intro my-5">Aclará tus dudas sobre el VSR y su prevención.</p>
+      <p class="faq-main-label">Resolvé tus dudas</p>
+      <h2 class="faq-main-title mb-2">Preguntas frecuentes</h2>
+      <p class="faq-main-intro my-5">Aclará tus dudas sobre el VSR y su prevención.</p>
 
       
 
-      <div class="accordion accordion-faq" id="accordionFaq">
+      <div class="accordion accordion-faq-main" id="accordionFaq">
         <!-- Categoría 1: Virus Sincicial Respiratorio (VSR) -->
         <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr" aria-expanded="true" aria-controls="faqVsr">Virus Sincicial Respiratorio (VSR)</button>
+            <button class="accordion-button faq-main-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr" aria-expanded="true" aria-controls="faqVsr">Virus Sincicial Respiratorio (VSR)</button>
           </h3>
           <div id="faqVsr" class="accordion-collapse collapse show" data-bs-parent="#accordionFaq">
             <div class="accordion-body p-0">
-              <div class="accordion accordion-faq-inner" id="accordionFaqVsr">
+              <div class="accordion accordion-faq-main-inner" id="accordionFaqVsr">
                 <div class="accordion-item">
                   <h4 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqVsr1" aria-expanded="false" aria-controls="faqVsr1">¿Qué es el Virus Sincicial Respiratorio (VSR)?</button>
@@ -803,11 +806,11 @@
         <!-- Categoría 2: VSR y enfermedades de alto riesgo -->
         <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqAltoRiesgo" aria-expanded="false" aria-controls="faqAltoRiesgo">VSR y enfermedades de alto riesgo</button>
+            <button class="accordion-button collapsed faq-main-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqAltoRiesgo" aria-expanded="false" aria-controls="faqAltoRiesgo">VSR y enfermedades de alto riesgo</button>
           </h3>
           <div id="faqAltoRiesgo" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
             <div class="accordion-body p-0">
-              <div class="accordion accordion-faq-inner" id="accordionFaqAltoRiesgo">
+              <div class="accordion accordion-faq-main-inner" id="accordionFaqAltoRiesgo">
                 <div class="accordion-item">
                   <h4 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqRiesgo1" aria-expanded="false" aria-controls="faqRiesgo1">¿Por qué debería preocuparme por el VSR?</button>
@@ -848,11 +851,11 @@
         <!-- Categoría 3: Prevención del VSR -->
         <div class="accordion-item faq-category-item">
           <h3 class="accordion-header">
-            <button class="accordion-button collapsed faq-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrevencion" aria-expanded="false" aria-controls="faqPrevencion">Prevención del VSR</button>
+            <button class="accordion-button collapsed faq-main-category-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrevencion" aria-expanded="false" aria-controls="faqPrevencion">Prevención del VSR</button>
           </h3>
           <div id="faqPrevencion" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
             <div class="accordion-body p-0">
-              <div class="accordion accordion-faq-inner" id="accordionFaqPrevencion">
+              <div class="accordion accordion-faq-main-inner" id="accordionFaqPrevencion">
                 <div class="accordion-item">
                   <h4 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqPrev1" aria-expanded="false" aria-controls="faqPrev1">¿Existe una vacuna para el VSR?</button>

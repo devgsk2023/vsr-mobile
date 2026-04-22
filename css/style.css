@@ -16,6 +16,7 @@ body {
   padding: 0;
   min-height: 100vh;
   background-color: #f5f5f5;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* ========== HEADER CON LOGO ========== */
@@ -221,6 +222,10 @@ body {
     margin-left: 0;
     margin-right: 0;
     font-size: 1.38rem;
+  }
+
+  .section-que-es .que-es-intro-text {
+    font-size: 1.5rem;
   }
 
   .section-que-es .que-es-cards {
@@ -484,7 +489,7 @@ body {
 .que-es-cards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
 }
 
 .que-es-card {
@@ -543,11 +548,11 @@ body {
 .section-neumonia-vsr {
   background-color: #20244C;
   color: #fff;
-  padding: 6rem 0rem;
+  padding: 3rem 0rem;
 }
 
 .neumonia-vsr-destacado {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.4;
@@ -565,7 +570,7 @@ body {
 }
 
 .neumonia-vsr-texto {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #fff;
   line-height: 1.5;
@@ -586,7 +591,7 @@ body {
   }
 
   .neumonia-vsr-texto {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -774,7 +779,7 @@ body {
 }
 
 .tabs-title {
-  font-size: 2.0rem;
+  font-size: 2.1rem;
   font-weight: 400;
   color: #20244C;
   margin: 0;
@@ -782,7 +787,7 @@ body {
 }
 
 .tabs-text {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: black;
   line-height: 1.5;
   margin: 0;
@@ -872,7 +877,7 @@ body {
 }
 
 .evaluar-riesgo-title {
-  font-size: 2.9375rem; /* 47px @ 16px — alineado con .reconocer-title */
+  font-size: 2.1rem;
   font-weight: 400;
   color: black;
   line-height: 1.25;
@@ -881,7 +886,7 @@ body {
 }
 
 .evaluar-riesgo-text {
-  font-size: 1.5rem; /* 24px @ 16px — alineado con .reconocer-intro */
+  font-size: 1rem;
   font-weight: 400;
   color: #212529;
   line-height: 1.5;
@@ -944,6 +949,14 @@ body {
   .section-evaluar-riesgo .evaluar-riesgo-title,
   .section-evaluar-riesgo .evaluar-riesgo-text {
     text-align: left;
+  }
+
+  .section-evaluar-riesgo .evaluar-riesgo-title {
+    font-size: 3rem;
+  }
+
+  .section-evaluar-riesgo .evaluar-riesgo-text {
+    font-size: 1.5rem;
   }
 
   .section-evaluar-riesgo .btn-evaluar-test {
@@ -1675,7 +1688,7 @@ body {
 }
 
 .reconocer-title {
-  font-size: 2.9375rem; /* 47px @ 16px */
+  font-size: 2.1rem;
   font-weight: 400;
   color: #fff;
   margin: 0;
@@ -1683,7 +1696,7 @@ body {
 }
 
 .reconocer-intro {
-  font-size: 1.5rem; /* 24px @ 16px */
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
   margin: 0;
@@ -1741,6 +1754,7 @@ body {
   font-weight: 700;
   color: #D3FA57;
   margin: 0;
+  display: inline;
 }
 
 .reconocer-aviso-texto {
@@ -1748,6 +1762,7 @@ body {
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
   margin: 0;
+  display: inline;
 }
 
 /* Reconocé las señales - versión PC */
@@ -1760,6 +1775,9 @@ body {
   .section-reconocer .reconocer-title,
   .section-reconocer .reconocer-intro {
     text-align: left;
+  }
+  .section-reconocer .reconocer-title {
+    font-size: 3rem;
   }
   .reconocer-intro {
     font-size: 1.5rem; /* 24px @ 16px */
@@ -1864,7 +1882,7 @@ body {
 }
 
 .section-video-title {
-  font-size: 2.9375rem; /* 47px @ 16px */
+  font-size: 2.1rem;
   font-weight: 500;
   color: #20244C;
   line-height: 1.3;
@@ -1882,7 +1900,7 @@ body {
 @media (min-width: 992px) {
   .video-section-wrap {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1.8fr;
     gap: 2rem;
    
   }
@@ -2032,7 +2050,7 @@ body {
 .contagio-card-back {
   display: none;
   position: relative;
-  padding: 24px 16px;
+  padding: 42px 20px 22px;
   min-height: 168px;
   background-color: #e6f4ec;
   border: none;
@@ -2040,6 +2058,8 @@ body {
   border-bottom: 1px solid #009145;
   box-shadow: 0 2px 4px rgba(27, 73, 39, 0.15);
   text-align: left;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Móvil: flip al tocar "Ver más" (clase .flipped en la card) */
@@ -2047,7 +2067,7 @@ body {
   display: none;
 }
 .contagio-flow-card.flipped .contagio-card-back {
-  display: block;
+  display: flex;
 }
 
 .contagio-card-back-text {
@@ -2055,6 +2075,8 @@ body {
   font-weight: 400;
   color: #1b4927;
   line-height: 1.5;
+  max-width: 95%;
+  margin: 0 auto;
 }
 
 .contagio-card-back-text strong {
@@ -2111,15 +2133,15 @@ body {
 }
 
 .contagio-card-front .contagio-flow-icon img {
-  width: 56px;
-  height: 56px;
+  width: 74px;
+  height: 74px;
   object-fit: contain;
   filter: brightness(0);
   opacity: 0.85;
 }
 
 .contagio-flow-title {
-  font-size: 1.125rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #20244c;
   margin: 0;
@@ -2224,7 +2246,7 @@ body {
   .contagio-flow-card .contagio-card-front {
     align-items: center;
     text-align: center;
-    padding: 24px 16px;
+    padding: 24px 10px;
     background-color: #fff;
     border: none;
   }
@@ -2391,14 +2413,14 @@ body {
 }
 
 .prevencion-title {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 400;
-  color: #20244C;
+  color: #0D0A0B;
   margin: 0;
 }
 
 .prevencion-intro {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: black ;
   line-height: 1.5;
   margin: 0;
@@ -2409,9 +2431,9 @@ body {
 }
 
 .prevencion-habitos-intro {
-  font-size: 1.25rem; /* 20px @ 16px */
+  font-size: 1rem;
   font-weight: 400;
-  color: #5d5b5c;
+  color: black;
   line-height: 1.5;
   margin: 0;
   text-align: center;
@@ -2446,7 +2468,7 @@ body {
 }
 
 .prevencion-habito-text {
-  font-size: 1.25rem; /* 20px @ 16px */
+  font-size: 1rem;
   font-weight: 700;
   color: #5d5b5c;
   line-height: 1.35;
@@ -2477,7 +2499,7 @@ body {
 /* Próxima consulta: mismo encabezado y acordeón que la sección FAQ */
 .prevencion-consulta-proxima-bloque .faq-title,
 .prevencion-consulta-proxima-bloque .faq-intro {
-  text-align: center;
+  text-align: start;
 }
 
 .prevencion-preguntas-aviso {
@@ -2616,7 +2638,7 @@ body {
     text-align: center;
   }
   .prevencion-habitos-intro {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color:black ;
     text-align: center;
   }
@@ -2628,7 +2650,7 @@ body {
     font-size: 3rem;
   }
   .prevencion-intro{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .section-prevencion .prevencion-btn-wrap {
@@ -2707,8 +2729,8 @@ body {
 }
 
 .donde-vacuno-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 2.1rem;
+  font-weight: 400;
   color: #fff;
   line-height: 1.25;
   margin: 0;
@@ -2756,7 +2778,7 @@ body {
     font-weight: 400;
   }
   .section-donde-vacuno .donde-vacuno-intro {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .section-donde-vacuno .donde-vacuno-paso {
     font-size: 1.2rem;
@@ -3539,7 +3561,8 @@ body {
   color: #212529;
 }
 
-.faq-label {
+.faq-label,
+.faq-main-label {
   font-size: 1rem;
   font-weight: 400;
   
@@ -3548,18 +3571,50 @@ body {
   margin: 0 0 0.5rem 0;
 }
 
-.faq-title {
-  font-size: 2rem;
+.evaluar-riesgo-label,
+.reconocer-label,
+.section-video-label,
+.section-contagio-label,
+.prevencion-label,
+.donde-vacuno-label,
+.ponete-prueba-label,
+.faq-label,
+.faq-main-label,
+.que-es-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.que-es-label {
+  color: #009145;
+}
+
+.faq-title,
+.faq-main-title {
+  font-size: 2.1rem;
   font-weight: 400;
   color: black;
+  margin: 40px 0 40px 0;
+  text-align: left;
+}
+
+.faq-main-title {
   margin: 0;
 }
 
-.faq-intro {
+.faq-intro,
+.faq-main-intro {
   font-size: 1.3rem;
   color: #495057;
   line-height: 1.5;
   margin: 0;
+}
+
+.faq-main-intro {
+  font-size: 1rem;
+  color: #000;
+  margin-top: 24px !important;
+  margin-bottom: 40px !important;
 }
 
 .faq-opcion-label {
@@ -3569,7 +3624,8 @@ body {
   margin: 0;
 }
 
-.accordion-faq .accordion-item {
+.accordion-faq .accordion-item,
+.accordion-faq-main .accordion-item {
   background-color: #fff;
   border: none;
   border-bottom: 1px solid #009145;
@@ -3579,40 +3635,53 @@ body {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
-.accordion-faq .accordion-item:last-child {
+.accordion-faq .accordion-item:last-child,
+.accordion-faq-main .accordion-item:last-child {
   margin-bottom: 0;
 }
 
-.accordion-faq .accordion-button {
+.accordion-faq .accordion-button,
+.accordion-faq-main .accordion-button {
   background-color: #fff !important;
   color: #20244C !important;
   border: none;
-  font-weight: 400;
+  font-weight: 500;
   padding: 16px 1.25rem;
   box-shadow: none !important;
 }
 
 /* Títulos de categoría FAQ (padres: VSR, VSR y enfermedades..., Prevención...) */
-.accordion-faq .faq-category-btn {
-  font-size: 2.5rem; /* 40px */
+.accordion-faq .faq-category-btn,
+.accordion-faq-main .faq-main-category-btn {
+  font-size: 1.3rem;
   color: #20244C !important;
 }
 
-.accordion-faq .accordion-button::after {
+@media (max-width: 991.98px) {
+  .accordion-faq-main .accordion-header .accordion-button.faq-main-category-btn {
+    font-size: 1rem;
+  }
+}
+
+.accordion-faq .accordion-button::after,
+.accordion-faq-main .accordion-button::after {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(98%) contrast(92%);
 }
 
-.accordion-faq .accordion-button:not(.collapsed) {
+.accordion-faq .accordion-button:not(.collapsed),
+.accordion-faq-main .accordion-button:not(.collapsed) {
   background-color: #fff !important;
   color: #20244C !important;
   box-shadow: none !important;
 }
 
-.accordion-faq .accordion-button:hover {
+.accordion-faq .accordion-button:hover,
+.accordion-faq-main .accordion-button:hover {
   background-color: #f8f9fa !important;
 }
 
-.accordion-faq .accordion-body {
+.accordion-faq .accordion-body,
+.accordion-faq-main .accordion-body {
   background-color: #fff;
   color: #495057;
   padding: 16px 1.25rem;
@@ -3622,7 +3691,8 @@ body {
 /* FAQ interno: preguntas dentro de cada categoría (cada una en su propia caja con sombra) */
 
 
-.accordion-faq-inner .accordion-item {
+.accordion-faq-inner .accordion-item,
+.accordion-faq-main-inner .accordion-item {
   background-color: #FAFAFA;
   border: none;
   border-radius: 8px;
@@ -3631,12 +3701,14 @@ body {
   overflow: hidden;
 }
 
-.accordion-faq-inner .accordion-item:last-child {
+.accordion-faq-inner .accordion-item:last-child,
+.accordion-faq-main-inner .accordion-item:last-child {
   margin-bottom: 0;
 }
 
 /* Preguntas hijas de cada categoría FAQ */
-.accordion-faq-inner .accordion-button {
+.accordion-faq-inner .accordion-button,
+.accordion-faq-main-inner .accordion-button {
   background-color: #FAFAFA !important;
   color: #3D3B3C !important;
   font-size: 1.5rem; /* 24px */
@@ -3644,12 +3716,13 @@ body {
   padding: 16px;
 }
 
-.accordion-faq-inner .accordion-button::after {
+.accordion-faq-inner .accordion-button::after,
+.accordion-faq-main-inner .accordion-button::after {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(98%) contrast(92%);
 }
 
 /* FAQ principal + Próxima consulta: flechas assets/flecha-faq-*.svg (no chevron Bootstrap) */
-#accordionFaq.accordion-faq .accordion-button::after,
+#accordionFaq.accordion-faq-main .accordion-button::after,
 #accordionConsultaProxima.accordion-faq .accordion-button::after {
   filter: none;
   background-image: url("../assets/flecha-faq-abierta.svg");
@@ -3662,41 +3735,48 @@ body {
   transition: opacity 0.2s ease;
 }
 
-#accordionFaq.accordion-faq .accordion-button.collapsed::after,
+#accordionFaq.accordion-faq-main .accordion-button.collapsed::after,
 #accordionConsultaProxima.accordion-faq .accordion-button.collapsed::after {
   background-image: url("../assets/flecha-faq-cerrada.svg");
 }
 
-.accordion-faq-inner .accordion-button:not(.collapsed) {
+.accordion-faq-inner .accordion-button:not(.collapsed),
+.accordion-faq-main-inner .accordion-button:not(.collapsed) {
   
   color: #3D3B3C !important;
 }
 
-.accordion-faq-inner .accordion-button:not(.collapsed):hover {
+.accordion-faq-inner .accordion-button:not(.collapsed):hover,
+.accordion-faq-main-inner .accordion-button:not(.collapsed):hover {
  
   color: #3D3B3C !important;
 }
 
 /* Ítem interno abierto: toda la caja (pregunta + respuesta) en verde menta, alineado a botones secundarios */
-.accordion-faq-inner .accordion-item:has(.accordion-collapse.show) {
+.accordion-faq-inner .accordion-item:has(.accordion-collapse.show),
+.accordion-faq-main-inner .accordion-item:has(.accordion-collapse.show) {
  
 }
 
 /* Texto de respuestas en todos los tabs de FAQ */
 .accordion-faq .accordion-body,
-.accordion-faq-inner .accordion-body {
-  font-size: 1rem;
+.accordion-faq-main .accordion-body,
+.accordion-faq-inner .accordion-body,
+.accordion-faq-main-inner .accordion-body {
+  font-size: 0.8rem;
   line-height: 1.5;
   color: black;
 }
 
-.accordion-faq-inner .accordion-body {
+.accordion-faq-inner .accordion-body,
+.accordion-faq-main-inner .accordion-body {
   padding: 0 16px 16px;
   border-top: none;
   background-color: #FAFAFA;
 }
 
-.accordion-faq-inner .accordion-collapse.show .accordion-body {
+.accordion-faq-inner .accordion-collapse.show .accordion-body,
+.accordion-faq-main-inner .accordion-collapse.show .accordion-body {
   
 }
 
@@ -3749,7 +3829,7 @@ body {
 .referencias-item {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #212529;
+  color: #5D5B5C;
   margin-bottom: 1rem;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -4052,6 +4132,7 @@ body {
   .tabs-text,
   .section-reconocer .reconocer-aviso-texto,
   .faq-intro,
+  .faq-main-intro,
   .referencias-item,
   .prevencion-list,
   .prevencion-qa-pregunta,
@@ -4069,6 +4150,7 @@ body {
   .ponete-prueba-title,
   .ponete-prueba-pregunta,
   .faq-title,
+  .faq-main-title,
   .referencias-title,
   .prevencion-card-title {
     font-size: 2.2rem;
@@ -4083,7 +4165,7 @@ body {
     font-weight: 400;
   }
   .section-ponete-prueba .ponete-prueba-intro {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   .section-ponete-prueba .ponete-prueba-pregunta {
     font-size: 1.3rem;
@@ -4102,15 +4184,15 @@ body {
     font-size: 1.25rem;
     color: #5d5b5c;
   }
-  .section-faq .faq-title {
+  .section-faq .faq-main-title {
     font-size: 3rem;
     
   }
-  .section-faq .faq-label {
+  .section-faq .faq-main-label {
     font-size: 1rem;
   }
-  .section-faq .faq-intro {
-    font-size: 1.3rem;
+  .section-faq .faq-main-intro {
+    font-size: 1.5rem;
     color:black;
   }
   
@@ -4118,8 +4200,8 @@ body {
   .prevencion-consulta-proxima-bloque{
     margin-top: 100px;
   }
- .faq-title{
-  
+ .faq-main-title{
+  text-align: left;
  }
 
   .section-prevencion .prevencion-consulta-proxima-bloque .faq-title {
@@ -4132,9 +4214,31 @@ body {
     color: black;
   }
 
-  .accordion-faq .accordion-item {
+  #accordionConsultaProxima .faq-prevencion-lista,
+  #accordionConsultaProxima .faq-prevencion-lista li {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .accordion-faq .accordion-item,
+  .accordion-faq-main .accordion-item {
     margin-bottom: 32px;
   }
+
+  .accordion-faq .faq-category-btn,
+  .accordion-faq-main .faq-main-category-btn {
+    font-size: 2.1rem;
+  }
+
+  .accordion-faq-main-inner .accordion-button {
+    font-size: 1.5rem;
+  }
+
+  .accordion-faq-main-inner .accordion-body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
   .section-referencias .referencias-title {
     font-size: 3rem;
     font-weight: 400;
