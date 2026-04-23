@@ -14,6 +14,7 @@ import json
 import os
 import threading
 from datetime import datetime, timezone
+from functools import wraps
 
 from flask import Flask, jsonify, request, send_from_directory, abort
 
@@ -21,6 +22,7 @@ from flask import Flask, jsonify, request, send_from_directory, abort
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 DATA_FILE = os.path.join(DATA_DIR, "vacunatorios_coordinates_con_barrios.json")
 PORT = 5050
+PANEL_SECRET_TOKEN = os.environ.get("PANEL_SECRET_TOKEN")
 
 app = Flask(__name__, static_folder=".", static_url_path="")
 
@@ -52,6 +54,22 @@ def find_record(data_list, record_id):
         if record.get("id") == record_id:
             return i, record
     return None, None
+
+
+def require_token(func):
+    """Protege endpoints PATCH con Authorization: Bearer <token>."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if not PANEL_SECRET_TOKEN:
+            return func(*args, **kwargs)
+
+        auth_header = request.headers.get("Authorization", "")
+        expected = f"Bearer {PANEL_SECRET_TOKEN}"
+        if auth_header != expected:
+            return jsonify({"error": "Unauthorized"}), 401
+
+        return func(*args, **kwargs)
+    return wrapper
 
 
 # ═══════════════════════════════════
@@ -122,6 +140,7 @@ def get_vacunatorio(record_id):
 
 
 @app.route("/api/vacunatorios/<int:record_id>", methods=["PATCH"])
+@require_token
 def update_vacunatorio(record_id):
     """
     PATCH /api/vacunatorios/:id
@@ -173,6 +192,7 @@ def update_vacunatorio(record_id):
 
 
 @app.route("/api/vacunatorios/batch", methods=["PATCH"])
+@require_token
 def batch_update():
     """
     PATCH /api/vacunatorios/batch
@@ -247,6 +267,9 @@ def get_stats():
 # ═══════════════════════════════════
 
 if __name__ == "__main__":
+    if not PANEL_SECRET_TOKEN:
+        print("  [WARN] PANEL_SECRET_TOKEN no está definido. Endpoints PATCH sin autenticación.")
+
     print(f"\n  Panel de Vacunatorios")
     print(f"  ─────────────────────")
     print(f"  http://localhost:{PORT}/panel.html")

@@ -124,7 +124,7 @@ class VacunatoriosMap {
             }
         });
 
-        if (closest && minDist < 0.001) {
+        if (closest && minDist < 0.01) {
             // Auto-seleccionar la provincia para que el filtro funcione
             const provinciaSelect = document.getElementById('filtroProvincia');
             if (provinciaSelect && closest.provincia) {
@@ -157,7 +157,7 @@ class VacunatoriosMap {
             // No se encontró, centrar igualmente
             this.map.setCenter({ lat, lng });
             this.map.setZoom(16);
-            this.showInitialMessage();
+            this.showError('No se pudo encontrar el vacunatorio en el mapa. Verificá las coordenadas.');
         }
     }
 
@@ -170,7 +170,13 @@ class VacunatoriosMap {
         }
     }
 
-    hideLoading() {}
+    hideLoading() {
+        const container = document.getElementById('listaResultados');
+        if (container) {
+            const loadingEl = container.querySelector('.loading');
+            if (loadingEl) loadingEl.remove();
+        }
+    }
 
     showError(message) {
         const container = document.getElementById('listaResultados');
@@ -346,21 +352,6 @@ class VacunatoriosMap {
             }, { passive: true });
         }
 
-        const vacunatorioFilter = document.getElementById('filtroVacunatorios');
-        if (vacunatorioFilter) {
-            vacunatorioFilter.addEventListener('change', (e) => {
-                this.filters.vacunatorio = e.target.checked;
-                if (this.filters.provincia) this.filterVacunatorios();
-            });
-        }
-
-        const farmaciaFilter = document.getElementById('filtroMenores');
-        if (farmaciaFilter) {
-            farmaciaFilter.addEventListener('change', (e) => {
-                this.filters.farmacia = e.target.checked;
-                if (this.filters.provincia) this.filterVacunatorios();
-            });
-        }
     }
 
     // ── Filtering ──
@@ -387,8 +378,8 @@ class VacunatoriosMap {
 
             const nombre = (v.nombre || '').toLowerCase();
             const domicilio = (v.domicilio || '').toLowerCase();
-            const localidad = (v.localidad || '').toLowerCase();
-            const barrio = (v.barrio || '').toLowerCase();
+            const localidad = (v.localidad || '').toLowerCase().trim();
+            const barrio = (v.barrio || '').toLowerCase().trim();
 
             const matchesSearch = !searchText ||
                 nombre.includes(searchText) ||
@@ -398,8 +389,8 @@ class VacunatoriosMap {
             if (!matchesSearch) return false;
 
             const matchesProvince = !this.filters.provincia || v.provincia === this.filters.provincia;
-            const matchesLocalidad = !this.filters.localidad || localidad === this.filters.localidad.toLowerCase();
-            const matchesBarrio = !this.filters.barrio || barrio === this.filters.barrio.toLowerCase();
+            const matchesLocalidad = !this.filters.localidad || localidad === this.filters.localidad.toLowerCase().trim();
+            const matchesBarrio = !this.filters.barrio || barrio === this.filters.barrio.toLowerCase().trim();
 
             let matchesType = true;
             if (this.filters.tipo) {
@@ -544,20 +535,30 @@ class VacunatoriosMap {
             </div>`;
         container.appendChild(counterDiv);
 
-        const itemsToShow = Math.min(vacunatorios.length, 30);
-        const fragment = document.createDocumentFragment();
+        const PAGE_SIZE = 30;
+        let currentPage = 1;
 
-        for (let i = 0; i < itemsToShow; i++) {
-            fragment.appendChild(this.createVacunatorioCard(vacunatorios[i]));
-        }
-        container.appendChild(fragment);
+        const renderPage = () => {
+            const existingMore = container.querySelector('.btn-ver-mas');
+            if (existingMore) existingMore.remove();
 
-        if (vacunatorios.length > itemsToShow) {
-            const moreDiv = document.createElement('div');
-            moreDiv.className = 'more-results';
-            moreDiv.innerHTML = `<p>Mostrando ${itemsToShow} de ${vacunatorios.length} resultados. Usa los filtros para refinar la búsqueda.</p>`;
-            container.appendChild(moreDiv);
-        }
+            const upTo = PAGE_SIZE * currentPage;
+            const fragment = document.createDocumentFragment();
+            for (let i = PAGE_SIZE * (currentPage - 1); i < Math.min(upTo, vacunatorios.length); i++) {
+                fragment.appendChild(this.createVacunatorioCard(vacunatorios[i]));
+            }
+            container.appendChild(fragment);
+
+            if (upTo < vacunatorios.length) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-ver-mas';
+                btn.textContent = `Ver más (${vacunatorios.length - upTo} restantes)`;
+                btn.addEventListener('click', () => { currentPage++; renderPage(); }, { passive: true });
+                container.appendChild(btn);
+            }
+        };
+
+        renderPage();
     }
 
     createVacunatorioCard(v) {
@@ -601,11 +602,6 @@ class VacunatoriosMap {
                             </svg>
                             <span>${telefono}</span>
                         </div>` : ''}
-                </div>
-                <div class="card-services">
-                    <div class="service-badge available">
-                        ${emoji} ${tipo}
-                    </div>
                 </div>
             </div>
             <div class="card-action">
@@ -671,40 +667,4 @@ function initVacunatoriosMap() {
     }
 }
 
-// Esperar a que tanto el DOM como Google Maps estén listos
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', waitForGoogleMaps);
-} else {
-    waitForGoogleMaps();
-}
-
-function isGoogleMapsReady() {
-    return window.google && window.google.maps && typeof window.google.maps.Map === 'function';
-}
-
-function waitForGoogleMaps() {
-    if (isGoogleMapsReady()) {
-        initVacunatoriosMap();
-    } else {
-        const interval = setInterval(() => {
-            if (isGoogleMapsReady()) {
-                clearInterval(interval);
-                initVacunatoriosMap();
-            }
-        }, 200);
-        setTimeout(() => {
-            clearInterval(interval);
-            if (!isGoogleMapsReady()) {
-                console.error('Google Maps no pudo cargar');
-                const container = document.getElementById('listaResultados');
-                if (container) {
-                    container.innerHTML = `
-                        <div class="sin-resultados">
-                            <h4>Error cargando Google Maps</h4>
-                            <p>Verifica tu conexión a internet y recarga la página</p>
-                        </div>`;
-                }
-            }
-        }, 15000);
-    }
-}
+window.initVacunatoriosMap = initVacunatoriosMap;

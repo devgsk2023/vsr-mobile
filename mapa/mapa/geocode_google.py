@@ -23,7 +23,7 @@ from datetime import datetime
 
 # ── Config ── (rutas relativas al script)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-API_KEY = "AIzaSyBWMgpuf6kUK7eyheo1pUPx69nEhqMk86w"
+API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
 DATA_FILE = os.path.join(SCRIPT_DIR, "data", "vacunatorios_coordinates_con_barrios.json")
 BACKUP_FILE = DATA_FILE.replace(".json", "_pre_google_backup.json")
 
@@ -101,6 +101,11 @@ def build_address(record):
 
 
 def main():
+    if not API_KEY:
+        print("ERROR: Falta la variable de entorno GOOGLE_MAPS_API_KEY.")
+        print("Definila antes de ejecutar este script (por ejemplo en un archivo .env local).")
+        sys.exit(1)
+
     # Cargar datos
     print(f"\n  Geocodificación con Google Maps API")
     print(f"  ────────────────────────────────────\n")

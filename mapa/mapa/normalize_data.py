@@ -62,7 +62,7 @@ def smart_title_case(text):
         if word_clean in UPPERCASE_WORDS:
             result.append(word.upper())
         # Números romanos solos → MAYÚSCULAS
-        elif re.match(r"^[IVXLCDM]+$", word.upper()) and len(word) <= 5 and word_clean in UPPERCASE_WORDS:
+        elif re.match(r"^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$", word.upper()) and len(word) >= 1 and word.isalpha():
             result.append(word.upper())
         # Artículos/preposiciones → minúscula (salvo primera palabra)
         elif word_clean in LOWERCASE_WORDS and i > 0:
