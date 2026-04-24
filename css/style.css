@@ -19,6 +19,25 @@ body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+body.page-transition {
+  opacity: 0;
+  transition: opacity 220ms ease-in-out;
+}
+
+body.page-transition.page-ready {
+  opacity: 1;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: ease-in-out;
+}
+
 /* ========== HEADER CON LOGO ========== */
 .site-header {
   position: sticky;

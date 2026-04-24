@@ -19,12 +19,12 @@
         <img src="assets/img/logo-principal-pc.png" alt="VSR - Virus Sincicial Respiratorio" class="logo-img logo-img-pc d-none d-lg-block">
       </a>
       <nav class="header-nav d-none d-lg-flex align-items-center" aria-label="Navegación principal">
-        <a href="que-es.html#que-es" class="header-nav-link">¿Qué es el VSR?</a>
-        <a href="sintomas.html#sintomas" class="header-nav-link">Síntomas</a>
-        <a href="contagio.html#contagio" class="header-nav-link">Contagio</a>
-        <a href="vacunacion.html#vacunacion" class="header-nav-link">Vacunación</a>
-        <a href="#evaluar-riesgo" class="header-nav-link">Test</a>
-        <a href="index.html#faq" class="header-nav-link">Preguntas frecuentes</a>
+        <a href="que-es.html" class="header-nav-link">¿Qué es el VSR?</a>
+        <a href="sintomas.html" class="header-nav-link">Síntomas</a>
+        <a href="contagio.html" class="header-nav-link">Contagio</a>
+        <a href="vacunacion.html" class="header-nav-link">Vacunación</a>
+        <a href="test.html" class="header-nav-link">Test</a>
+        <a href="preguntas-frecuentes.html" class="header-nav-link">Preguntas frecuentes</a>
       </nav>
     </div>
     <div class="header-line"></div>
@@ -41,9 +41,138 @@
         <p class="evaluar-riesgo-text fw-bold mb-4">
           Completá un breve test para conocer tu nivel de riesgo de complicaciones y qué podés hacer para protegerte.
         </p>
-        <button type="button" class="btn btn-cta btn-evaluar-test mt-5">Comenzar el test</button>
+        <button type="button" class="btn btn-cta btn-evaluar-test mt-5" id="btnAbrirAutotest">Comenzar el test</button>
       </div>
     </section>
+
+    <div class="autotest-overlay" id="autotestOverlay" aria-hidden="true">
+      <div class="autotest-modal" id="autotestModal" role="dialog" aria-labelledby="autotestHeadTitle" aria-modal="true">
+        <button type="button" class="autotest-close" id="autotestClose" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+
+        <div class="autotest-step autotest-question" id="autotestQ1" data-step="q1">
+          <div class="autotest-card-head">
+            <div class="autotest-topbar"><span class="autotest-topbar-spacer" aria-hidden="true"></span></div>
+            <p class="autotest-kicker">Test</p>
+            <h2 class="autotest-card-title" id="autotestHeadTitle">¿Tengo mayor riesgo de complicaciones?</h2>
+          </div>
+          <div class="autotest-card-body">
+            <div class="autotest-progressbar-wrap">
+              <div class="autotest-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+                <div class="autotest-progressbar-fill" style="width:33.33%"></div>
+              </div>
+              <p class="autotest-progress-label">Pregunta 1 de 3</p>
+            </div>
+            <h3 class="autotest-q-title">¿Cuántos años tenés?</h3>
+            <div class="autotest-options">
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="menos20"> Menos de 20</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="20-29"> 20 a 29</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="30-39"> 30 a 39</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="40-49"> 40 a 49</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="50-59"> 50 a 59</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="60-69"> 60 a 69</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="70-79"> 70 a 79</label>
+              <label class="autotest-option"><input type="radio" name="autotest_edad" value="80mas"> 80 o más</label>
+            </div>
+          </div>
+          <div class="autotest-card-footer">
+            <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext1" disabled>Siguiente</button>
+          </div>
+        </div>
+
+        <div class="autotest-step autotest-question hidden" id="autotestQ2" data-step="q2">
+          <div class="autotest-card-head">
+            <div class="autotest-topbar">
+              <button type="button" class="autotest-back" id="autotestBack2" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+            </div>
+            <p class="autotest-kicker">Test</p>
+            <h2 class="autotest-card-title">¿Tengo mayor riesgo de complicaciones?</h2>
+          </div>
+          <div class="autotest-card-body">
+            <div class="autotest-progressbar-wrap">
+              <div class="autotest-progressbar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+                <div class="autotest-progressbar-fill" style="width:66.66%"></div>
+              </div>
+              <p class="autotest-progress-label">Pregunta 2 de 3</p>
+            </div>
+            <h3 class="autotest-q-title">¿Tenés alguna de estas enfermedades crónicas?</h3>
+            <p class="autotest-q-hint">Podés elegir más de una opción.</p>
+            <div class="autotest-options autotest-options-check">
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="diabetes"> Diabetes</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="asma"> Asma</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="epoc"> EPOC</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="cardiovascular"> Enfermedad cardiovascular</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="renal"> Enfermedad renal</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="inmuno"> Sistema inmune debilitado (por tu enfermedad de base y/o por estar en tratamiento con medicamentos que comprometen tu sistema inmunológico)</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="otra"> Otra</label>
+              <label class="autotest-option"><input type="checkbox" name="autotest_enf" value="ninguna"> No tengo ninguna</label>
+            </div>
+          </div>
+          <div class="autotest-card-footer">
+            <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext2" disabled>Siguiente</button>
+          </div>
+        </div>
+
+        <div class="autotest-step autotest-question hidden" id="autotestQ3" data-step="q3">
+          <div class="autotest-card-head">
+            <div class="autotest-topbar">
+              <button type="button" class="autotest-back" id="autotestBack3" aria-label="Volver"><i class="bi bi-arrow-left"></i></button>
+            </div>
+            <p class="autotest-kicker">Test</p>
+            <h2 class="autotest-card-title">¿Tengo mayor riesgo de complicaciones?</h2>
+          </div>
+          <div class="autotest-card-body">
+            <div class="autotest-progressbar-wrap">
+              <div class="autotest-progressbar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="3" aria-label="Progreso del test">
+                <div class="autotest-progressbar-fill" style="width:100%"></div>
+              </div>
+              <p class="autotest-progress-label">Pregunta 3 de 3</p>
+            </div>
+            <h3 class="autotest-q-title">¿Tenés contacto frecuente con niños pequeños (nietos, jardín de infantes, etc.)?</h3>
+            <div class="autotest-options">
+              <label class="autotest-option"><input type="radio" name="autotest_contacto" value="si"> Sí</label>
+              <label class="autotest-option"><input type="radio" name="autotest_contacto" value="no"> No</label>
+            </div>
+          </div>
+          <div class="autotest-card-footer">
+            <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestNext3" disabled>Ver resultados</button>
+          </div>
+        </div>
+
+        <div class="autotest-step autotest-result hidden" id="autotestResult" data-step="result">
+          <button type="button" class="autotest-back autotest-result-back" id="autotestBackResult" aria-label="Volver a la última pregunta"><i class="bi bi-arrow-left"></i></button>
+          <div class="autotest-card-body autotest-result-body">
+            <div class="autotest-result-hero" id="autotestResultHero">
+              <div class="autotest-result-icon-ring" id="autotestResultIconRing" aria-hidden="true">
+                <img src="" alt="" class="autotest-result-icon-img" id="autotestResultIconImg" width="28" height="28">
+              </div>
+              <p class="autotest-result-badge" id="autotestResultBadge"></p>
+            </div>
+            <div class="autotest-result-copy">
+              <p class="autotest-result-section-label">Resultado de tu test</p>
+              <h3 class="autotest-result-title" id="autotestResultTitle"></h3>
+              <div class="autotest-result-text" id="autotestResultText"></div>
+            </div>
+          </div>
+          <div class="autotest-card-footer autotest-result-footer">
+            <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestBtnSiguienteFinal">Continuar</button>
+          </div>
+        </div>
+
+        <div class="autotest-step autotest-final hidden" id="autotestFinal" data-step="final">
+          <div class="autotest-card-body autotest-final-body">
+            <p class="autotest-final-tagline">Prevenir es cuidarse</p>
+            <div class="autotest-final-rule" aria-hidden="true"></div>
+            <h2 class="autotest-final-heading">Compartí este test con tus seres queridos.</h2>
+            <p class="autotest-final-lead">La prevención empieza con la información.</p>
+            <p class="autotest-final-text">Estar informado es el primer paso para cuidar tu salud y la de quienes más querés.</p>
+          </div>
+          <div class="autotest-card-footer autotest-final-footer">
+            <button type="button" class="btn btn-cta autotest-btn-footer autotest-btn-footer--outline" id="autotestBtnRehacer">Volver a hacer el test</button>
+            <button type="button" class="btn btn-cta autotest-btn-footer" id="autotestBtnCompartir">Compartir test</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="section-referencias py-5" id="referencias">
       <div class="container">
@@ -119,5 +248,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/page-transition.js"></script>
 </body>
 </html>
