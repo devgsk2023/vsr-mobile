@@ -3680,6 +3680,11 @@ body {
   .accordion-faq-main .accordion-header .accordion-button.faq-main-category-btn {
     font-size: 1rem;
   }
+
+  .accordion-faq-main-inner .accordion-button {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
 }
 
 .accordion-faq .accordion-button::after,
@@ -4261,5 +4266,13 @@ body {
   .section-referencias .referencias-title {
     font-size: 3rem;
     font-weight: 400;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .accordion-faq-main-inner .accordion-button,
+  .accordion-faq-inner .accordion-button {
+    font-size: 1rem !important;
+    line-height: 1.35;
   }
 }
