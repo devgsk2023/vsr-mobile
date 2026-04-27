@@ -56,6 +56,38 @@ class VacunatoriosMap {
         return '⚕️';
     }
 
+    getDirectionsUrl(v) {
+        var lat = parseFloat(v && v.lat);
+        var lng = parseFloat(v && v.lng);
+        if (!isNaN(lat) && !isNaN(lng)) {
+            return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(lat + ',' + lng) + '&travelmode=driving';
+        }
+
+        var parts = [];
+        if (v && v.domicilio) parts.push(v.domicilio);
+        if (v && v.barrio) parts.push(v.barrio);
+        if (v && v.localidad) parts.push(v.localidad);
+        if (v && v.provincia) parts.push(v.provincia);
+        var fallback = parts.join(', ');
+        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(fallback || (v && v.nombre) || 'vacunatorio');
+    }
+
+    isSupportedTipo(tipo) {
+        const t = (tipo || '').toLowerCase().trim();
+        return (
+            t.includes('farmacia') ||
+            t.includes('hospital') ||
+            t.includes('vacunatorio') ||
+            t.includes('centro') ||
+            t.includes('salud') ||
+            t.includes('caps') ||
+            t.includes('dispensario') ||
+            t.includes('clinica') ||
+            t.includes('instituto') ||
+            t.includes('sanatorio')
+        );
+    }
+
     async init() {
         this.showLoading();
 
@@ -94,7 +126,9 @@ class VacunatoriosMap {
             const response = await fetch(this.DATA_URL);
             if (!response.ok) throw new Error('Error cargando datos');
             const json = await response.json();
-            this.data = json.data || json;
+            const rawData = json.data || json;
+            // Mostrar solo farmacias y hospitales/afines en el buscador.
+            this.data = rawData.filter(v => this.isSupportedTipo(v.tipo));
             this.initFilterOptions();
 
             const urlParams = new URLSearchParams(window.location.search);
@@ -439,6 +473,9 @@ class VacunatoriosMap {
                     case 'farmacia':
                         matchesType = tipoNorm.indexOf('farmacia') !== -1 || tipoNorm.indexOf('drogueria') !== -1;
                         break;
+                    default:
+                        matchesType = false;
+                        break;
                 }
             }
             return matchesProvince && matchesLocalidad && matchesBarrio && matchesType;
@@ -506,6 +543,7 @@ class VacunatoriosMap {
         var barrio = v.barrio || '';
         var provincia = v.provincia || '';
         var telefono = v.telefono || '';
+        var directionsUrl = this.getDirectionsUrl(v);
         var direccion = domicilio;
         if (barrio) direccion += ', ' + barrio;
         direccion += ', ' + localidad + ', ' + provincia;
@@ -514,6 +552,7 @@ class VacunatoriosMap {
         html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:20px">' + this.getMarkerEmoji(tipo) + '</span><div><div style="font-weight:700;font-size:14px;color:#1a1a2e">' + nombre + '</div><div style="font-size:11px;color:#009145;font-weight:600">' + tipo + '</div></div></div>';
         html += '<div style="font-size:12px;color:#444;margin-bottom:4px"><strong>Dirección:</strong> ' + direccion + '</div>';
         if (telefono) html += '<div style="font-size:12px;color:#444;margin-bottom:4px"><strong>Teléfono:</strong> <a href="tel:' + telefono.replace(/[^0-9+]/g, '') + '" style="color:#009145">' + telefono + '</a></div>';
+        html += '<div style="margin-top:8px"><a href="' + directionsUrl + '" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:6px 10px;background:#009145;color:#fff;text-decoration:none;border-radius:6px;font-size:12px;font-weight:600">Cómo llegar</a></div>';
         html += '</div>';
         return html;
     }
@@ -563,6 +602,7 @@ class VacunatoriosMap {
         var provincia = v.provincia || '';
         var telefono = v.telefono || '';
         var web = v.web || v.sitioWeb || v.url || '';
+        var directionsUrl = this.getDirectionsUrl(v);
         var direccion = domicilio ? (domicilio + (localidad ? ', ' + localidad : '')) : (localidad ? localidad + (provincia ? ', ' + provincia : '') : '');
 
         var card = document.createElement('div');
@@ -576,11 +616,15 @@ class VacunatoriosMap {
             '<span class="info-text">' + escapeHtml(direccion || '—') + '</span></div>' +
             (telefono ? '<div class="info-item"><svg class="info-icon info-icon-phone" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.56 3.57.56.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span class="info-text">' + escapeHtml(telefono) + '</span></div>' : '') +
             (web ? '<div class="info-item"><svg class="info-icon info-icon-globe" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.55zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.55zm2.95-8H4.26c.16-.64.26-1.31.26-2s-.1-1.36-.26-2h3.38c.08.66.14 1.32.14 2s-.06 1.34-.14 2zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg><span class="info-text">' + escapeHtml(web) + '</span></div>' : '') +
+            '<div class="info-item"><svg class="info-icon info-icon-pin-red" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><a class="info-text card-como-llegar-link" href="' + directionsUrl + '" target="_blank" rel="noopener noreferrer">Cómo llegar</a></div>' +
             '<div class="info-item card-link-ver-mapa"><svg class="info-icon info-icon-pin-red" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="info-text">Ver en el mapa</span></div>' +
             '</div>';
 
         var that = this;
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(event) {
+            if (event && event.target && event.target.closest && event.target.closest('.card-como-llegar-link')) {
+                return;
+            }
             var panelMapa = document.getElementById('panelMapa');
             if (panelMapa && !panelMapa.classList.contains('donde-vacuno-mapa-visible')) {
                 panelMapa.classList.add('donde-vacuno-mapa-visible');
