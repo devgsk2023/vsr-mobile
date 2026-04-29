@@ -32,6 +32,14 @@ class VacunatoriosMap {
         this.hasBarriosForCurrentSelection = false;
     }
 
+    getMapContainer() {
+        return document.getElementById('mapa') || document.getElementById('mapaVacunatorios');
+    }
+
+    getResultsContainer() {
+        return document.getElementById('listaResultados') || document.getElementById('listadoVacunatorios');
+    }
+
     debounce(func, wait) {
         let timeout;
         return function (...args) {
@@ -92,10 +100,10 @@ class VacunatoriosMap {
         this.showLoading();
 
         try {
-            const mapContainer = document.getElementById('mapa');
+            const mapContainer = this.getMapContainer();
             if (!mapContainer) {
                 this.hideLoading();
-                console.error('Elemento #mapa no encontrado');
+                console.error('Elemento de mapa no encontrado');
                 return;
             }
 
@@ -190,7 +198,7 @@ class VacunatoriosMap {
     }
 
     showLoading() {
-        const container = document.getElementById('listaResultados');
+        const container = this.getResultsContainer();
         if (container) {
             container.innerHTML = '<div class="loading">Cargando vacunatorios...</div>';
         }
@@ -199,21 +207,21 @@ class VacunatoriosMap {
     hideLoading() {}
 
     showError(message) {
-        const container = document.getElementById('listaResultados');
+        const container = this.getResultsContainer();
         if (container) {
             container.innerHTML = '<div class="sin-resultados"><h4>Error</h4><p>' + message + '</p></div>';
         }
     }
 
     showInitialMessage() {
-        const container = document.getElementById('listaResultados');
+        const container = this.getResultsContainer();
         if (container) {
             container.innerHTML = '<div class="sin-resultados"><h4>Seleccioná una provincia</h4><p>Para ver los vacunatorios disponibles, elegí una provincia en el Paso 1.</p></div>';
         }
     }
 
     showEsperandoBarrioMessage() {
-        const container = document.getElementById('listaResultados');
+        const container = this.getResultsContainer();
         if (container) {
             container.innerHTML = '<div class="sin-resultados"><h4>Seleccioná un barrio</h4><p>Elegí un barrio en el Paso 3 para ver los centros de vacunación.</p></div>';
         }
@@ -351,10 +359,65 @@ class VacunatoriosMap {
         this.updatePasosVisibility();
     }
 
+    getTipoCategoria(tipo) {
+        var tipoNorm = (tipo || '').toLowerCase().trim();
+        if (tipoNorm.indexOf('farmacia') !== -1 || tipoNorm.indexOf('drogueria') !== -1) return 'farmacia';
+        if (
+            tipoNorm.indexOf('hospital') !== -1 ||
+            tipoNorm.indexOf('clinica') !== -1 ||
+            tipoNorm.indexOf('instituto') !== -1 ||
+            tipoNorm.indexOf('sanatorio') !== -1
+        ) return 'hospital';
+        if (
+            tipoNorm.indexOf('vacunatorio') !== -1 ||
+            tipoNorm.indexOf('centro') !== -1 ||
+            tipoNorm.indexOf('salud') !== -1 ||
+            tipoNorm.indexOf('caps') !== -1 ||
+            tipoNorm.indexOf('dispensario') !== -1
+        ) return 'vacunatorio';
+        return '';
+    }
+
+    updateTipoOptions() {
+        var tipoSelect = document.getElementById('filtroTipo');
+        if (!tipoSelect) return;
+
+        var base = this.data.filter(function(v) {
+            if (!v) return false;
+            var matchesProvince = !this.filters.provincia || v.provincia === this.filters.provincia;
+            var matchesLocalidad = !this.filters.localidad || (v.localidad || '').toLowerCase() === this.filters.localidad.toLowerCase();
+            var matchesBarrio = !this.filters.barrio || (v.barrio || '').toLowerCase() === this.filters.barrio.toLowerCase();
+            return matchesProvince && matchesLocalidad && matchesBarrio;
+        }.bind(this));
+
+        var disponibles = { farmacia: false, hospital: false, vacunatorio: false };
+        base.forEach(function(v) {
+            var categoria = this.getTipoCategoria(v.tipo);
+            if (categoria && Object.prototype.hasOwnProperty.call(disponibles, categoria)) {
+                disponibles[categoria] = true;
+            }
+        }.bind(this));
+
+        var currentTipo = this.filters.tipo || '';
+        tipoSelect.innerHTML = '<option value="">Todos</option>';
+
+        if (disponibles.farmacia) tipoSelect.innerHTML += '<option value="farmacia">Farmacia</option>';
+        if (disponibles.hospital) tipoSelect.innerHTML += '<option value="hospital">Hospital</option>';
+        if (disponibles.vacunatorio) tipoSelect.innerHTML += '<option value="vacunatorio">Vacunatorio</option>';
+
+        if (currentTipo && !disponibles[currentTipo]) {
+            this.filters.tipo = '';
+            tipoSelect.value = '';
+        } else {
+            tipoSelect.value = currentTipo;
+        }
+    }
+
     /** Paso 4 (tipo) solo habilitado cuando ya se eligió barrio (o "Todos los barrios"). */
     updateTipoSelectState() {
         const tipoSelect = document.getElementById('filtroTipo');
         if (!tipoSelect) return;
+        this.updateTipoOptions();
         const listoParaTipo = this.filters.provincia && this.filters.localidad &&
             (this.filters.barrio !== '' || !this.hasBarriosForCurrentSelection);
         tipoSelect.disabled = !listoParaTipo;
@@ -462,24 +525,22 @@ class VacunatoriosMap {
 
             var matchesType = true;
             if (this.filters.tipo) {
-                var tipoNorm = (v.tipo || '').toLowerCase().trim();
-                switch (this.filters.tipo) {
-                    case 'hospital':
-                        matchesType = tipoNorm.indexOf('hospital') !== -1 || tipoNorm.indexOf('clinica') !== -1 || tipoNorm.indexOf('instituto') !== -1 || tipoNorm.indexOf('sanatorio') !== -1;
-                        break;
-                    case 'vacunatorio':
-                        matchesType = tipoNorm.indexOf('vacunatorio') !== -1 || tipoNorm.indexOf('centro') !== -1 || tipoNorm.indexOf('salud') !== -1 || tipoNorm.indexOf('caps') !== -1 || tipoNorm.indexOf('dispensario') !== -1;
-                        break;
-                    case 'farmacia':
-                        matchesType = tipoNorm.indexOf('farmacia') !== -1 || tipoNorm.indexOf('drogueria') !== -1;
-                        break;
-                    default:
-                        matchesType = false;
-                        break;
-                }
+                matchesType = this.getTipoCategoria(v.tipo) === this.filters.tipo;
             }
             return matchesProvince && matchesLocalidad && matchesBarrio && matchesType;
         }.bind(this));
+
+        // Si el usuario ya completó los pasos, abrir automáticamente el panel
+        // para que se vean resultados/mapa sin depender del botón "Mostrar mapa".
+        var panelMapa = document.getElementById('panelMapa');
+        if (panelMapa && !panelMapa.classList.contains('donde-vacuno-mapa-visible')) {
+            panelMapa.classList.add('donde-vacuno-mapa-visible');
+            var btnMapa = document.getElementById('btnMostrarMapa');
+            if (btnMapa) btnMapa.innerHTML = '<i class="bi bi-map"></i> Ocultar mapa';
+            if (this.map && typeof google !== 'undefined' && google.maps) {
+                setTimeout(function() { google.maps.event.trigger(this.map, 'resize'); }.bind(this), 250);
+            }
+        }
 
         this.renderMarkers(filtered);
         this.updateResultsList(filtered);
@@ -558,7 +619,7 @@ class VacunatoriosMap {
     }
 
     updateResultsList(vacunatorios) {
-        var container = document.getElementById('listaResultados');
+        var container = this.getResultsContainer();
         if (!container) return;
 
         if (!this.provinciaSeleccionada) {
@@ -656,7 +717,7 @@ function isMobile() {
 }
 
 function scrollToMap() {
-    var mapElement = document.getElementById('mapa');
+    var mapElement = document.getElementById('mapa') || document.getElementById('mapaVacunatorios');
     if (mapElement && isMobile()) {
         mapElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -668,7 +729,7 @@ function initVacunatoriosMap() {
         window.vacunatoriosMapInstance = vacunatoriosMap;
         vacunatoriosMap.init().catch(function(error) {
             console.error('Error en init:', error);
-            var container = document.getElementById('listaResultados');
+            var container = document.getElementById('listaResultados') || document.getElementById('listadoVacunatorios');
             if (container) {
                 container.innerHTML = '<div class="sin-resultados"><h4>Error cargando datos</h4><p>Por favor, recargá la página</p></div>';
             }
@@ -701,7 +762,7 @@ function waitForGoogleMaps() {
         setTimeout(function() {
             clearInterval(interval);
             if (!isGoogleMapsReady()) {
-                var container = document.getElementById('listaResultados');
+                var container = document.getElementById('listaResultados') || document.getElementById('listadoVacunatorios');
                 if (container) {
                     container.innerHTML = '<div class="sin-resultados"><h4>Error cargando Google Maps</h4><p>Verificá tu conexión y recargá la página</p></div>';
                 }
