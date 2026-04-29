@@ -545,7 +545,7 @@ function updateDondeVacunoProgress() {
 })();
 
 /**
- * Mobile: ocultar/mostrar recuadro "Entender" según dirección de scroll
+ * Mobile: mostrar recuadro "Entender" en ventana de scroll
  */
 (function () {
   'use strict';
@@ -553,28 +553,45 @@ function updateDondeVacunoProgress() {
   var overlay = document.querySelector('.section-entender-overlay');
   if (!overlay) return;
 
-  var mq = window.matchMedia('(max-width: 991px)');
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var entenderFoto = document.querySelector('.section-entender-foto');
+  if (!entenderFoto) return;
+  var bottomNav = document.querySelector('.bottom-nav');
   var lastY = window.scrollY || 0;
   var ticking = false;
-  var threshold = 8;
+  var threshold = 1;
+
+  function isMobileContext() {
+    if (window.innerWidth <= 991) return true;
+    if (bottomNav) {
+      var style = window.getComputedStyle(bottomNav);
+      return style && style.display !== 'none' && style.visibility !== 'hidden';
+    }
+    return false;
+  }
 
   function applyState() {
     ticking = false;
-    if (!mq.matches || reducedMotion.matches) {
+    if (!isMobileContext()) {
+      document.body.classList.remove('mobile-overlay-scroll');
       overlay.classList.remove('overlay-scroll-hidden');
       lastY = window.scrollY || 0;
       return;
     }
+    document.body.classList.add('mobile-overlay-scroll');
 
     var currentY = window.scrollY || 0;
     var delta = currentY - lastY;
-    if (Math.abs(delta) < threshold) return;
+    var rect = entenderFoto.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight || 0;
+    var startBand = vh * 0.85;
+    var endBand = vh * 0.35;
+    var inActiveBand = rect.top <= startBand && rect.bottom >= endBand;
+    var movingDown = delta > threshold;
 
-    if (delta > 0 && currentY > 120) {
-      overlay.classList.add('overlay-scroll-hidden');
-    } else {
+    if (inActiveBand && movingDown) {
       overlay.classList.remove('overlay-scroll-hidden');
+    } else {
+      overlay.classList.add('overlay-scroll-hidden');
     }
     lastY = currentY;
   }
@@ -586,6 +603,8 @@ function updateDondeVacunoProgress() {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('touchmove', onScroll, { passive: true });
+  window.addEventListener('wheel', onScroll, { passive: true });
   window.addEventListener('resize', applyState, { passive: true });
   applyState();
 })();

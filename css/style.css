@@ -813,11 +813,7 @@ body {
   text-align: left;
 }
 
-.tabs-text sup {
-  font-size: 0.7em;
-  vertical-align: super;
-  line-height: 0;
-}
+
 
 .tab-card {
   background: #fff;
@@ -2404,30 +2400,19 @@ body {
 
 @media (max-width: 991px) {
   .section-entender-overlay {
-    animation: entender-overlay-slide-in-mobile 420ms ease-out both;
     transition: opacity 220ms ease, transform 220ms ease;
+    will-change: opacity, transform;
   }
 
-  .section-entender-overlay.overlay-scroll-hidden {
+  body.mobile-overlay-scroll .section-entender-overlay.overlay-scroll-hidden {
     opacity: 0;
-    transform: translate(-50%, -40%);
-  }
-}
-
-@keyframes entender-overlay-slide-in-mobile {
-  0% {
-    opacity: 0;
-    transform: translate(calc(-50% - 20px), -50%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -42%) scale(0.98);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .section-entender-overlay {
-    animation: none !important;
+    transition: none !important;
   }
 }
 
