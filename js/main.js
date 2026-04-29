@@ -545,6 +545,52 @@ function updateDondeVacunoProgress() {
 })();
 
 /**
+ * Mobile: ocultar/mostrar recuadro "Entender" según dirección de scroll
+ */
+(function () {
+  'use strict';
+
+  var overlay = document.querySelector('.section-entender-overlay');
+  if (!overlay) return;
+
+  var mq = window.matchMedia('(max-width: 991px)');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 8;
+
+  function applyState() {
+    ticking = false;
+    if (!mq.matches || reducedMotion.matches) {
+      overlay.classList.remove('overlay-scroll-hidden');
+      lastY = window.scrollY || 0;
+      return;
+    }
+
+    var currentY = window.scrollY || 0;
+    var delta = currentY - lastY;
+    if (Math.abs(delta) < threshold) return;
+
+    if (delta > 0 && currentY > 120) {
+      overlay.classList.add('overlay-scroll-hidden');
+    } else {
+      overlay.classList.remove('overlay-scroll-hidden');
+    }
+    lastY = currentY;
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(applyState);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', applyState, { passive: true });
+  applyState();
+})();
+
+/**
  * Preguntas próxima consulta: acordeones + descarga/compartir imagen vsr-preguntas.jpg
  */
 (function () {

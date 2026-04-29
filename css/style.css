@@ -2373,24 +2373,24 @@ body {
 /* Mobile: mostrar el mismo recuadro sin romper el layout */
 .section-entender-overlay {
   position: absolute;
-  top: auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transform: none;
+  top: 62%;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(50, 52, 72, 1);
   color: #fff;
-  padding: 0.55rem 1rem;
+  padding: 1rem 0.95rem;
   border-radius: 0;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
-  width: 100%;
-  max-width: 100%;
+  width: 78%;
+  max-width: 78%;
   z-index: 2;
   opacity: 1;
   visibility: visible;
@@ -2405,17 +2405,23 @@ body {
 @media (max-width: 991px) {
   .section-entender-overlay {
     animation: entender-overlay-slide-in-mobile 420ms ease-out both;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .section-entender-overlay.overlay-scroll-hidden {
+    opacity: 0;
+    transform: translate(-50%, -40%);
   }
 }
 
 @keyframes entender-overlay-slide-in-mobile {
   0% {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translate(calc(-50% - 20px), -50%);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -2432,13 +2438,18 @@ body {
   }
 
   .section-entender-overlay {
+    left: 50%;
+    right: auto;
+    bottom: auto;
     top: 80%;
     transform: translate(-50%, -50%);
     background-color: rgba(50, 52, 72, 1);
     padding: 2.25rem 2rem;
     border-radius: 0px;
     font-size: 2.25rem;
+    font-weight: 400;
     line-height: 1.4;
+    width: auto;
     max-width: 90%;
     opacity: 0;
     visibility: hidden;
@@ -3038,6 +3049,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   margin: 0.5rem 0;
+  display: none;
 }
 
 .section-donde-vacuno .sin-resultados h4 {
@@ -3921,8 +3933,8 @@ body {
 
 .referencias-list {
   margin: 0;
-  padding-left: 0;
-  list-style: none;
+  padding-left: 1.5rem;
+  list-style: decimal;
 }
 
 .referencias-item {
@@ -3935,8 +3947,7 @@ body {
 }
 
 .referencias-item sup {
-  font-size: 14px;
-  font-weight: 600;
+  display: none;
 }
 
 .referencias-item:last-child {
