@@ -179,15 +179,8 @@ body.page-transition.page-ready {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.28s ease, visibility 0.28s ease, transform 0.28s ease;
-  }
-
-  .hero-desktop-img-wrap:hover .hero-desktop-overlay,
-  .hero-desktop-img-wrap:focus-within .hero-desktop-overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%);
+    box-shadow: none;
+    animation: hero-desktop-overlay-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 2s forwards;
   }
 
   .hero-desktop-overlay-text {
@@ -309,43 +302,124 @@ body.page-transition.page-ready {
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  animation: glitch-swap 2s infinite steps(1, end);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  animation: glitch-swap 3s infinite steps(1, end);
 }
 
 .banner-bg {
   --glitch-base: url("../assets/img/banner-principal.png");
-  --glitch-1: url("../assets/img/glitch-img/glitch-image-1777586306.png");
-  --glitch-2: url("../assets/img/glitch-img/glitch-image-1777586308.png");
-  --glitch-3: url("../assets/img/glitch-img/glitch-image-1777586313.png");
+  --glitch-1: url("../assets/img/glitch-img-2/glitch-image-1777907784.png");
+  --glitch-2: url("../assets/img/glitch-img-2/glitch-image-1777907786.png");
+  --glitch-3: url("../assets/img/glitch-img-2/glitch-image-1777907787.png");
+  --glitch-4: url("../assets/img/glitch-img-2/glitch-image-1777907789.png");
+  --glitch-5: url("../assets/img/glitch-img-2/glitch-image-1777907790.png");
+  --glitch-6: url("../assets/img/glitch-img-2/glitch-image-1777907792.png");
+  --glitch-7: url("../assets/img/glitch-img-2/glitch-image-1777907793.png");
+  --glitch-8: url("../assets/img/glitch-img-2/glitch-image-1777907795.png");
+  --glitch-9: url("../assets/img/glitch-img-2/glitch-image-1777907796.png");
+  --glitch-10: url("../assets/img/glitch-img-2/glitch-image-1777907797.png");
 }
 
 .hero-desktop-bg {
   --glitch-base: url("../assets/img/Imagen-principal-pc.png");
-  --glitch-1: url("../assets/img/glitch-img/glitch-image-1777586316.png");
-  --glitch-2: url("../assets/img/glitch-img/glitch-image-1777586324.png");
-  --glitch-3: url("../assets/img/glitch-img/glitch-image-1777586306.png");
+  --glitch-1: url("../assets/img/glitch-img-2/glitch-image-1777907784.png");
+  --glitch-2: url("../assets/img/glitch-img-2/glitch-image-1777907786.png");
+  --glitch-3: url("../assets/img/glitch-img-2/glitch-image-1777907787.png");
+  --glitch-4: url("../assets/img/glitch-img-2/glitch-image-1777907789.png");
+  --glitch-5: url("../assets/img/glitch-img-2/glitch-image-1777907790.png");
+  --glitch-6: url("../assets/img/glitch-img-2/glitch-image-1777907792.png");
+  --glitch-7: url("../assets/img/glitch-img-2/glitch-image-1777907793.png");
+  --glitch-8: url("../assets/img/glitch-img-2/glitch-image-1777907795.png");
+  --glitch-9: url("../assets/img/glitch-img-2/glitch-image-1777907796.png");
+  --glitch-10: url("../assets/img/glitch-img-2/glitch-image-1777907797.png");
 }
 
 @keyframes glitch-swap {
-  0%, 100% {
+  0%, 62%, 88%, 100% {
     background-image: var(--glitch-base);
     background-size: cover;
     opacity: 1;
+    filter: none;
   }
-  92.5% {
+  64% {
     background-image: var(--glitch-1);
     background-size: cover;
     opacity: 1;
+    filter: saturate(1.04);
   }
-  95% {
+  66.2% {
     background-image: var(--glitch-2);
     background-size: cover;
-    opacity: 0.55;
+    opacity: 0.9;
+    filter: saturate(1.05) contrast(1.02);
   }
-  97.5% {
+  68.4% {
     background-image: var(--glitch-3);
     background-size: cover;
     opacity: 1;
+    filter: saturate(1.04);
+  }
+  70.6% {
+    background-image: var(--glitch-4);
+    background-size: cover;
+    opacity: 0.92;
+    filter: saturate(1.06) contrast(1.02);
+  }
+  72.8% {
+    background-image: var(--glitch-5);
+    background-size: cover;
+    opacity: 1;
+    filter: saturate(1.04);
+  }
+  75% {
+    background-image: var(--glitch-6);
+    background-size: cover;
+    opacity: 0.9;
+    filter: saturate(1.05);
+  }
+  77.2% {
+    background-image: var(--glitch-7);
+    background-size: cover;
+    opacity: 1;
+    filter: saturate(1.04);
+  }
+  79.4% {
+    background-image: var(--glitch-8);
+    background-size: cover;
+    opacity: 0.92;
+    filter: saturate(1.06) contrast(1.02);
+  }
+  81.6% {
+    background-image: var(--glitch-9);
+    background-size: cover;
+    opacity: 1;
+    filter: saturate(1.04);
+  }
+  83.8% {
+    background-image: var(--glitch-10);
+    background-size: cover;
+    opacity: 0.93;
+    filter: saturate(1.05);
+  }
+}
+
+@keyframes hero-desktop-overlay-enter {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(calc(-50% - 40px));
+    box-shadow: none;
+  }
+  1% {
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -353,6 +427,23 @@ body.page-transition.page-ready {
   .banner-bg,
   .hero-desktop-bg {
     animation: none !important;
+    filter: none !important;
+  }
+
+  .hero-desktop-overlay {
+    animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) !important;
+    pointer-events: auto !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .banner-box {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
   }
 }
 
@@ -375,7 +466,8 @@ body.page-transition.page-ready {
   max-width: 100%;
   opacity: 0;
   transform: translateX(-40px);
-  animation: banner-box-enter 0.6s ease 2s forwards;
+  box-shadow: none;
+  animation: banner-box-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 2s forwards;
   margin-bottom:20px ;
 }
 
@@ -383,6 +475,7 @@ body.page-transition.page-ready {
   to {
     opacity: 1;
     transform: translateX(0);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 }
 

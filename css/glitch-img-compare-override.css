@@ -1,0 +1,58 @@
+/* Solo para index-glitch-img.html: mismo hero que index, con frames de assets/img/glitch-img */
+
+.banner-bg {
+  --glitch-1: url("../assets/img/glitch-img/glitch-image-1777908169.png");
+  --glitch-2: url("../assets/img/glitch-img/glitch-image-1777908171.png");
+  --glitch-3: url("../assets/img/glitch-img/glitch-image-1777908172.png");
+  --glitch-4: url("../assets/img/glitch-img/glitch-image-1777908173.png");
+  --glitch-5: url("../assets/img/glitch-img/glitch-image-1777908174.png");
+  --glitch-6: url("../assets/img/glitch-img/glitch-image-1777908175.png");
+  --glitch-7: url("../assets/img/glitch-img/glitch-image-1777908176.png");
+  --glitch-8: url("../assets/img/glitch-img/glitch-image-1777908177.png");
+  --glitch-9: url("../assets/img/glitch-img/glitch-image-1777908178.png");
+  --glitch-10: url("../assets/img/glitch-img/glitch-image-1777908179.png");
+}
+
+.hero-desktop-bg {
+  --glitch-1: url("../assets/img/glitch-img/glitch-image-1777908169.png");
+  --glitch-2: url("../assets/img/glitch-img/glitch-image-1777908171.png");
+  --glitch-3: url("../assets/img/glitch-img/glitch-image-1777908172.png");
+  --glitch-4: url("../assets/img/glitch-img/glitch-image-1777908173.png");
+  --glitch-5: url("../assets/img/glitch-img/glitch-image-1777908174.png");
+  --glitch-6: url("../assets/img/glitch-img/glitch-image-1777908175.png");
+  --glitch-7: url("../assets/img/glitch-img/glitch-image-1777908176.png");
+  --glitch-8: url("../assets/img/glitch-img/glitch-image-1777908177.png");
+  --glitch-9: url("../assets/img/glitch-img/glitch-image-1777908178.png");
+  --glitch-10: url("../assets/img/glitch-img/glitch-image-1777908179.png");
+}
+
+body.page-glitch-img-compare {
+  padding-top: 2.25rem;
+}
+
+body.page-glitch-img-compare .site-header {
+  top: 2.25rem;
+}
+
+.glitch-compare-strip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  margin: 0;
+  padding: 0.4rem 1rem;
+  font-size: 0.8125rem;
+  text-align: center;
+  background: #1a1a2e;
+  color: #e8e8e8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glitch-compare-strip a {
+  color: #7dffb3;
+}
+
+.glitch-compare-strip a:hover {
+  color: #b8ffd9;
+}
