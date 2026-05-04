@@ -136,7 +136,7 @@ body.page-transition.page-ready {
 
   .hero-desktop-left .intro-title {
     text-align: left;
-    font-size: 3.6rem;
+    font-size: 3.24rem;
   }
 
   .hero-desktop-right {
@@ -168,7 +168,7 @@ body.page-transition.page-ready {
     position: absolute;
     bottom: 1rem;
     left: 50%;
-    transform: translateX(calc(-50% - 40px));
+    transform: translateX(-50%);
     background-color: rgba(54, 54, 54, 1);
     color: #fff;
     padding: 1rem 1.5rem;
@@ -179,19 +179,10 @@ body.page-transition.page-ready {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.28s ease, visibility 0.28s ease, transform 0.28s ease;
-  }
-
-  .hero-desktop-img-wrap:hover .hero-desktop-overlay,
-  .hero-desktop-img-wrap:focus-within .hero-desktop-overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%);
   }
 
   .hero-desktop-overlay-text {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     margin: 0;
     text-align: center;
@@ -327,27 +318,25 @@ body.page-transition.page-ready {
   width: 100%;
   max-width: 100%;
   opacity: 0;
-  transform: translateX(-40px);
-  animation: banner-box-enter 0.6s ease 2s forwards;
+  animation: banner-box-enter 1.2s ease-in 4s forwards;
   margin-bottom:20px ;
 }
 
 @keyframes banner-box-enter {
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
 .banner-box-line {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   margin: 0;
   line-height: 1.3;
 }
 
 .banner-box-vsr {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #D3FA57 !important;
   line-height: 1.2;
@@ -360,7 +349,7 @@ body.page-transition.page-ready {
 }
 
 .intro-title {
-  font-size: 2.3rem;
+  font-size: 2.07rem;
   font-weight: 400;
   color: black;
   line-height: 1.3;
@@ -4345,5 +4334,143 @@ body {
   .accordion-faq-inner .accordion-button {
     font-size: 1rem !important;
     line-height: 1.35;
+  }
+}
+
+/* ========== GLITCH HERO EFFECT (clip-path layers) ========== */
+.glitch-layers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  animation: glitch-ramp 4s ease-in forwards;
+}
+
+.glitch-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.glitch-layers--mobile .glitch-layer {
+  background-image: url("../assets/img/banner-principal.png");
+}
+
+.glitch-layers--desktop .glitch-layer {
+  background-image: url("../assets/img/Imagen-principal-pc.png");
+}
+
+.glitch-layer:nth-child(1) {
+  transform: translateX(-9%);
+  animation: glitch-anim-1 1.4s infinite linear alternate;
+  filter: hue-rotate(-30deg) saturate(1.6) contrast(1.15);
+  mix-blend-mode: screen;
+}
+
+.glitch-layer:nth-child(2) {
+  transform: translateX(7%) translateY(4%);
+  animation: glitch-anim-2 1.7s -0.6s infinite linear alternate;
+  filter: hue-rotate(30deg) saturate(1.6) contrast(1.15);
+  mix-blend-mode: screen;
+}
+
+.glitch-layer:nth-child(3) {
+  transform: translateX(11%);
+  animation: glitch-anim-flash 0.7s infinite linear;
+  filter: brightness(1.5) contrast(1.3);
+  mix-blend-mode: screen;
+}
+
+/* Curva de intensidad: arranca invisible, crece pronunciadamente
+   y se queda en máximo. La imagen queda glitcheada para siempre. */
+@keyframes glitch-ramp {
+  0%   { opacity: 0; }
+  10%  { opacity: 0.25; }
+  30%  { opacity: 0.55; }
+  55%  { opacity: 0.85; }
+  80%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Scanlines sutiles encima del bg durante el glitch */
+.glitch-layers::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.35) 2px,
+    rgba(0, 0, 0, 0.35) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Ligera distorsión del bg base mientras dura el glitch */
+.banner-bg,
+.hero-desktop-bg {
+  animation: glitch-bg-distort 4s ease-in forwards;
+}
+
+@keyframes glitch-bg-distort {
+  0%   { filter: none; transform: translate(0, 0); }
+  10%  { filter: contrast(1.05) saturate(1.1); transform: translate(0, 0); }
+  35%  { filter: contrast(1.15) saturate(1.2); transform: translate(-2px, 1px); }
+  60%  { filter: contrast(1.25) saturate(1.3); transform: translate(2px, -1px); }
+  78%  { filter: contrast(1.35) saturate(1.4) hue-rotate(-8deg); transform: translate(-3px, 2px); }
+  88%  { filter: contrast(1.4) saturate(1.5) hue-rotate(8deg); transform: translate(3px, -2px); }
+  100% { filter: contrast(1.35) saturate(1.45) hue-rotate(4deg); transform: translate(0, 0); }
+}
+
+@keyframes glitch-anim-1 {
+  0%   { clip-path: polygon(0 0%,   100% 0%,   100% 5%,  0 5%);  }
+  10%  { clip-path: polygon(0 15%,  100% 15%,  100% 15%, 0 15%); }
+  20%  { clip-path: polygon(0 10%,  100% 10%,  100% 20%, 0 20%); }
+  30%  { clip-path: polygon(0 1%,   100% 1%,   100% 2%,  0 2%);  }
+  40%  { clip-path: polygon(0 35%,  100% 35%,  100% 35%, 0 35%); }
+  50%  { clip-path: polygon(0 45%,  100% 45%,  100% 46%, 0 46%); }
+  60%  { clip-path: polygon(0 50%,  100% 50%,  100% 70%, 0 70%); }
+  70%  { clip-path: polygon(0 70%,  100% 70%,  100% 70%, 0 70%); }
+  80%  { clip-path: polygon(0 80%,  100% 80%,  100% 80%, 0 80%); }
+  90%  { clip-path: polygon(0 50%,  100% 50%,  100% 55%, 0 55%); }
+  100% { clip-path: polygon(0 60%,  100% 60%,  100% 70%, 0 70%); }
+}
+
+@keyframes glitch-anim-2 {
+  0%   { clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); }
+  15%  { clip-path: polygon(0 3%,  100% 3%,  100% 3%,  0 3%);  }
+  25%  { clip-path: polygon(0 8%,  100% 8%,  100% 20%, 0 20%); }
+  30%  { clip-path: polygon(0 20%, 100% 20%, 100% 20%, 0 20%); }
+  45%  { clip-path: polygon(0 45%, 100% 45%, 100% 45%, 0 45%); }
+  50%  { clip-path: polygon(0 50%, 100% 50%, 100% 57%, 0 57%); }
+  65%  { clip-path: polygon(0 60%, 100% 60%, 100% 60%, 0 60%); }
+  75%  { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+  80%  { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
+  95%  { clip-path: polygon(0 45%, 100% 45%, 100% 60%, 0 60%); }
+  100% { clip-path: polygon(0 11%, 100% 11%, 100% 15%, 0 15%); }
+}
+
+@keyframes glitch-anim-flash {
+  0%        { opacity: 0.2; }
+  30%, 100% { opacity: 0; }
+}
+
+/* Desktop: fade-in lento del overlay del VSR a los 4s y que quede ahí */
+@media (min-width: 992px) {
+  .hero-desktop-overlay {
+    animation: hero-overlay-show 1.2s ease-in 4s forwards;
+  }
+}
+
+@keyframes hero-overlay-show {
+  to {
+    opacity: 1;
+    visibility: visible;
   }
 }
