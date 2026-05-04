@@ -65,19 +65,26 @@ class VacunatoriosMap {
     }
 
     getDirectionsUrl(v) {
+        var queryParts = [];
+        if (v && v.nombre) queryParts.push(v.nombre);
+        if (v && v.domicilio) queryParts.push(v.domicilio);
+        if (v && v.barrio) queryParts.push(v.barrio);
+        if (v && v.localidad) queryParts.push(v.localidad);
+        if (v && v.provincia) queryParts.push(v.provincia);
+        queryParts.push('Argentina');
+
+        var query = queryParts.filter(Boolean).join(', ');
+        if (query) {
+            return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+        }
+
         var lat = parseFloat(v && v.lat);
         var lng = parseFloat(v && v.lng);
         if (!isNaN(lat) && !isNaN(lng)) {
             return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(lat + ',' + lng) + '&travelmode=driving';
         }
 
-        var parts = [];
-        if (v && v.domicilio) parts.push(v.domicilio);
-        if (v && v.barrio) parts.push(v.barrio);
-        if (v && v.localidad) parts.push(v.localidad);
-        if (v && v.provincia) parts.push(v.provincia);
-        var fallback = parts.join(', ');
-        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(fallback || (v && v.nombre) || 'vacunatorio');
+        return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('vacunatorio');
     }
 
     isSupportedTipo(tipo) {

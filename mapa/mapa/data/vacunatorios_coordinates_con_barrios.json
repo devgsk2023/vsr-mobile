@@ -22490,7 +22490,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1214,
@@ -23246,7 +23246,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1251,
@@ -24213,7 +24213,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1302,
@@ -26460,7 +26460,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1499,
@@ -27007,7 +27007,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1526,
@@ -28267,7 +28267,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1591,
@@ -29149,7 +29149,7 @@
                      "validated":  true,
                      "validatedAt":  "2026-02-09T19:13:07.517771+00:00",
                      "locationType":  "ROOFTOP",
-                     "barrio":  "Devoto"
+                     "barrio":  "Villa Devoto"
                  },
                  {
                      "id":  1633,
@@ -44828,8 +44828,8 @@
                      "telefono":  "",
                      "apVacuna":  "No",
                      "apVacunaMenor":  "No",
-                     "lat":  -33.0137158,
-                     "lng":  -58.5116156,
+                     "lat":  -33.01451827139501,
+                     "lng":   -58.51186222160843,
                      "accuracy":  "HIGH",
                      "geocodingMethod":  "google",
                      "displayName":  "Chalup 346, E3269 Gualeguaychú, Entre Ríos, Argentina",
@@ -44882,11 +44882,11 @@
                  },
                  {
                      "id":  2454,
-                     "nombre":  "Nueva Pasteur",
+                    "nombre":  "Farmacia San Nicolas",
                      "tipo":  "Farmacia",
                      "provincia":  "Entre Rios",
                      "localidad":  "Gualeguaychu",
-                     "domicilio":  "RIVADAVIA 1556, GUALEGUAYCHU ENTRE RIOS, CP 2820",
+                    "domicilio":  "Av. del Valle 638",
                      "codigoPostal":  "2820",
                      "telefono":  "",
                      "apVacuna":  "No",
@@ -44895,7 +44895,7 @@
                      "lng":  -58.5286615,
                      "accuracy":  "HIGH",
                      "geocodingMethod":  "google",
-                     "displayName":  "Rivadavia 1556, E3269 Gualeguaychú, Entre Ríos, Argentina",
+                    "displayName":  "Av. del Valle 638, E3269 Gualeguaychú, Entre Ríos, Argentina",
                      "validated":  false,
                      "validatedAt":  null,
                      "locationType":  "RANGE_INTERPOLATED",

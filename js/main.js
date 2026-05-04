@@ -689,3 +689,42 @@ function updateDondeVacunoProgress() {
     });
   }
 })();
+
+/**
+ * Referencias: colapsable abrir/cerrar
+ */
+(function () {
+  'use strict';
+
+  var cards = document.querySelectorAll('.referencias-card');
+  if (!cards.length) return;
+
+  cards.forEach(function (card, index) {
+    var title = card.querySelector('.referencias-title');
+    var list = card.querySelector('.referencias-list');
+    if (!title || !list) return;
+
+    if (card.querySelector('.referencias-toggle')) return;
+
+    var titleText = title.textContent || 'Referencias';
+    var listId = list.id || ('referenciasList' + index);
+    list.id = listId;
+
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'referencias-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', listId);
+    toggle.innerHTML =
+      '<span class="referencias-title">' + titleText + '</span>' +
+      '<span class="referencias-toggle-icon" aria-hidden="true">&#9662;</span>';
+
+    title.replaceWith(toggle);
+    card.classList.add('is-collapsed');
+
+    toggle.addEventListener('click', function () {
+      var collapsed = card.classList.toggle('is-collapsed');
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    });
+  });
+})();
