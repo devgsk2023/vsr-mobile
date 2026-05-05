@@ -35,13 +35,16 @@
 
   <!-- ========== BANNER / HERO MOBILE ========== -->
   <section class="banner-main d-lg-none">
-    <div class="banner-bg" role="img" aria-label="Imagen de fondo del banner"></div>
-    <div class="container banner-content">
-      <div class="banner-box">
-        <p class="banner-box-line mb-1">Este encuentro podría</p>
-        <p class="banner-box-line mb-0">ser interrumpido por el <span class="banner-box-vsr">VSR</span></p>
-      </div>
-    </div>
+    <video
+      class="banner-mobile-video"
+      autoplay
+      muted
+      playsinline
+      preload="metadata"
+      aria-label="Encuentro interrumpido por el VSR"
+    >
+      <source src="assets/video/encuentro-interrumpido-vsr.mp4" type="video/mp4">
+    </video>
   </section>
 
   <section class="section-below-banner d-lg-none">
@@ -72,10 +75,16 @@
         </div>
         <div class="col-lg-6 hero-desktop-right">
           <div class="hero-desktop-img-wrap">
-            <div class="hero-desktop-bg" role="img" aria-label="Familia"></div>
-            <div class="hero-desktop-overlay">
-              <p class="hero-desktop-overlay-text mb-0">Este encuentro podría ser interrumpido por el <strong class="text-vsr">VSR</strong></p>
-            </div>
+            <video
+              class="hero-desktop-video"
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              aria-label="Encuentro interrumpido por el VSR"
+            >
+              <source src="assets/video/encuentro-interrumpido-vsr.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
       </div>

@@ -309,7 +309,48 @@ body.page-transition.page-ready {
   overflow: hidden;
   transform: translateZ(0);
   backface-visibility: hidden;
-  animation: glitch-swap var(--hero-glitch-cycle) infinite steps(1, end);
+  animation: glitch-swap var(--hero-glitch-cycle) infinite linear;
+}
+
+.banner-bg::before,
+.hero-desktop-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.13) 0,
+      rgba(255, 255, 255, 0.13) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 3px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(40, 255, 220, 0.09),
+      rgba(255, 0, 220, 0.09)
+    );
+  background-size: 100% 100%, 280% 100%;
+  animation: glitch-tv-lines var(--hero-glitch-cycle) infinite linear;
+}
+
+.banner-bg::after,
+.hero-desktop-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22) 0 0.7px, transparent 0.8px),
+    radial-gradient(circle at 74% 58%, rgba(255, 255, 255, 0.16) 0 0.6px, transparent 0.7px),
+    radial-gradient(circle at 40% 83%, rgba(255, 255, 255, 0.16) 0 0.6px, transparent 0.7px);
+  background-size: 3px 3px, 4px 4px, 5px 5px;
+  animation: glitch-tv-noise var(--hero-glitch-cycle) infinite linear;
 }
 
 .banner-bg {
@@ -341,71 +382,131 @@ body.page-transition.page-ready {
 }
 
 @keyframes glitch-swap {
-  0%, 62%, 88%, 100% {
+  0% {
     background-image: var(--glitch-base);
     background-size: cover;
-    opacity: 1;
-    filter: none;
+    opacity: 0.86;
+    filter: saturate(1.04) contrast(1.12) blur(1.8px);
   }
-  64% {
+  10% {
     background-image: var(--glitch-1);
     background-size: cover;
-    opacity: 1;
-    filter: saturate(1.04);
+    opacity: 0.98;
+    filter: saturate(1.06) contrast(1.04) blur(0.4px);
   }
-  66.2% {
+  20% {
     background-image: var(--glitch-2);
     background-size: cover;
-    opacity: 0.9;
-    filter: saturate(1.05) contrast(1.02);
+    opacity: 0.84;
+    filter: saturate(1.08) contrast(1.11) blur(1.4px);
   }
-  68.4% {
+  30% {
     background-image: var(--glitch-3);
     background-size: cover;
-    opacity: 1;
-    filter: saturate(1.04);
+    opacity: 0.93;
+    filter: saturate(1.07) contrast(1.09) blur(1px);
   }
-  70.6% {
+  40% {
     background-image: var(--glitch-4);
     background-size: cover;
-    opacity: 0.92;
-    filter: saturate(1.06) contrast(1.02);
+    opacity: 0.8;
+    filter: saturate(1.1) contrast(1.15) blur(2.2px);
   }
-  72.8% {
+  50% {
     background-image: var(--glitch-5);
     background-size: cover;
-    opacity: 1;
-    filter: saturate(1.04);
+    opacity: 0.92;
+    filter: saturate(1.08) contrast(1.08) blur(1.2px);
   }
-  75% {
+  60% {
     background-image: var(--glitch-6);
     background-size: cover;
-    opacity: 0.9;
-    filter: saturate(1.05);
+    opacity: 0.78;
+    filter: saturate(1.12) contrast(1.17) blur(2.6px);
   }
-  77.2% {
+  70% {
     background-image: var(--glitch-7);
     background-size: cover;
-    opacity: 1;
-    filter: saturate(1.04);
+    opacity: 0.9;
+    filter: saturate(1.09) contrast(1.1) blur(1.5px);
   }
-  79.4% {
+  80% {
     background-image: var(--glitch-8);
     background-size: cover;
-    opacity: 0.92;
-    filter: saturate(1.06) contrast(1.02);
+    opacity: 0.76;
+    filter: saturate(1.14) contrast(1.2) blur(2.9px);
   }
-  81.6% {
+  90% {
     background-image: var(--glitch-9);
     background-size: cover;
-    opacity: 1;
-    filter: saturate(1.04);
+    opacity: 0.88;
+    filter: saturate(1.1) contrast(1.12) blur(1.7px);
   }
-  83.8% {
+  100% {
     background-image: var(--glitch-10);
     background-size: cover;
-    opacity: 0.93;
-    filter: saturate(1.05);
+    opacity: 0.74;
+    filter: saturate(1.15) contrast(1.22) blur(3.1px);
+  }
+}
+
+@keyframes glitch-tv-lines {
+  0% {
+    opacity: 0.34;
+    background-position: 0 0, 0 0;
+    filter: contrast(1.08);
+  }
+  10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+    opacity: 0.55;
+    background-position: 0 0, 100% 0;
+    filter: contrast(1.15);
+  }
+}
+
+@keyframes glitch-tv-noise {
+  0% {
+    opacity: 0.2;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.18;
+    transform: translateX(-1px);
+  }
+  20% {
+    opacity: 0.28;
+    transform: translateX(2px);
+  }
+  30% {
+    opacity: 0.22;
+    transform: translateX(-2px);
+  }
+  40% {
+    opacity: 0.32;
+    transform: translateX(3px);
+  }
+  50% {
+    opacity: 0.22;
+    transform: translateX(-3px);
+  }
+  60% {
+    opacity: 0.34;
+    transform: translateX(2px);
+  }
+  70% {
+    opacity: 0.24;
+    transform: translateX(-2px);
+  }
+  80% {
+    opacity: 0.38;
+    transform: translateX(3px);
+  }
+  90% {
+    opacity: 0.26;
+    transform: translateX(-2px);
+  }
+  100% {
+    opacity: 0.42;
+    transform: translateX(1px);
   }
 }
 
@@ -435,6 +536,14 @@ body.page-transition.page-ready {
   .hero-desktop-bg {
     animation: none !important;
     filter: none !important;
+  }
+
+  .banner-bg::before,
+  .banner-bg::after,
+  .hero-desktop-bg::before,
+  .hero-desktop-bg::after {
+    animation: none !important;
+    opacity: 0 !important;
   }
 
   .hero-desktop-overlay {
